@@ -712,6 +712,21 @@
         .confidence-fill.mid { background: linear-gradient(90deg, #f59e0b, #eab308); }
         .confidence-fill.high { background: linear-gradient(90deg, #10b981, #06b6d4); }
 
+        @keyframes simPulse {
+            0% { transform: scale(1); opacity: 0.95; }
+            50% { transform: scale(1.35); opacity: 0.35; }
+            100% { transform: scale(1); opacity: 0.95; }
+        }
+        .sim-pulse-dot {
+            animation: simPulse 1.8s infinite ease-in-out;
+            transform-origin: center;
+        }
+        @media (max-width: 768px) {
+            #sim-visual-grid {
+                grid-template-columns: 1fr !important;
+            }
+        }
+
         /* INPUTS AND FORMS */
         .form-group {
             margin-bottom: 1.25rem;
@@ -1291,37 +1306,49 @@
                         <h5 style="color:#38bdf8; font-size:0.9rem; margin-bottom:0.75rem;">Exemples reals de la col·lecció d'entrenament (Dataset):</h5>
                         <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(140px, 1fr)); gap:0.85rem; margin-bottom:1.25rem;">
                             <div style="background:#1e293b; border-radius:var(--radius-sm); overflow:hidden; border:2px solid #10b981; text-align:center;">
-                                <img src="img/simulador/cat_tabby.jpg" alt="Gat atigrat" style="width:100%; height:110px; object-fit:cover; display:block;">
+                                <div style="width:100%; height:110px; background:#0f172a; display:flex; align-items:center; justify-content:center; overflow:hidden;">
+                                    <img src="img/simulador/cat_tabby.jpg" alt="Gat atigrat" style="max-width:100%; max-height:100%; width:auto; height:auto; object-fit:contain; display:block;">
+                                </div>
                                 <div style="padding:0.4rem; background:#064e3b; color:#a7f3d0; font-size:0.75rem; font-weight:800;">🏷️ ETIQUETA: GAT</div>
                                 <div style="font-size:0.72rem; color:#94a3b8; padding:0.25rem;">Gat atigrat comú</div>
                             </div>
 
                             <div style="background:#1e293b; border-radius:var(--radius-sm); overflow:hidden; border:2px solid #10b981; text-align:center;">
-                                <img src="img/simulador/cat_ginger.jpg" alt="Gat pèl-roig" style="width:100%; height:110px; object-fit:cover; display:block;">
+                                <div style="width:100%; height:110px; background:#0f172a; display:flex; align-items:center; justify-content:center; overflow:hidden;">
+                                    <img src="img/simulador/cat_ginger.jpg" alt="Gat pèl-roig" style="max-width:100%; max-height:100%; width:auto; height:auto; object-fit:contain; display:block;">
+                                </div>
                                 <div style="padding:0.4rem; background:#064e3b; color:#a7f3d0; font-size:0.75rem; font-weight:800;">🏷️ ETIQUETA: GAT</div>
                                 <div style="font-size:0.72rem; color:#94a3b8; padding:0.25rem;">Gat pèl-roig domèstic</div>
                             </div>
 
                             <div style="background:#1e293b; border-radius:var(--radius-sm); overflow:hidden; border:2px solid #10b981; text-align:center;">
-                                <img src="img/simulador/cat_persian.jpg" alt="Gat persa" style="width:100%; height:110px; object-fit:cover; display:block;">
+                                <div style="width:100%; height:110px; background:#0f172a; display:flex; align-items:center; justify-content:center; overflow:hidden;">
+                                    <img src="img/simulador/cat_persian.jpg" alt="Gat persa" style="max-width:100%; max-height:100%; width:auto; height:auto; object-fit:contain; display:block;">
+                                </div>
                                 <div style="padding:0.4rem; background:#064e3b; color:#a7f3d0; font-size:0.75rem; font-weight:800;">🏷️ ETIQUETA: GAT</div>
                                 <div style="font-size:0.72rem; color:#94a3b8; padding:0.25rem;">Gat persa cara plana</div>
                             </div>
 
                             <div style="background:#1e293b; border-radius:var(--radius-sm); overflow:hidden; border:2px solid #38bdf8; text-align:center;">
-                                <img src="img/simulador/dog_golden.jpg" alt="Gos Golden Retriever" style="width:100%; height:110px; object-fit:cover; display:block;">
+                                <div style="width:100%; height:110px; background:#0f172a; display:flex; align-items:center; justify-content:center; overflow:hidden;">
+                                    <img src="img/simulador/dog_golden.jpg" alt="Gos Golden Retriever" style="max-width:100%; max-height:100%; width:auto; height:auto; object-fit:contain; display:block;">
+                                </div>
                                 <div style="padding:0.4rem; background:#0c4a6e; color:#bae6fd; font-size:0.75rem; font-weight:800;">🏷️ ETIQUETA: GOS</div>
                                 <div style="font-size:0.72rem; color:#94a3b8; padding:0.25rem;">Golden (orelles caigudes)</div>
                             </div>
 
                             <div style="background:#1e293b; border-radius:var(--radius-sm); overflow:hidden; border:2px solid #38bdf8; text-align:center;">
-                                <img src="img/simulador/dog_pug.jpg" alt="Gos Carlí" style="width:100%; height:110px; object-fit:cover; display:block;">
+                                <div style="width:100%; height:110px; background:#0f172a; display:flex; align-items:center; justify-content:center; overflow:hidden;">
+                                    <img src="img/simulador/dog_pug.jpg" alt="Gos Carlí" style="max-width:100%; max-height:100%; width:auto; height:auto; object-fit:contain; display:block;">
+                                </div>
                                 <div style="padding:0.4rem; background:#0c4a6e; color:#bae6fd; font-size:0.75rem; font-weight:800;">🏷️ ETIQUETA: GOS</div>
                                 <div style="font-size:0.72rem; color:#94a3b8; padding:0.25rem;">Carlí (morro arrugat)</div>
                             </div>
 
                             <div style="background:#1e293b; border-radius:var(--radius-sm); overflow:hidden; border:2px solid #38bdf8; text-align:center;">
-                                <img src="img/simulador/dog_husky.jpg" alt="Gos Husky" style="width:100%; height:110px; object-fit:cover; display:block;">
+                                <div style="width:100%; height:110px; background:#0f172a; display:flex; align-items:center; justify-content:center; overflow:hidden;">
+                                    <img src="img/simulador/dog_husky.jpg" alt="Gos Husky" style="max-width:100%; max-height:100%; width:auto; height:auto; object-fit:contain; display:block;">
+                                </div>
                                 <div style="padding:0.4rem; background:#0c4a6e; color:#bae6fd; font-size:0.75rem; font-weight:800;">🏷️ ETIQUETA: GOS</div>
                                 <div style="font-size:0.72rem; color:#94a3b8; padding:0.25rem;">Husky (orelles dretes)</div>
                             </div>
@@ -1429,11 +1456,104 @@
                             <span class="sim-badge" id="sim-epoch-badge">Època 0 / 20</span>
                         </div>
                         <p style="color:#cbd5e1; font-size:0.92rem; margin-bottom:1rem; line-height:1.55;">
-                            A l'inici del procés, la xarxa no sap res: fa prediccions a l'atzar (com llançar una moneda, 50% d'encert). Quan s'equivoca, calcula la <strong>Pèrdua (Loss)</strong> —la distància entre el que ha predit i la realitat— i utilitza un algorisme anomenat <em>retropropagació</em> per modificar milers de connexions numèriques internes:
+                            A l'inici del procés, la xarxa no sap res: fa prediccions a l'atzar (50% d'encert, com llançar una moneda). Quan s'equivoca, calcula la <strong>Pèrdua (Loss)</strong> —la distància exacta entre el que ha predit i la realitat— i utilitza la <em>retropropagació</em> per recalibrar milers de connexions numèriques internes:
                         </p>
 
-                        <!-- GRÀFIC DE RENDIMENT DE L'ENTRENAMENT -->
+                        <!-- TARGETES CONCEPTUALS DIDÀCTIQUES -->
+                        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:0.85rem; margin-bottom:1.25rem;">
+                            <div style="background:#0f172a; border:1px solid #334155; border-radius:var(--radius-sm); padding:0.9rem;">
+                                <div style="display:flex; align-items:center; gap:0.5rem; margin-bottom:0.35rem;">
+                                    <span style="font-size:1.3rem;">📉</span>
+                                    <strong style="color:#f87171; font-size:0.9rem;">Funció de Pèrdua (Loss)</strong>
+                                </div>
+                                <p style="font-size:0.82rem; color:#cbd5e1; margin:0; line-height:1.45;">
+                                    És el <strong>termòmetre de l'error</strong>. Mesura quant s'allunya la màquina de la veritat. 
+                                    Com més a prop de <strong>0</strong> arribi la pèrdua, més afinat estarà el model.
+                                </p>
+                            </div>
+
+                            <div style="background:#0f172a; border:1px solid #334155; border-radius:var(--radius-sm); padding:0.9rem;">
+                                <div style="display:flex; align-items:center; gap:0.5rem; margin-bottom:0.35rem;">
+                                    <span style="font-size:1.3rem;">🧠↩️</span>
+                                    <strong style="color:#38bdf8; font-size:0.9rem;">Retropropagació (Backprop)</strong>
+                                </div>
+                                <p style="font-size:0.82rem; color:#cbd5e1; margin:0; line-height:1.45;">
+                                    El mecanisme d'<strong>autocorrecció</strong>: la xarxa viatja enrere per les connexions i <strong>reajusta els pesos numèrics</strong> (reforça el valor d'orelles i morros per no tornar a fallar).
+                                </p>
+                            </div>
+
+                            <div style="background:#0f172a; border:1px solid #334155; border-radius:var(--radius-sm); padding:0.9rem;">
+                                <div style="display:flex; align-items:center; gap:0.5rem; margin-bottom:0.35rem;">
+                                    <span style="font-size:1.3rem;">🔄</span>
+                                    <strong style="color:#4ade80; font-size:0.9rem;">Època d'Entrenament (Epoch)</strong>
+                                </div>
+                                <p style="font-size:0.82rem; color:#cbd5e1; margin:0; line-height:1.45;">
+                                    Un <strong>cicle sencer</strong> examinant totes les fotos d'entrenament. A cada època, l'error es redueix i la línia de punteria s'apropa al centre!
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- LABORATORI VISUAL: GRÀFICA INTERACTIVA + DIANA DE PUNTERIA -->
                         <div style="background:#1e293b; padding:1.25rem; border-radius:var(--radius-md); border:1px solid #334155; margin-bottom:1.25rem;">
+                            
+                            <div style="display:grid; grid-template-columns:1.5fr 1fr; gap:1.25rem; align-items:start; margin-bottom:1.25rem;" id="sim-visual-grid">
+                                
+                                <!-- COLUMNA 1: GRÀFICA DINÀMICA DE RENDIMENT -->
+                                <div style="background:#0f172a; border-radius:var(--radius-sm); border:1px solid #334155; padding:1rem;">
+                                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem; flex-wrap:wrap; gap:0.4rem;">
+                                        <div style="font-weight:700; font-size:0.88rem; color:#f8fafc; display:flex; align-items:center; gap:0.4rem;">
+                                            <span>📊 Corba d'Aprenentatge (En directe)</span>
+                                        </div>
+                                        <div style="display:flex; gap:0.9rem; font-size:0.75rem;">
+                                            <span style="color:#4ade80; display:flex; align-items:center; gap:0.3rem;">
+                                                <span style="display:inline-block; width:10px; height:10px; background:#4ade80; border-radius:50%;"></span>
+                                                Precisió (Acc) ↗
+                                            </span>
+                                            <span style="color:#f87171; display:flex; align-items:center; gap:0.3rem;">
+                                                <span style="display:inline-block; width:10px; height:10px; background:#f87171; border-radius:50%;"></span>
+                                                Pèrdua (Loss) ↘
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <!-- SVG GRÀFICA DINÀMICA -->
+                                    <div style="position:relative; width:100%;">
+                                        <svg id="sim-training-svg" viewBox="0 0 460 210" style="width:100%; height:auto; display:block; overflow:visible;">
+                                            <!-- Contingut generat dinàmicament per JS -->
+                                        </svg>
+                                    </div>
+                                    <div style="display:flex; justify-content:space-between; font-size:0.73rem; color:#94a3b8; margin-top:0.4rem; padding:0 0.5rem;">
+                                        <span>Època 0 (Inici)</span>
+                                        <span style="color:#cbd5e1;">A mesura que l'error (Loss) cau, la precisió puja!</span>
+                                        <span>Època 20 (Final)</span>
+                                    </div>
+                                </div>
+
+                                <!-- COLUMNA 2: LA DIANA DE PUNTERIA D'APRENENTATGE -->
+                                <div style="background:#0f172a; border-radius:var(--radius-sm); border:1px solid #334155; padding:1rem; text-align:center;">
+                                    <div style="font-weight:700; font-size:0.88rem; color:#f8fafc; margin-bottom:0.4rem; display:flex; align-items:center; justify-content:center; gap:0.4rem;">
+                                        <span>🎯 Diana de Punteria (Analogia Intuïtiva)</span>
+                                    </div>
+                                    <p style="font-size:0.75rem; color:#94a3b8; margin:0 0 0.6rem; line-height:1.35;">
+                                        Cada punt és una predicció. Com més a prop del centre, menor és la Pèrdua (Loss):
+                                    </p>
+
+                                    <!-- SVG DIANA -->
+                                    <div style="display:flex; justify-content:center; margin-bottom:0.6rem;">
+                                        <svg id="sim-target-svg" viewBox="0 0 200 200" style="width:165px; height:165px; display:block;">
+                                            <!-- Generat dinàmicament per JS -->
+                                        </svg>
+                                    </div>
+
+                                    <!-- ESTAT DIDÀCTIC DINÀMIC -->
+                                    <div id="sim-target-status" style="background:#1e293b; border-radius:4px; padding:0.5rem 0.6rem; font-size:0.78rem; border-left:3px solid #f87171; text-align:left; color:#e2e8f0; line-height:1.35;">
+                                        🎲 <strong>Època 0:</strong> Tirs a cegues (50% atzar). Els dards cauen fora del centre perquè la màquina encara no sap què mirar.
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <!-- MÈTRIQUES NUMÈRIQUES AMB BARRES -->
                             <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.25rem; margin-bottom:1rem;">
                                 <div>
                                     <div style="display:flex; justify-content:space-between; font-size:0.85rem; color:#cbd5e1; margin-bottom:0.3rem;">
@@ -1443,7 +1563,10 @@
                                     <div class="confidence-meter">
                                         <div class="confidence-fill low" id="sim-accuracy-bar" style="width:50%;"></div>
                                     </div>
-                                    <span style="font-size:0.75rem; color:#94a3b8;">Percentatge d'imatges que el model classifica correctament.</span>
+                                    <div style="display:flex; justify-content:space-between; font-size:0.75rem; color:#94a3b8;">
+                                        <span>Percentatge de fotos correctes</span>
+                                        <span id="sim-acc-status-tag" style="color:#fbbf24; font-weight:600;">Moneda a l'atzar</span>
+                                    </div>
                                 </div>
 
                                 <div>
@@ -1454,30 +1577,38 @@
                                     <div class="confidence-meter">
                                         <div class="confidence-fill low" id="sim-loss-bar" style="width:100%; background:linear-gradient(90deg, #ef4444, #dc2626);"></div>
                                     </div>
-                                    <span style="font-size:0.75rem; color:#94a3b8;">Com més baixa és la pèrdua, més afinat està el model.</span>
+                                    <div style="display:flex; justify-content:space-between; font-size:0.75rem; color:#94a3b8;">
+                                        <span>Com més a prop de 0, millor</span>
+                                        <span id="sim-loss-status-tag" style="color:#f87171; font-weight:600;">Pèrdua màxima</span>
+                                    </div>
                                 </div>
                             </div>
 
+                            <!-- TERMINAL DE REGISTRE -->
                             <div id="sim-training-log" style="background:#0f172a; border-radius:var(--radius-sm); padding:0.75rem; font-family:monospace; font-size:0.8rem; color:#94a3b8; max-height:85px; overflow-y:auto; border:1px solid #334155; margin-bottom:1rem;">
                                 > Sistema preparat. Prem "Entrenar 1 Època" per començar a ajustar els pesos numèrics.
                             </div>
 
-                            <div style="display:flex; gap:0.6rem; flex-wrap:wrap;">
-                                <button class="btn btn-secondary" id="btn-train-one-epoch" onclick="trainOneEpoch()" style="font-size:0.84rem; padding:0.45rem 0.9rem;">
+                            <!-- BOTONS D'ACCIÓ -->
+                            <div style="display:flex; gap:0.6rem; flex-wrap:wrap; align-items:center;">
+                                <button class="btn btn-secondary" id="btn-train-one-epoch" onclick="trainOneEpoch()" style="font-size:0.84rem; padding:0.5rem 1rem;">
                                     ⚡ Entrenar 1 Època (+5%)
                                 </button>
-                                <button class="btn btn-primary" id="btn-train-full" onclick="trainFullModel()" style="font-size:0.84rem; padding:0.45rem 0.9rem;">
+                                <button class="btn btn-primary" id="btn-train-full" onclick="trainFullModel()" style="font-size:0.84rem; padding:0.5rem 1rem;">
                                     🚀 Entrenament Complet (20 Èpoques)
                                 </button>
-                                <button class="btn btn-secondary" onclick="resetEpochTraining()" style="font-size:0.84rem; padding:0.45rem 0.9rem; background:#334155; color:#cbd5e1;">
+                                <button class="btn btn-secondary" onclick="resetEpochTraining()" style="font-size:0.84rem; padding:0.5rem 1rem; background:#334155; color:#cbd5e1;">
                                     🔄 Reiniciar Pesos
                                 </button>
+                                <span id="sim-training-indicator" style="font-size:0.8rem; color:#38bdf8; display:none; align-items:center; gap:0.4rem;">
+                                    <span class="spinner" style="width:14px; height:14px; border-width:2px; display:inline-block;"></span> Entrenant en temps real...
+                                </span>
                             </div>
                         </div>
 
-                        <div style="display:flex; gap:0.75rem;">
+                        <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
                             <button class="btn btn-secondary" onclick="switchSimStep(2)">⬅️ Pas Anterior</button>
-                            <button class="btn btn-success" id="btn-go-to-step-4" onclick="switchSimStep(4)" disabled>
+                            <button class="btn btn-success" id="btn-go-to-step-4" onclick="switchSimStep(4)" disabled style="transition:all 0.3s;">
                                 Passar al Pas 4: Posa a prova el model amb animals reals ➡️
                             </button>
                         </div>
@@ -1495,40 +1626,52 @@
                             Posa a prova el model davant casos nous que <strong>NO formaven part del dataset d'entrenament</strong>. Selecciona qualsevol d'aquests 6 animals reals per veure com la xarxa avalua els patrons i per què es pot equivocar:
                         </p>
 
-                        <!-- GRAELLA DE CASOS DE PROVA REAL -->
+                        <!-- GRAELLA DE CASOS DE PROVA REAL SENSE RETALLS D'IMATGE -->
                         <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(140px, 1fr)); gap:0.75rem; margin-bottom:1.5rem;">
                             <button class="sim-test-card active" id="test-card-cat_tabby" onclick="testAnimalCase('cat_tabby')" style="background:#1e293b; border:2px solid #6366f1; border-radius:var(--radius-sm); padding:0.4rem; text-align:center; cursor:pointer; color:#f8fafc;">
-                                <img src="img/simulador/cat_tabby.jpg" alt="Gat Atigrat" style="width:100%; height:90px; object-fit:cover; border-radius:4px; margin-bottom:0.35rem;">
+                                <div style="width:100%; height:95px; background:#0f172a; border-radius:4px; display:flex; align-items:center; justify-content:center; overflow:hidden; margin-bottom:0.35rem;">
+                                    <img src="img/simulador/cat_tabby.jpg" alt="Gat Atigrat" style="max-width:100%; max-height:100%; width:auto; height:auto; object-fit:contain; display:block;">
+                                </div>
                                 <div style="font-weight:700; font-size:0.8rem;">Gat Atigrat</div>
                                 <div style="font-size:0.7rem; color:#a5b4fc;">Cas típic clar</div>
                             </button>
 
                             <button class="sim-test-card" id="test-card-dog_golden" onclick="testAnimalCase('dog_golden')" style="background:#1e293b; border:2px solid #334155; border-radius:var(--radius-sm); padding:0.4rem; text-align:center; cursor:pointer; color:#f8fafc;">
-                                <img src="img/simulador/dog_golden.jpg" alt="Golden Retriever" style="width:100%; height:90px; object-fit:cover; border-radius:4px; margin-bottom:0.35rem;">
+                                <div style="width:100%; height:95px; background:#0f172a; border-radius:4px; display:flex; align-items:center; justify-content:center; overflow:hidden; margin-bottom:0.35rem;">
+                                    <img src="img/simulador/dog_golden.jpg" alt="Golden Retriever" style="max-width:100%; max-height:100%; width:auto; height:auto; object-fit:contain; display:block;">
+                                </div>
                                 <div style="font-weight:700; font-size:0.8rem;">Gos Golden</div>
                                 <div style="font-size:0.7rem; color:#a5b4fc;">Orelles caigudes</div>
                             </button>
 
                             <button class="sim-test-card" id="test-card-dog_husky" onclick="testAnimalCase('dog_husky')" style="background:#1e293b; border:2px solid #334155; border-radius:var(--radius-sm); padding:0.4rem; text-align:center; cursor:pointer; color:#f8fafc;">
-                                <img src="img/simulador/dog_husky.jpg" alt="Gos Husky" style="width:100%; height:90px; object-fit:cover; border-radius:4px; margin-bottom:0.35rem;">
+                                <div style="width:100%; height:95px; background:#0f172a; border-radius:4px; display:flex; align-items:center; justify-content:center; overflow:hidden; margin-bottom:0.35rem;">
+                                    <img src="img/simulador/dog_husky.jpg" alt="Gos Husky" style="max-width:100%; max-height:100%; width:auto; height:auto; object-fit:contain; display:block;">
+                                </div>
                                 <div style="font-weight:700; font-size:0.8rem;">Gos Husky ⚠️</div>
                                 <div style="font-size:0.7rem; color:#fcd34d;">Orelles punxegudes!</div>
                             </button>
 
                             <button class="sim-test-card" id="test-card-cat_persian" onclick="testAnimalCase('cat_persian')" style="background:#1e293b; border:2px solid #334155; border-radius:var(--radius-sm); padding:0.4rem; text-align:center; cursor:pointer; color:#f8fafc;">
-                                <img src="img/simulador/cat_persian.jpg" alt="Gat Persa" style="width:100%; height:90px; object-fit:cover; border-radius:4px; margin-bottom:0.35rem;">
+                                <div style="width:100%; height:95px; background:#0f172a; border-radius:4px; display:flex; align-items:center; justify-content:center; overflow:hidden; margin-bottom:0.35rem;">
+                                    <img src="img/simulador/cat_persian.jpg" alt="Gat Persa" style="max-width:100%; max-height:100%; width:auto; height:auto; object-fit:contain; display:block;">
+                                </div>
                                 <div style="font-weight:700; font-size:0.8rem;">Gat Persa</div>
                                 <div style="font-size:0.7rem; color:#a5b4fc;">Cara xata atípica</div>
                             </button>
 
                             <button class="sim-test-card" id="test-card-fox_wild" onclick="testAnimalCase('fox_wild')" style="background:#1e293b; border:2px solid #334155; border-radius:var(--radius-sm); padding:0.4rem; text-align:center; cursor:pointer; color:#f8fafc;">
-                                <img src="img/simulador/fox_wild.jpg" alt="Guineu Vermella" style="width:100%; height:90px; object-fit:cover; border-radius:4px; margin-bottom:0.35rem;">
+                                <div style="width:100%; height:95px; background:#0f172a; border-radius:4px; display:flex; align-items:center; justify-content:center; overflow:hidden; margin-bottom:0.35rem;">
+                                    <img src="img/simulador/fox_wild.jpg" alt="Guineu Vermella" style="max-width:100%; max-height:100%; width:auto; height:auto; object-fit:contain; display:block;">
+                                </div>
                                 <div style="font-weight:700; font-size:0.8rem;">Guineu 🦊</div>
                                 <div style="font-size:0.7rem; color:#fca5a5;">Cas Frontera salvatge</div>
                             </button>
 
                             <button class="sim-test-card" id="test-card-lynx_wild" onclick="testAnimalCase('lynx_wild')" style="background:#1e293b; border:2px solid #334155; border-radius:var(--radius-sm); padding:0.4rem; text-align:center; cursor:pointer; color:#f8fafc;">
-                                <img src="img/simulador/lynx_wild.jpg" alt="Linx Salvatge" style="width:100%; height:90px; object-fit:cover; border-radius:4px; margin-bottom:0.35rem;">
+                                <div style="width:100%; height:95px; background:#0f172a; border-radius:4px; display:flex; align-items:center; justify-content:center; overflow:hidden; margin-bottom:0.35rem;">
+                                    <img src="img/simulador/lynx_wild.jpg" alt="Linx Salvatge" style="max-width:100%; max-height:100%; width:auto; height:auto; object-fit:contain; display:block;">
+                                </div>
                                 <div style="font-weight:700; font-size:0.8rem;">Linx Salvatge</div>
                                 <div style="font-size:0.7rem; color:#a5b4fc;">Pinzells a les orelles</div>
                             </button>
@@ -2807,6 +2950,10 @@ Omple els 4 camps de l'esquerra per veure com queda el teu prompt professional p
                 }
             }
 
+            if (step === 3) {
+                updateEpochUI();
+            }
+
             if (step === 4) {
                 testAnimalCase('cat_tabby');
             }
@@ -2846,13 +2993,236 @@ Omple els 4 camps de l'esquerra per veure com queda el teu prompt professional p
         }
 
         function trainFullModel() {
+            const btnOne = document.getElementById('btn-train-one-epoch');
+            const btnFull = document.getElementById('btn-train-full');
+            const ind = document.getElementById('sim-training-indicator');
+
+            if (btnOne) btnOne.disabled = true;
+            if (btnFull) btnFull.disabled = true;
+            if (ind) ind.style.display = 'inline-flex';
+
             let interval = setInterval(() => {
                 if (trainingEpoch < 20) {
                     trainOneEpoch();
                 } else {
                     clearInterval(interval);
+                    if (btnOne) btnOne.disabled = false;
+                    if (btnFull) btnFull.disabled = false;
+                    if (ind) ind.style.display = 'none';
                 }
-            }, 80);
+            }, 90);
+        }
+
+        function renderTrainingVisuals() {
+            const svgChart = document.getElementById('sim-training-svg');
+            const svgTarget = document.getElementById('sim-target-svg');
+            const targetStatus = document.getElementById('sim-target-status');
+            const accTag = document.getElementById('sim-acc-status-tag');
+            const lossTag = document.getElementById('sim-loss-status-tag');
+
+            // 1. Dades històriques d'èpoques (mostreig cada 2 èpoques)
+            const history = [];
+            for (let e = 0; e <= trainingEpoch; e += 2) {
+                const acc = Math.min(96.8, 50.0 + (e * 2.34));
+                const loss = Math.max(0.048, 0.693 - (e * 0.032));
+                history.push({ epoch: e, acc: acc, loss: loss });
+            }
+
+            // 2. Renderització de la Gràfica SVG (viewBox 0 0 460 210)
+            if (svgChart) {
+                const xMin = 48, xMax = 412, xSpan = xMax - xMin;
+                const yMin = 25, yMax = 175, ySpan = yMax - yMin;
+
+                const getX = (ep) => xMin + (ep / 20) * xSpan;
+                const getYAcc = (a) => yMax - ((a - 40) / 60) * ySpan;
+                const getYLoss = (l) => yMin + (1 - (l / 0.70)) * ySpan;
+
+                let svgHtml = `
+                    <defs>
+                        <linearGradient id="accGrad" x1="0" y1="0" x2="0" y2="1">
+                            <stop offset="0%" stop-color="#10b981" stop-opacity="0.32"/>
+                            <stop offset="100%" stop-color="#10b981" stop-opacity="0.0"/>
+                        </linearGradient>
+                        <linearGradient id="lossGrad" x1="0" y1="1" x2="0" y2="0">
+                            <stop offset="0%" stop-color="#ef4444" stop-opacity="0.28"/>
+                            <stop offset="100%" stop-color="#ef4444" stop-opacity="0.0"/>
+                        </linearGradient>
+                    </defs>
+
+                    <!-- Línies de fons de la graella (Grid) -->
+                    <line x1="${xMin}" y1="25" x2="${xMax}" y2="25" stroke="#1e293b" stroke-width="1" stroke-dasharray="3,3"/>
+                    <line x1="${xMin}" y1="62.5" x2="${xMax}" y2="62.5" stroke="#1e293b" stroke-width="1" stroke-dasharray="3,3"/>
+                    <line x1="${xMin}" y1="100" x2="${xMax}" y2="100" stroke="#1e293b" stroke-width="1" stroke-dasharray="3,3"/>
+                    <line x1="${xMin}" y1="137.5" x2="${xMax}" y2="137.5" stroke="#1e293b" stroke-width="1" stroke-dasharray="3,3"/>
+                    <line x1="${xMin}" y1="175" x2="${xMax}" y2="175" stroke="#334155" stroke-width="1.5"/>
+
+                    <!-- Línies verticals d'èpoques -->
+                    <line x1="${getX(0)}" y1="25" x2="${getX(0)}" y2="175" stroke="#334155" stroke-width="1.5"/>
+                    <line x1="${getX(5)}" y1="25" x2="${getX(5)}" y2="175" stroke="#1e293b" stroke-width="1" stroke-dasharray="3,3"/>
+                    <line x1="${getX(10)}" y1="25" x2="${getX(10)}" y2="175" stroke="#1e293b" stroke-width="1" stroke-dasharray="3,3"/>
+                    <line x1="${getX(15)}" y1="25" x2="${getX(15)}" y2="175" stroke="#1e293b" stroke-width="1" stroke-dasharray="3,3"/>
+                    <line x1="${getX(20)}" y1="25" x2="${getX(20)}" y2="175" stroke="#1e293b" stroke-width="1" stroke-dasharray="3,3"/>
+
+                    <!-- Etiquetes de l'Eix Y Esquerre: Precisió (Verd) -->
+                    <text x="${xMin - 6}" y="29" fill="#4ade80" font-size="9" text-anchor="end" font-family="monospace">100%</text>
+                    <text x="${xMin - 6}" y="66" fill="#4ade80" font-size="9" text-anchor="end" font-family="monospace">85%</text>
+                    <text x="${xMin - 6}" y="103" fill="#4ade80" font-size="9" text-anchor="end" font-family="monospace">70%</text>
+                    <text x="${xMin - 6}" y="141" fill="#4ade80" font-size="9" text-anchor="end" font-family="monospace">55%</text>
+                    <text x="${xMin - 6}" y="178" fill="#4ade80" font-size="9" text-anchor="end" font-family="monospace">40%</text>
+
+                    <!-- Etiquetes de l'Eix Y Dret: Pèrdua (Vermell) -->
+                    <text x="${xMax + 6}" y="29" fill="#f87171" font-size="9" text-anchor="start" font-family="monospace">0.70</text>
+                    <text x="${xMax + 6}" y="66" fill="#f87171" font-size="9" text-anchor="start" font-family="monospace">0.52</text>
+                    <text x="${xMax + 6}" y="103" fill="#f87171" font-size="9" text-anchor="start" font-family="monospace">0.35</text>
+                    <text x="${xMax + 6}" y="141" fill="#f87171" font-size="9" text-anchor="start" font-family="monospace">0.17</text>
+                    <text x="${xMax + 6}" y="178" fill="#f87171" font-size="9" text-anchor="start" font-family="monospace">0.00</text>
+
+                    <!-- Etiquetes de l'Eix X: Èpoques -->
+                    <text x="${getX(0)}" y="194" fill="#94a3b8" font-size="9.5" text-anchor="middle">Ep 0</text>
+                    <text x="${getX(5)}" y="194" fill="#94a3b8" font-size="9.5" text-anchor="middle">Ep 5</text>
+                    <text x="${getX(10)}" y="194" fill="#94a3b8" font-size="9.5" text-anchor="middle">Ep 10</text>
+                    <text x="${getX(15)}" y="194" fill="#94a3b8" font-size="9.5" text-anchor="middle">Ep 15</text>
+                    <text x="${getX(20)}" y="194" fill="#94a3b8" font-size="9.5" text-anchor="middle">Ep 20</text>
+                `;
+
+                if (history.length > 0) {
+                    let accPath = `M ${getX(history[0].epoch)} ${getYAcc(history[0].acc)}`;
+                    let lossPath = `M ${getX(history[0].epoch)} ${getYLoss(history[0].loss)}`;
+
+                    for (let i = 1; i < history.length; i++) {
+                        accPath += ` L ${getX(history[i].epoch)} ${getYAcc(history[i].acc)}`;
+                        lossPath += ` L ${getX(history[i].epoch)} ${getYLoss(history[i].loss)}`;
+                    }
+
+                    const lastP = history[history.length - 1];
+                    const lastX = getX(lastP.epoch);
+                    const lastYAcc = getYAcc(lastP.acc);
+                    const lastYLoss = getYLoss(lastP.loss);
+
+                    if (history.length > 1) {
+                        const accArea = `${accPath} L ${lastX} 175 L ${getX(history[0].epoch)} 175 Z`;
+                        const lossArea = `${lossPath} L ${lastX} 175 L ${getX(history[0].epoch)} 175 Z`;
+                        svgHtml += `
+                            <path d="${accArea}" fill="url(#accGrad)"/>
+                            <path d="${lossArea}" fill="url(#lossGrad)"/>
+                        `;
+                    }
+
+                    svgHtml += `
+                        <path d="${accPath}" fill="none" stroke="#10b981" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="${lossPath}" fill="none" stroke="#ef4444" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    `;
+
+                    history.forEach(p => {
+                        const px = getX(p.epoch);
+                        const pyAcc = getYAcc(p.acc);
+                        const pyLoss = getYLoss(p.loss);
+                        svgHtml += `
+                            <circle cx="${px}" cy="${pyAcc}" r="3" fill="#10b981"/>
+                            <circle cx="${px}" cy="${pyLoss}" r="3" fill="#ef4444"/>
+                        `;
+                    });
+
+                    svgHtml += `
+                        <circle cx="${lastX}" cy="${lastYAcc}" r="7" fill="none" stroke="#4ade80" stroke-width="2" class="sim-pulse-dot"/>
+                        <circle cx="${lastX}" cy="${lastYAcc}" r="4" fill="#ffffff"/>
+                        <text x="${lastX}" y="${Math.max(16, lastYAcc - 9)}" fill="#4ade80" font-size="10.5" font-weight="bold" text-anchor="middle" font-family="monospace">${lastP.acc.toFixed(1)}%</text>
+
+                        <circle cx="${lastX}" cy="${lastYLoss}" r="7" fill="none" stroke="#f87171" stroke-width="2" class="sim-pulse-dot"/>
+                        <circle cx="${lastX}" cy="${lastYLoss}" r="4" fill="#ffffff"/>
+                        <text x="${lastX}" y="${Math.min(190, lastYLoss + 14)}" fill="#f87171" font-size="10.5" font-weight="bold" text-anchor="middle" font-family="monospace">${lastP.loss.toFixed(3)}</text>
+                    `;
+                }
+
+                svgChart.innerHTML = svgHtml;
+            }
+
+            // 3. Renderització de la Diana de Punteria (viewBox 0 0 200 200)
+            if (svgTarget) {
+                const cx = 100, cy = 100;
+                let targetHtml = `
+                    <circle cx="${cx}" cy="${cy}" r="82" fill="#0f172a" stroke="#334155" stroke-width="1.5"/>
+                    <circle cx="${cx}" cy="${cy}" r="82" fill="none" stroke="#475569" stroke-width="1" stroke-dasharray="3,3"/>
+                    <circle cx="${cx}" cy="${cy}" r="56" fill="#1e3a8a" fill-opacity="0.35" stroke="#3b82f6" stroke-width="1.5"/>
+                    <circle cx="${cx}" cy="${cy}" r="34" fill="#065f46" fill-opacity="0.45" stroke="#10b981" stroke-width="1.5"/>
+                    <circle cx="${cx}" cy="${cy}" r="16" fill="#b45309" stroke="#fbbf24" stroke-width="2"/>
+                    <circle cx="${cx}" cy="${cy}" r="4" fill="#fef08a"/>
+
+                    <line x1="${cx}" y1="16" x2="${cx}" y2="184" stroke="#475569" stroke-width="1" stroke-dasharray="2,2" opacity="0.6"/>
+                    <line x1="16" y1="${cy}" x2="184" y2="${cy}" stroke="#475569" stroke-width="1" stroke-dasharray="2,2" opacity="0.6"/>
+                `;
+
+                const dartAngles = [0.35, 1.15, 1.95, 2.75, 3.55, 4.35, 5.15, 5.95];
+                const dartDistFactors = [0.88, 1.12, 0.92, 1.08, 0.95, 1.05, 0.82, 1.14];
+                const baseRadius = Math.max(5, (trainingLoss / 0.693) * 70);
+
+                targetHtml += `
+                    <circle cx="${cx}" cy="${cy}" r="${baseRadius}" fill="none" stroke="${trainingLoss > 0.4 ? '#ef4444' : (trainingLoss > 0.15 ? '#f59e0b' : '#10b981')}" stroke-width="1" stroke-dasharray="2,2" opacity="0.75"/>
+                `;
+
+                let dotColor = '#ef4444';
+                if (trainingEpoch >= 16) {
+                    dotColor = '#4ade80';
+                } else if (trainingEpoch >= 8) {
+                    dotColor = '#38bdf8';
+                } else if (trainingEpoch >= 2) {
+                    dotColor = '#f59e0b';
+                }
+
+                dartAngles.forEach((angle, idx) => {
+                    const r = Math.max(3.5, Math.min(78, baseRadius * dartDistFactors[idx]));
+                    const dx = cx + r * Math.cos(angle);
+                    const dy = cy + r * Math.sin(angle);
+                    targetHtml += `
+                        <circle cx="${dx.toFixed(1)}" cy="${dy.toFixed(1)}" r="${trainingEpoch === 20 ? 4 : 3.5}" fill="${dotColor}" stroke="#ffffff" stroke-width="0.8"/>
+                    `;
+                });
+
+                svgTarget.innerHTML = targetHtml;
+            }
+
+            // 4. Textos didàctics dinàmics
+            if (targetStatus) {
+                if (trainingEpoch === 0) {
+                    targetStatus.style.borderLeftColor = '#f87171';
+                    targetStatus.innerHTML = `🎲 <strong>Època 0 (Atzar Pur):</strong> La xarxa fa prediccions a cegues (50% d'encert). Com que encara no ha analitzat les fotos, l'error (Loss: 0.693) és màxim i els tirs cauen lluny.`;
+                } else if (trainingEpoch < 10) {
+                    targetStatus.style.borderLeftColor = '#f59e0b';
+                    targetStatus.innerHTML = `⚙️ <strong>Època ${trainingEpoch} (Primers retocs):</strong> La retropropagació comença a calibrar filtres de vores i contorns. L'error comença a disminuir (${trainingLoss.toFixed(3)}).`;
+                } else if (trainingEpoch < 20) {
+                    targetStatus.style.borderLeftColor = '#38bdf8';
+                    targetStatus.innerHTML = `📈 <strong>Època ${trainingEpoch} (Afinant la punteria):</strong> Els trets facials clau (orelles triangulars vs caigudes, morros) ja sumen punts fiables. Precisió del ${trainingAccuracy.toFixed(1)}%!`;
+                } else {
+                    targetStatus.style.borderLeftColor = '#4ade80';
+                    targetStatus.innerHTML = `🎯 <strong>Època 20 (Diana Aconseguida!):</strong> Punteria màxima del 96.8%! La pèrdua ha caigut a 0.048 (quasi 0). El model ja està preparat per al test real del Pas 4!`;
+                }
+            }
+
+            if (accTag) {
+                if (trainingAccuracy < 60) {
+                    accTag.textContent = "Moneda a l'atzar";
+                    accTag.style.color = "#f87171";
+                } else if (trainingAccuracy < 85) {
+                    accTag.textContent = "Aprenent patrons...";
+                    accTag.style.color = "#fbbf24";
+                } else {
+                    accTag.textContent = "Model expert 🚀";
+                    accTag.style.color = "#4ade80";
+                }
+            }
+
+            if (lossTag) {
+                if (trainingLoss > 0.5) {
+                    lossTag.textContent = "Pèrdua molt alta ⚠️";
+                    lossTag.style.color = "#f87171";
+                } else if (trainingLoss > 0.2) {
+                    lossTag.textContent = "Error moderat 📉";
+                    lossTag.style.color = "#fbbf24";
+                } else {
+                    lossTag.textContent = "Pèrdua mínima (Òptim) ✅";
+                    lossTag.style.color = "#4ade80";
+                }
+            }
         }
 
         function updateEpochUI() {
@@ -2886,6 +3256,9 @@ Omple els 4 camps de l'esquerra per veure com queda el teu prompt professional p
                     nextBtn.innerHTML = "Passar al Pas 4: Posa a prova el model amb animals reals ➡️";
                 }
             }
+
+            // Actualitzar visualitzadors gràfics
+            renderTrainingVisuals();
         }
 
         function resetEpochTraining() {
@@ -2898,7 +3271,10 @@ Omple els 4 camps de l'esquerra per veure com queda el teu prompt professional p
             if (log) log.innerHTML = "> Pesos reiniciats. El model torna a estar a l'atzar (50.0% d'encert).";
 
             const nextBtn = document.getElementById('btn-go-to-step-4');
-            if (nextBtn) nextBtn.disabled = true;
+            if (nextBtn) {
+                nextBtn.disabled = true;
+                nextBtn.textContent = "Passar al Pas 4: Posa a prova el model amb animals reals ➡️";
+            }
 
             updateEpochUI();
         }
@@ -2993,7 +3369,9 @@ Omple els 4 camps de l'esquerra per veure com queda el teu prompt professional p
             box.innerHTML = `
                 <div style="display:grid; grid-template-columns:1fr 1.6fr; gap:1.5rem; align-items:center;">
                     <div style="text-align:center;">
-                        <img src="${data.img}" alt="${data.title}" style="width:100%; max-height:220px; object-fit:cover; border-radius:var(--radius-md); border:2px solid #334155; margin-bottom:0.5rem;">
+                        <div style="background:#0f172a; border-radius:var(--radius-md); border:2px solid #334155; padding:0.4rem; display:flex; align-items:center; justify-content:center; min-height:210px; max-height:250px; margin-bottom:0.5rem; overflow:hidden;">
+                            <img src="${data.img}" alt="${data.title}" style="max-width:100%; max-height:240px; width:auto; height:auto; object-fit:contain; border-radius:6px; display:block;">
+                        </div>
                         <div style="font-weight:700; color:#f8fafc; font-size:0.95rem;">${data.title}</div>
                         <div style="font-size:0.8rem; color:#94a3b8;">${data.subtitle}</div>
                     </div>
@@ -4167,6 +4545,11 @@ Omple els 4 camps de l'esquerra per veure com queda el teu prompt professional p
                 if (document.getElementById('prompt-fmt')) document.getElementById('prompt-fmt').value = d.fmt || '';
                 if (document.getElementById('prompt-lim')) document.getElementById('prompt-lim').value = d.lim || '';
                 updatePromptLab();
+            }
+
+            // Inicialitzar visualitzadors del simulador
+            if (typeof updateEpochUI === 'function') {
+                updateEpochUI();
             }
         }
 
