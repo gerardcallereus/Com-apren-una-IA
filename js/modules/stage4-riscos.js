@@ -82,6 +82,22 @@
             renderAlgoPhoneContent();
         }
 
+        function nextAlgoPhoneScreen() {
+            const mode = appState.algoMode || 'manipulative';
+            const max = (mode === 'manipulative' ? 6 : 5);
+            let cur = appState.algoPhoneScreen || 1;
+            cur = (cur >= max ? 1 : cur + 1);
+            switchAlgoPhoneScreen(cur);
+        }
+
+        function prevAlgoPhoneScreen() {
+            const mode = appState.algoMode || 'manipulative';
+            const max = (mode === 'manipulative' ? 6 : 5);
+            let cur = appState.algoPhoneScreen || 1;
+            cur = (cur <= 1 ? max : cur - 1);
+            switchAlgoPhoneScreen(cur);
+        }
+
         function renderAlgoPhoneContent() {
             const screenBody = document.getElementById('phone-screen-body');
             const tabButtons = document.querySelectorAll('.phone-tab-btn');
@@ -92,10 +108,16 @@
                 const num = parseInt(btn.getAttribute('data-screen') || '1', 10);
                 if (num === currentTab) {
                     btn.classList.add('active');
+                    if (mode === 'ethical') btn.classList.add('ethical-tab');
                 } else {
                     btn.classList.remove('active');
+                    btn.classList.remove('ethical-tab');
                 }
             });
+
+            const ind = document.getElementById('phone-screen-indicator');
+            const maxScreens = (mode === 'manipulative' ? 6 : 5);
+            if (ind) ind.textContent = `${currentTab} / ${maxScreens}`;
 
             if (!screenBody) return;
 
@@ -501,6 +523,12 @@
                                 </div>
                                 <!-- SCREEN BODY -->
                                 <div class="phone-screen-body" id="phone-screen-body"></div>
+                                <!-- BOTTOM NAV -->
+                                <div class="phone-bottom-nav">
+                                    <button type="button" onclick="prevAlgoPhoneScreen()">◀️ Anterior</button>
+                                    <span id="phone-screen-indicator" style="font-size:0.72rem; font-weight:700; color:#475569;">1 / 6</span>
+                                    <button type="button" onclick="nextAlgoPhoneScreen()">Següent ▶️</button>
+                                </div>
                             </div>
                         </div>
 
@@ -513,35 +541,53 @@
                                 </p>
 
                                 <div style="display:flex; flex-direction:column; gap:0.55rem; font-size:0.82rem;">
-                                    <div style="background:#fff1f2; border:1px solid #fecdd3; border-radius:6px; padding:0.6rem;">
-                                        <strong style="color:#991b1b;">1. Notificacions Nocturnes i FOMO:</strong><br>
+                                    <div class="phone-meta-card-clickable" onclick="switchAlgoPhoneScreen(1)" style="background:#fff1f2; border:1px solid #fecdd3; border-radius:6px; padding:0.6rem;">
+                                        <div style="display:flex; justify-content:space-between; align-items:center;">
+                                            <strong style="color:#991b1b;">1. Notificacions Nocturnes i FOMO</strong>
+                                            <span style="font-size:0.7rem; color:#ef4444; font-weight:700;">👆 Veure</span>
+                                        </div>
                                         <span style="color:#7f1d1d;">Genera por a perdre ratxes o comentaris d'amics de matinada per evitar que tanquis l'aplicació.</span>
                                     </div>
-                                    <div style="background:#fef2f2; border:1px solid #fecaca; border-radius:6px; padding:0.6rem;">
-                                        <strong style="color:#b91c1c;">2. Deepfakes i Continguts Sintètics:</strong><br>
+                                    <div class="phone-meta-card-clickable" onclick="switchAlgoPhoneScreen(2)" style="background:#fef2f2; border:1px solid #fecaca; border-radius:6px; padding:0.6rem;">
+                                        <div style="display:flex; justify-content:space-between; align-items:center;">
+                                            <strong style="color:#b91c1c;">2. Deepfakes i Continguts Sintètics</strong>
+                                            <span style="font-size:0.7rem; color:#ef4444; font-weight:700;">👆 Veure</span>
+                                        </div>
                                         <span style="color:#7f1d1d;">Premia vídeos i àudios falsos d'alt impacte perquè es comparteixen massivament abans de comprovar la veracitat.</span>
                                     </div>
-                                    <div style="background:#fff7ed; border:1px solid #fed7aa; border-radius:6px; padding:0.6rem;">
-                                        <strong style="color:#9a3412;">3. Ocultació d'Arguments i Cambres de Ressonància:</strong><br>
+                                    <div class="phone-meta-card-clickable" onclick="switchAlgoPhoneScreen(3)" style="background:#fff7ed; border:1px solid #fed7aa; border-radius:6px; padding:0.6rem;">
+                                        <div style="display:flex; justify-content:space-between; align-items:center;">
+                                            <strong style="color:#9a3412;">3. Ocultació d'Arguments i Cambres de Ressonància</strong>
+                                            <span style="font-size:0.7rem; color:#f97316; font-weight:700;">👆 Veure</span>
+                                        </div>
                                         <span style="color:#7c2d12;">Amaga opinions contràries i dades científiques per mantenir-te en una bombolla que reforça els teus prejudicis.</span>
                                     </div>
-                                    <div style="background:#fef2f2; border:1px solid #fed7aa; border-radius:6px; padding:0.6rem;">
-                                        <strong style="color:#9a3412;">4. Polarització per Ragebait:</strong><br>
+                                    <div class="phone-meta-card-clickable" onclick="switchAlgoPhoneScreen(4)" style="background:#fef2f2; border:1px solid #fed7aa; border-radius:6px; padding:0.6rem;">
+                                        <div style="display:flex; justify-content:space-between; align-items:center;">
+                                            <strong style="color:#9a3412;">4. Polarització per Ragebait</strong>
+                                            <span style="font-size:0.7rem; color:#f97316; font-weight:700;">👆 Veure</span>
+                                        </div>
                                         <span style="color:#7c2d12;">Prioritza opinions que provoquen ràbia i discussions agressives perquè multipliquen les interaccions.</span>
                                     </div>
-                                    <div style="background:#faf5ff; border:1px solid #e9d5ff; border-radius:6px; padding:0.6rem;">
-                                        <strong style="color:#6b21a8;">5. Patrons Foscos de Compra:</strong><br>
+                                    <div class="phone-meta-card-clickable" onclick="switchAlgoPhoneScreen(5)" style="background:#faf5ff; border:1px solid #e9d5ff; border-radius:6px; padding:0.6rem;">
+                                        <div style="display:flex; justify-content:space-between; align-items:center;">
+                                            <strong style="color:#6b21a8;">5. Patrons Foscos de Compra</strong>
+                                            <span style="font-size:0.7rem; color:#a855f7; font-weight:700;">👆 Veure</span>
+                                        </div>
                                         <span style="color:#581c87;">Falsos comptes enrere d'urgència, preus inflats dinàmicament segons l'atenció i subscripcions ocultes a la lletra petita.</span>
                                     </div>
-                                    <div style="background:#fdf2f8; border:1px solid #fbcfe8; border-radius:6px; padding:0.6rem;">
-                                        <strong style="color:#9d174d;">6. Filtres d'IA i Inseguretat Corporal:</strong><br>
+                                    <div class="phone-meta-card-clickable" onclick="switchAlgoPhoneScreen(6)" style="background:#fdf2f8; border:1px solid #fbcfe8; border-radius:6px; padding:0.6rem;">
+                                        <div style="display:flex; justify-content:space-between; align-items:center;">
+                                            <strong style="color:#9d174d;">6. Filtres d'IA i Inseguretat Corporal</strong>
+                                            <span style="font-size:0.7rem; color:#ec4899; font-weight:700;">👆 Veure</span>
+                                        </div>
                                         <span style="color:#831843;">Distorsiona la imatge real per vendre tractaments i cosmètics aprofitant moments de baixa autoestima nocturna.</span>
                                     </div>
                                 </div>
                             </div>
 
                             <div style="margin-top:1rem; padding-top:0.75rem; border-top:1px solid #e2e8f0; font-size:0.8rem; color:#64748b;">
-                                💡 <em>Clica a les 6 pestanyes del telèfon mòbil (FOMO, Deepfakes, Bombolla, Ragebait, Compres, Filtres) per analitzar cada manipulació.</em>
+                                💡 <em>Pots fer clic directament als botons del mòbil o a les targetes explicatives per analitzar cada manipulació.</em>
                             </div>
                         </div>
                     </div>
@@ -572,8 +618,8 @@
                                     <span>5G 🔋 85%</span>
                                 </div>
                                 <!-- NAV TABS (5 PANTALLES) -->
-                                <div class="phone-nav-tabs">
-                                    <button type="button" class="phone-tab-btn active" data-screen="1" onclick="switchAlgoPhoneScreen(1)">⏱️ Benestar</button>
+                                <div class="phone-nav-tabs" style="grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));">
+                                    <button type="button" class="phone-tab-btn active ethical-tab" data-screen="1" onclick="switchAlgoPhoneScreen(1)">⏱️ Benestar</button>
                                     <button type="button" class="phone-tab-btn" data-screen="2" onclick="switchAlgoPhoneScreen(2)">🔍 Verificació</button>
                                     <button type="button" class="phone-tab-btn" data-screen="3" onclick="switchAlgoPhoneScreen(3)">🌐 Pluralitat</button>
                                     <button type="button" class="phone-tab-btn" data-screen="4" onclick="switchAlgoPhoneScreen(4)">🛍️ Comerç Net</button>
@@ -581,6 +627,12 @@
                                 </div>
                                 <!-- SCREEN BODY -->
                                 <div class="phone-screen-body" id="phone-screen-body"></div>
+                                <!-- BOTTOM NAV -->
+                                <div class="phone-bottom-nav">
+                                    <button type="button" onclick="prevAlgoPhoneScreen()">◀️ Anterior</button>
+                                    <span id="phone-screen-indicator" style="font-size:0.72rem; font-weight:700; color:#047857;">1 / 5</span>
+                                    <button type="button" onclick="nextAlgoPhoneScreen()">Següent ▶️</button>
+                                </div>
                             </div>
                         </div>
 
@@ -593,24 +645,39 @@
                                 </p>
 
                                 <div style="display:flex; flex-direction:column; gap:0.55rem; font-size:0.82rem;">
-                                    <div style="background:white; border:1px solid #bbf7d0; border-radius:6px; padding:0.6rem;">
-                                        <strong style="color:#166534;">1. Benestar Digital i Son Respectat:</strong><br>
+                                    <div class="phone-meta-card-clickable" onclick="switchAlgoPhoneScreen(1)" style="background:white; border:1px solid #bbf7d0; border-radius:6px; padding:0.6rem;">
+                                        <div style="display:flex; justify-content:space-between; align-items:center;">
+                                            <strong style="color:#166534;">1. Benestar Digital i Son Respectat</strong>
+                                            <span style="font-size:0.7rem; color:#059669; font-weight:700;">👆 Veure</span>
+                                        </div>
                                         <span style="color:#14532d;">Avisos amables de pausa als 30 minuts i silenciament nocturn automàtic per protegir el descans.</span>
                                     </div>
-                                    <div style="background:white; border:1px solid #bbf7d0; border-radius:6px; padding:0.6rem;">
-                                        <strong style="color:#166534;">2. Verificació i Alerta de Deepfakes:</strong><br>
+                                    <div class="phone-meta-card-clickable" onclick="switchAlgoPhoneScreen(2)" style="background:white; border:1px solid #bbf7d0; border-radius:6px; padding:0.6rem;">
+                                        <div style="display:flex; justify-content:space-between; align-items:center;">
+                                            <strong style="color:#166534;">2. Verificació i Alerta de Deepfakes</strong>
+                                            <span style="font-size:0.7rem; color:#059669; font-weight:700;">👆 Veure</span>
+                                        </div>
                                         <span style="color:#14532d;">Etiquetes obligatòries de contingut sintètic per advertir de veus clonades o manipulacions abans que es viralitzin.</span>
                                     </div>
-                                    <div style="background:white; border:1px solid #bbf7d0; border-radius:6px; padding:0.6rem;">
-                                        <strong style="color:#166534;">3. Pluralitat Informativa sense Bombolles:</strong><br>
+                                    <div class="phone-meta-card-clickable" onclick="switchAlgoPhoneScreen(3)" style="background:white; border:1px solid #bbf7d0; border-radius:6px; padding:0.6rem;">
+                                        <div style="display:flex; justify-content:space-between; align-items:center;">
+                                            <strong style="color:#166534;">3. Pluralitat Informativa sense Bombolles</strong>
+                                            <span style="font-size:0.7rem; color:#059669; font-weight:700;">👆 Veure</span>
+                                        </div>
                                         <span style="color:#14532d;">Presenta punts de vista diversos i contrastats per trencar cambres de ressonància i enriquir el debat.</span>
                                     </div>
-                                    <div style="background:white; border:1px solid #bbf7d0; border-radius:6px; padding:0.6rem;">
-                                        <strong style="color:#166534;">4. Comerç Transparent sense Patrons Foscos:</strong><br>
+                                    <div class="phone-meta-card-clickable" onclick="switchAlgoPhoneScreen(4)" style="background:white; border:1px solid #bbf7d0; border-radius:6px; padding:0.6rem;">
+                                        <div style="display:flex; justify-content:space-between; align-items:center;">
+                                            <strong style="color:#166534;">4. Comerç Transparent sense Patrons Foscos</strong>
+                                            <span style="font-size:0.7rem; color:#059669; font-weight:700;">👆 Veure</span>
+                                        </div>
                                         <span style="color:#14532d;">Preus estables sense pujades artificials, absència de comptes enrere falsos i prohibició de subscripcions trampa.</span>
                                     </div>
-                                    <div style="background:white; border:1px solid #bbf7d0; border-radius:6px; padding:0.6rem;">
-                                        <strong style="color:#166534;">5. Feed Cronològic d'Amics Reals:</strong><br>
+                                    <div class="phone-meta-card-clickable" onclick="switchAlgoPhoneScreen(5)" style="background:white; border:1px solid #bbf7d0; border-radius:6px; padding:0.6rem;">
+                                        <div style="display:flex; justify-content:space-between; align-items:center;">
+                                            <strong style="color:#166534;">5. Feed Cronològic d'Amics Reals</strong>
+                                            <span style="font-size:0.7rem; color:#059669; font-weight:700;">👆 Veure</span>
+                                        </div>
                                         <span style="color:#14532d;">Prioritza les publicacions autèntiques del teu cercle d'amistats, sense bots de retenció ni amplificació de toxicitat.</span>
                                     </div>
                                 </div>
@@ -711,13 +778,13 @@
         }
 
         function updateStage4ProgressStatus() {
-            const statusEl = document.getElementById('stage4-progress-status');
-            const nextBtn = document.getElementById('btn-complete-stage-4');
+            const statusEl = document.getElementById('stage5-progress-status');
+            const nextBtn = document.getElementById('btn-complete-stage-5');
             if (!statusEl) return;
 
             const hallCount = Object.keys(appState.hallucinationsAnswered || {}).length;
             const algoExplored = !!appState.manipulationExplored;
-            const testCount = Object.keys((appState.stageQuizAnswers && appState.stageQuizAnswers[4]) || {}).length;
+            const testCount = Object.keys((appState.stageQuizAnswers && appState.stageQuizAnswers[5]) || {}).length;
             const feelingWords = countWords((document.getElementById('manip-teen-feeling')?.value || appState.manipTeenFeeling || '').trim());
             const expWords = countWords((document.getElementById('manip-teen-experience')?.value || appState.manipTeenExperience || '').trim());
             const manipWords = countWords((document.getElementById('manip-reflection')?.value || appState.manipulationReflection || '').trim());
@@ -728,14 +795,14 @@
             const isReady = (hallCount >= 3 && algoExplored && testCount === 5 && refsOk);
 
             if (isReady) {
-                statusEl.innerHTML = `<span style="color:#059669; font-weight:700;">✅ Fase 4 completada amb èxit!</span> 3 casos d'al·lucinació resolts, simulador mòbil explorat, test (5/5) i les 3 reflexions crítiques completades. Ja pots avançar a la Fase 5!`;
+                statusEl.innerHTML = `<span style="color:#059669; font-weight:700;">✅ Fase 5 completada amb èxit!</span> 3 casos d'al·lucinació resolts, simulador mòbil explorat, test (5/5) i les 3 reflexions crítiques completades. Ja pots avançar a la Fase 6: L'Art dels Prompts!`;
                 if (nextBtn) {
                     nextBtn.className = "btn btn-success";
                     nextBtn.style.opacity = "1";
                     nextBtn.style.cursor = "pointer";
                 }
             } else {
-                statusEl.innerHTML = `⏳ <strong>Progrés d'Ètica i Manipulació:</strong> Al·lucinacions: (${hallCount}/3) · Mòbil explorat: ${algoExplored ? '✅' : '❌'} · Test Bloc 4: (${testCount}/5) · Emoció: ${feelingWords >= 5 ? '✅' : `❌ (${feelingWords}/5)`} · Xarxes: ${expWords >= 5 ? '✅' : `❌ (${expWords}/5)`} · Verificació/Protecció: ${critBest >= 5 ? '✅' : `❌ (${critBest}/5)`}.`;
+                statusEl.innerHTML = `⏳ <strong>Progrés d'Ètica i Manipulació:</strong> Al·lucinacions: (${hallCount}/3) · Mòbil explorat: ${algoExplored ? '✅' : '❌'} · Test Bloc 5: (${testCount}/5) · Emoció: ${feelingWords >= 5 ? '✅' : `❌ (${feelingWords}/5)`} · Xarxes: ${expWords >= 5 ? '✅' : `❌ (${expWords}/5)`} · Verificació/Protecció: ${critBest >= 5 ? '✅' : `❌ (${critBest}/5)`}.`;
                 if (nextBtn) {
                     nextBtn.className = "btn btn-secondary";
                     nextBtn.style.opacity = "0.7";

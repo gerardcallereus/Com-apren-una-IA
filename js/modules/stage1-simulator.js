@@ -344,7 +344,7 @@
             if (lossBar) lossBar.style.width = Math.max(8, (trainingLoss / 0.693) * 100) + '%';
 
             if (log) {
-                log.innerHTML += `<br>> [Època ${trainingEpoch}] Pèrdua: ${trainingLoss.toFixed(3)} | Precisió: ${trainingAccuracy.toFixed(1)}% (Pesos sinàptics actualitzats)`;
+                log.innerHTML += `<br>> [Època ${trainingEpoch}] Pèrdua (Error): ${trainingLoss.toFixed(3)} | Encert: ${trainingAccuracy.toFixed(1)}% (Connexions ajustades)`;
                 log.scrollTop = log.scrollHeight;
             }
 
@@ -366,7 +366,7 @@
             modelTrained = false;
 
             const log = document.getElementById('sim-training-log');
-            if (log) log.innerHTML = "> Pesos reiniciats. El model torna a estar a l'atzar (50.0% d'encert).";
+            if (log) log.innerHTML = "> Model reiniciat. Torna a estar a l'atzar (50.0% d'encert).";
 
             const nextBtn = document.getElementById('btn-go-to-step-4');
             if (nextBtn) {
@@ -405,15 +405,15 @@
             },
             dog_husky: {
                 title: "Gos Husky Siberià (Cas Enganyós / Parany!)",
-                subtitle: "Gos amb orelles punxegudes erectes",
+                subtitle: "Gos autèntic però amb orelles punxegudes erectes",
                 img: "img/simulador/dog_husky.jpg",
-                probCat: 38,
-                probDog: 62,
-                verdict: "⚠️ PREDICCIÓ DUBTOSA: GOS 62% | GAT 38% (Dubte significatiu!)",
-                verdictColor: "#fbbf24",
-                catPoints: "Orelles triangulars, punxegudes i erectes a la coroneta (+38%). La màquina s'enganya perquè associa aquesta forma a 'Gat'!",
-                dogPoints: "Morro allargat, volum facial i posició dels ulls (+62%).",
-                lesson: "Aquest és un exemple fonamental de com 'pensa' una IA: com que durant l'entrenament va aprendre que 'orelles punxegudes = gat', en veure aquest husky resta confiança de gos i li assigna un 38% de gat! Només la forma del morro salva la decisió."
+                probCat: 26,
+                probDog: 74,
+                verdict: "✅ PREDICCIÓ: GOS 74% (però amb un 26% de dubte felí!)",
+                verdictColor: "#38bdf8",
+                catPoints: "Orelles triangulars i punxegudes a la part alta (+26%). La xarxa resta certesa perquè associa aquesta forma a 'Gat'!",
+                dogPoints: "Morro allargat, volum facial, mandíbula i proporcions canines clares (+74%).",
+                lesson: "Un gran exemple de com aprèn la IA: com que durant l'entrenament la majoria de gats tenien orelles punxegudes, quan la màquina veu un husky dubta i li assigna un 26% de gat! Tot i així, el morro allargat i la cara de gos permeten que encerti la predicció."
             },
             cat_persian: {
                 title: "Gat Persa Blanc (Cara Plana Atípica)",
@@ -428,16 +428,16 @@
                 lesson: "Tot i no tenir el perfil nasal habitual d'un gat europeu, la posició de les orelles i la distància dels ulls permeten a la xarxa encertar la classe."
             },
             fox_wild: {
-                title: "Guineu Vermella (Cas Frontera Salvatge!)",
-                subtitle: "Animal que NO estava al conjunt d'entrenament",
+                title: "Guineu Vermella (Cas Frontera / Cànid Salvatge)",
+                subtitle: "Biològicament un cànid, però amb trets facials de felí",
                 img: "img/simulador/fox_wild.jpg",
-                probCat: 54,
-                probDog: 46,
-                verdict: "❌ CONFUSIÓ TOTAL: GAT 54% | GOS 46% (Error d'Interpretació!)",
-                verdictColor: "#f87171",
-                catPoints: "Orelles altes, extremadament punxegudes i mirada atenta felina (+54%).",
-                dogPoints: "Morro allargat i pertinença a la família dels cànids (+46%).",
-                lesson: "Gran lliçó didàctica d'Intel·ligència Artificial: La guineu NO és ni un gat ni un gos. Però com que el model només va ser entrenat per triar entre aquestes dues etiquetes, és incapaç de dir 'és una guineu'. Es veu obligat a forçar un empat 50/50 entre allò que coneix!"
+                probCat: 44,
+                probDog: 56,
+                verdict: "⚖️ CAS FRONTERA: GOS 56% | GAT 44% (Dilema visual!)",
+                verdictColor: "#fbbf24",
+                catPoints: "Orelles molt altes i punxegudes, pupil·les d'escletxa vertical i mirada felina (+44%).",
+                dogPoints: "Morro allargat i estret de cànid i estructura òssia facial (+56%).",
+                lesson: "Lliçó didàctica d'aprenentatge automàtic: La guineu és de la família dels cànids (com els gossos), però té orelles molt punxegudes i pupil·les verticals com els gats. Com que la IA no sap biologia i només reconeix formes geomètriques, el morro de gos i les orelles de gat entren en conflicte, provocant un dubte gairebé al 50%!"
             },
             lynx_wild: {
                 title: "Linx Euroasiàtic (Felí Salvatge amb Plomalls)",
@@ -455,13 +455,13 @@
                 title: "Ós Panda Gegant (Cas Parany / Fora de Distribució!)",
                 subtitle: "Animal que NO és ni gat ni gos (Família dels úrsids)",
                 img: "img/simulador/panda_bear.jpg",
-                probCat: 52,
-                probDog: 48,
-                verdict: "⚠️ ERROR PER FORÇA MAJOR: GAT 52% | GOS 48% (Cas Parany!)",
-                verdictColor: "#f59e0b",
-                catPoints: "Cara arrodonida, orelles negres arrodonides i taques facials fosques (+52%). La xarxa s'enganya associant aquests trets a un gat!",
-                dogPoints: "Grandària corporal massiva, musell d'omnívor i proporció d'úrsid (+48%).",
-                lesson: "Lliçó cabdal d'Intel·ligència Artificial: Aquest ós panda és un cas 'Fora de Distribució' (Out-of-Distribution). El model només coneix 'Gat' i 'Gos'. Davant d'un animal completament diferent, la IA no té sentit comú per dir 'Això és un panda': es veu obligada a repartir el 100% de la probabilitat entre les dues úniques classes que va memoritzar!"
+                probCat: 78,
+                probDog: 22,
+                verdict: "⚠️ PREDICCIÓ ENGANYOSA: GAT 78% | GOS 22% (Cas Parany!)",
+                verdictColor: "#f87171",
+                catPoints: "Cara arrodonida, nas curt i pla, orelles petites arrodonides i taques negres als ulls (+78%). La xarxa s'enganya creient que és un gat gegant!",
+                dogPoints: "Grandària corporal massiva i volum del cap (+22%).",
+                lesson: "Lliçó cabdal d'Intel·ligència Artificial: L'ós panda és un cas parany (Fora de Distribució). La IA no té sentit comú ni sap dir 'Això és un panda'. Com que té la cara completament rodona, el nas curt i taques als ulls, la xarxa activa amb molta força els patrons de 'Gat' (78%) i cau a la trampa amb total seguretat!"
             }
         };
 

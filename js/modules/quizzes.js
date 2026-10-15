@@ -18,7 +18,7 @@
             const container = document.getElementById(containerId);
             if (!container) return;
 
-            if (!appState.stageQuizAnswers) appState.stageQuizAnswers = { 1: {}, 2: {}, 3: {}, 4: {}, 5: {} };
+            if (!appState.stageQuizAnswers) appState.stageQuizAnswers = { 1: {}, 2: {}, 3: {}, 4: {}, 5: {}, 6: {} };
             if (!appState.stageQuizAnswers[stageNum]) appState.stageQuizAnswers[stageNum] = {};
             if (stageNum === 2 && appState.repte1TestAnswers) {
                 Object.assign(appState.stageQuizAnswers[2], appState.repte1TestAnswers);
@@ -59,7 +59,7 @@
                     }
 
                     html += `
-                        <button type="button" class="${cls}" onclick="selectStageQuizAns(${stageNum}, ${item.id}, ${optIdx})" style="font-size:0.88rem; padding:0.7rem 0.95rem; margin-bottom:0.45rem; display:flex; align-items:flex-start; text-align:left; border-radius:8px; width:100%; border:1px solid #cbd5e1; cursor:pointer;">
+                        <button type="button" class="${cls}" onclick="selectStageQuizAns(${stageNum}, ${item.id}, ${optIdx})" ${isAnswered ? 'disabled' : ''} style="font-size:0.88rem; padding:0.7rem 0.95rem; margin-bottom:0.45rem; display:flex; align-items:flex-start; text-align:left; border-radius:8px; width:100%; border:1px solid #cbd5e1; cursor:${isAnswered ? 'default' : 'pointer'}; pointer-events:${isAnswered ? 'none' : 'auto'};">
                             <span style="display:inline-flex; align-items:center; justify-content:center; width:22px; height:22px; border-radius:50%; margin-right:0.75rem; flex-shrink:0; font-size:0.75rem; ${radioDot}">
                                 ${isAnswered ? (optIdx === item.correct ? '✓' : (userChoice === optIdx ? '✕' : ['A','B','C'][optIdx])) : ['A','B','C'][optIdx]}
                             </span>
@@ -92,8 +92,12 @@
         }
 
         function selectStageQuizAns(stageNum, qId, optIdx) {
-            if (!appState.stageQuizAnswers) appState.stageQuizAnswers = { 1: {}, 2: {}, 3: {}, 4: {}, 5: {} };
+            if (!appState.stageQuizAnswers) appState.stageQuizAnswers = { 1: {}, 2: {}, 3: {}, 4: {}, 5: {}, 6: {} };
             if (!appState.stageQuizAnswers[stageNum]) appState.stageQuizAnswers[stageNum] = {};
+            // Si ja s'ha respost prèviament, no permetre canviar de resposta
+            if (appState.stageQuizAnswers[stageNum][qId] !== undefined) {
+                return;
+            }
             appState.stageQuizAnswers[stageNum][qId] = optIdx;
             if (stageNum === 2) {
                 if (!appState.repte1TestAnswers) appState.repte1TestAnswers = {};
@@ -103,9 +107,10 @@
             renderStageQuiz(stageNum);
             if (stageNum === 1 && typeof updateSimProgressStatus === 'function') updateSimProgressStatus();
             if (stageNum === 2 && typeof updateRepte1ProgressStatus === 'function') updateRepte1ProgressStatus();
-            if (stageNum === 3 && typeof updateTMProgressStatus === 'function') updateTMProgressStatus();
-            if (stageNum === 4 && typeof updateStage4ProgressStatus === 'function') updateStage4ProgressStatus();
-            if (stageNum === 5 && typeof updatePromptLab === 'function') updatePromptLab();
+            if (stageNum === 3 && typeof updateStage3ProgressStatus === 'function') updateStage3ProgressStatus();
+            if (stageNum === 4 && typeof updateTMProgressStatus === 'function') updateTMProgressStatus();
+            if (stageNum === 5 && typeof updateStage4ProgressStatus === 'function') updateStage4ProgressStatus();
+            if (stageNum === 6 && typeof updatePromptLab === 'function') updatePromptLab();
         }
 
         function renderRepte1Quiz() {
@@ -150,7 +155,7 @@
                     }
 
                     html += `
-                        <button class="${cls}" onclick="selectQuizAns(${item.id}, ${idx})" ${appState.quizCompleted ? 'disabled' : ''}>
+                        <button class="${cls}" onclick="selectQuizAns(${item.id}, ${idx})" ${(isAnswered || appState.quizCompleted) ? 'disabled style="cursor:default; pointer-events:none;"' : ''}>
                             ${iconHtml}
                             <span style="flex:1;"><strong>${['A', 'B', 'C', 'D'][idx]})</strong> ${optText}</span>
                         </button>
@@ -171,6 +176,11 @@
         }
 
         function selectQuizAns(qId, optIdx) {
+            if (!appState.quizAnswers) appState.quizAnswers = {};
+            // Si ja s'ha respost o el test està completat, no permetre canvis
+            if (appState.quizAnswers[qId] !== undefined || appState.quizCompleted) {
+                return;
+            }
             appState.quizAnswers[qId] = optIdx;
             saveState();
             renderQuizUI();
@@ -178,14 +188,16 @@
 
         function updateQuizProgressBadge() {
             const answeredCount = Object.keys(appState.quizAnswers).length;
+            const totalQ = quizQuestions.length;
             const badge = document.getElementById('quiz-progress-badge');
-            if (badge) badge.textContent = `${answeredCount} / 10 Respostes`;
+            if (badge) badge.textContent = `${answeredCount} / ${totalQ} Respostes`;
         }
 
         function submitQuiz() {
+            const totalQ = quizQuestions.length;
             const answeredCount = Object.keys(appState.quizAnswers).length;
-            if (answeredCount < 10) {
-                if (!confirm(`⚠️ Has respost ${answeredCount} de 10 preguntes. Vols corregir-lo ara o prefereixes acabar de respondre les que falten?`)) {
+            if (answeredCount < totalQ) {
+                if (!confirm(`⚠️ Has respost ${answeredCount} de ${totalQ} preguntes. Vols corregir-lo ara o prefereixes acabar de respondre les que falten?`)) {
                     return;
                 }
             }
@@ -200,10 +212,10 @@
             appState.quizScore = correctCount;
             appState.quizCompleted = true;
 
-            if (!appState.completedStages.includes(6)) {
-                appState.completedStages.push(6);
+            if (!appState.completedStages.includes(7)) {
+                appState.completedStages.push(7);
             }
-            appState.unlockedStage = 7;
+            appState.unlockedStage = 8;
 
             saveState();
             renderQuizUI();
@@ -211,14 +223,17 @@
             const scoreBadge = document.getElementById('quiz-score-badge');
             if (scoreBadge) {
                 scoreBadge.style.display = 'inline-flex';
-                scoreBadge.textContent = `Nota: ${correctCount}/10 (${correctCount * 10}%)`;
+                const pct = Math.round((correctCount / totalQ) * 100);
+                const mark10 = ((correctCount / totalQ) * 10).toFixed(1);
+                scoreBadge.textContent = `Nota: ${mark10}/10 (${correctCount}/${totalQ} Encerts · ${pct}%)`;
             }
 
             const btnDiploma = document.getElementById('btn-goto-diploma');
             if (btnDiploma) {
                 btnDiploma.disabled = false;
                 btnDiploma.innerHTML = "🎓 Veure el Diploma Oficial i Dossier d'Avaluació ➡️";
+                btnDiploma.setAttribute('onclick', 'goToStage(8)');
             }
 
-            alert(`🎉 Qüestionari completat! Has obtingut una nota de ${correctCount} / 10 (${correctCount * 10}%).\nJa pots consultar el teu Diploma Oficial i el dossier d'activitats per al professorat!`);
+            alert(`🎉 Qüestionari completat! Has obtingut ${correctCount} / ${totalQ} encerts (${Math.round((correctCount / totalQ) * 100)}%).\nJa pots consultar el teu Diploma Oficial i el dossier d'activitats per al professorat!`);
         }

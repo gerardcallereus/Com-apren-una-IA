@@ -1,427 +1,498 @@
 // ==========================================
 // DADES DELS TESTS PER BLOCS I FINAL
+// Adaptat per a 1r-3r d'ESO (12-15 anys)
 // ==========================================
 
-        const stageQuizzesData = {
-            1: [
-                {
-                    id: 1,
-                    q: "Com aprèn i ajusta el seu coneixement una xarxa neuronal durant l'entrenament?",
-                    opts: [
-                        "Modificant línia per línia el codi font escrit pel programador cada vegada que s'equivoca.",
-                        "Ajustant iterativament els pesos numèrics de les seves connexions per minimitzar l'error matemàtic (Loss).",
-                        "Desant a la memòria una fotocòpia exacta de tots els píxels de les imatges que ha vist."
-                    ],
-                    correct: 1,
-                    fb: "Molt bé! Les xarxes neuronals no reescriuen codi ni memoritzen fotos; calculen l'error i ajusten els pesos matemàtics (sinapsis) mitjançant el descens de gradient."
-                },
-                {
-                    id: 2,
-                    q: "Què mesura la 'funció de pèrdua' (Loss) en un model d'aprenentatge automàtic?",
-                    opts: [
-                        "El consum de bateria i memòria RAM de l'ordinador durant l'entrenament.",
-                        "La diferència o discrepància matemàtica entre la predicció del model i el resultat correcte esperat.",
-                        "El nombre de fotografies esborrades accidentalment del conjunt de dades."
-                    ],
-                    correct: 1,
-                    fb: "Exacte! La Loss mesura com de lluny està el model de la resposta correcta. Durant l'entrenament, l'objectiu matemàtic és apropar la pèrdua el màxim possible a zero."
-                },
-                {
-                    id: 3,
-                    q: "Què és una 'època' (Epoch) en el cicle d'entrenament d'una IA?",
-                    opts: [
-                        "Un cicle complet en què el model analitza i aprèn de totes les mostres del conjunt d'entrenament una vegada.",
-                        "El temps en anys que triga un equip d'enginyers a publicar un model a internet.",
-                        "El nombre de categories o classes diferents que pot classificar el model."
-                    ],
-                    correct: 0,
-                    fb: "Correcte! Una època és una passada completa per tot el conjunt de dades. Normalment calen diverses èpoques perquè el model ajusti els pesos de forma estable."
-                },
-                {
-                    id: 4,
-                    q: "Com reacciona el model davant d'un 'cas parany' (com l'ós panda en un classificador de només gossos i gats)?",
-                    opts: [
-                        "Detecta intel·ligentment que és un panda i crea una tercera classe nova per iniciativa pròpia.",
-                        "S'atura i adverteix clarament que no disposa de coneixement sobre aquest animal.",
-                        "Reparteix el 100% de la probabilitat entre les seves classes conegudes (ex: 60% Gos, 40% Gat) perquè no sap dir 'no ho sé'."
-                    ],
-                    correct: 2,
-                    fb: "Importantíssim! La IA no té sentit comú ni consciència: és un classificador tancat que força una decisió probabilística entre les opcions que li han programat."
-                },
-                {
-                    id: 5,
-                    q: "Per què cal mantenir la supervisió humana ('Human in the Loop') en decisions crítiques d'IA?",
-                    opts: [
-                        "Perquè els models es basen en correlacions estadístiques i poden fallar greument davant dades imprevistes, casos límit o canvis d'entorn.",
-                        "Perquè els ordinadors s'obliden automàticament de tot el que han après cada nit.",
-                        "Perquè la tecnologia actual no permet que els models funcionin sense algú connectat per cable."
-                    ],
-                    correct: 0,
-                    fb: "Brillant! Com que els models calculen patrons estadístics sense comprensió autèntica, en àmbits com salut, justícia o conducció la presència i criteri d'experts humans és vital."
-                }
+const stageQuizzesData = {
+    1: [
+        {
+            id: 1,
+            q: "Com aprèn una IA durant l'entrenament?",
+            opts: [
+                "Modificant línia per línia el codi font escrit pel programador cada cop que s'equivoca.",
+                "Mirant molts exemples, provant prediccions i corregint els seus errors pas a pas fins a encertar.",
+                "Desant una fotocòpia exacta de tots els píxels a la memòria de l'ordinador."
             ],
-            2: [
-                {
-                    id: 1,
-                    q: "Què és exactament un 'cas frontera' (edge case) en la recollida de dades per a una IA?",
-                    opts: [
-                        "Una imatge de baixa resolució que la memòria de l'ordinador no pot carregar.",
-                        "Un exemple ambigu o limítrof on les regles no estan clarament definides i diferents humans apliquen criteris divergents (ex: triangle obert, cercle de mida relativa).",
-                        "Qualsevol fotografia que conté exclusivament colors foscos o blanc i negre."
-                    ],
-                    correct: 1,
-                    fb: "Molt bé! Els casos frontera són aquells exemples situats al límit de la definició (com un triangle no tancat o un cercle mitjà). Són la font número 1 de discrepàncies humanes."
-                },
-                {
-                    id: 2,
-                    q: "Quan dos grups etiqueten la mateixa imatge de forma oposada (un SÍ i l'altre NO), quin problema greu es produeix a la xarxa neuronal?",
-                    opts: [
-                        "La IA tria automàticament l'opció del grup que ha respost més de pressa.",
-                        "Es genera soroll a les dades (Label Noise): la màquina rep ordres matemàtiques contradictòries per a imatges similars, impedint que aprengui un patró coherent.",
-                        "El model aprèn el doble de ràpid perquè disposa del doble d'opinions diferents."
-                    ],
-                    correct: 1,
-                    fb: "Exacte! La IA ajusta els pesos de les seves neurones per reduir l'error matemàtic. Si per al mateix patró visual li diem que és 'SÍ' i també que és 'NO', el gradient d'aprenentatge es cancel·la i aprèn soroll."
-                },
-                {
-                    id: 3,
-                    q: "En el món real, quina d'aquestes situacions és un risc greu causat per casos frontera no definits amb consens?",
-                    opts: [
-                        "Un vehicle autònom que no reconeix com a vianant una persona en cadira de rodes o amb un impermeable llarg perquè el dataset només tenia persones caminant dretes.",
-                        "Que un telèfon mòbil consumeixi un 2% més de bateria en fer fotografies.",
-                        "Que els altaveus del cotxe reprodueixin la música amb un to més agut."
-                    ],
-                    correct: 0,
-                    fb: "Importantíssim! En aplicacions crítiques com cotxes autònoms o medicina (detecció de tumors en radiografies), els casos frontera sense un protocol unificat poden costar vides."
-                },
-                {
-                    id: 4,
-                    q: "Com solucionen els enginyers i científics de dades aquest dilema abans d'entrenar un model comercial?",
-                    opts: [
-                        "Deixant que cadascú etiqueti segons la seva opinió personal sense cap tipus de norma.",
-                        "Redactant una Guia d'Anotació rigorosa (Labeling Guidelines) amb criteris quantitatius i mesurant l'Acord Inter-Anotador per consensuar o descartar casos dubtosos.",
-                        "Eliminant el 90% de les fotografies de la base de dades per no complicar la feina."
-                    ],
-                    correct: 1,
-                    fb: "Correcte! La ciència de dades professional utilitza protocols estrictes de definició (ex: mida mínima en píxels) i coeficients d'acord inter-anotador per assegurar la màxima coherència."
-                },
-                {
-                    id: 5,
-                    q: "Què és el 'biaix de representació' (Representation Bias) en un conjunt de dades d'entrenament?",
-                    opts: [
-                        "Quan determinats col·lectius, condicions o situacions estan infrarepresentats al dataset, fent que el model falli sistemàticament amb ells.",
-                        "Quan les fotografies estan guardades en un format d'arxiu comprimit o antic.",
-                        "Quan la pantalla de l'ordinador té poca brillantor per visualitzar els colors."
-                    ],
-                    correct: 0,
-                    fb: "Molt bé! Si un dataset de reconeixement facial té un 85% de persones de pell clara, el model fallarà molt més amb persones de pell fosca perquè no ha tingut prou dades per aprendre."
-                }
+            correct: 1,
+            fb: "Molt bé! La IA no memoritza fotos ni reescriu codi: aprèn per assaig i error, ajustant les seves connexions internes cada vegada que s'equivoca."
+        },
+        {
+            id: 2,
+            q: "Què indica la 'Pèrdua' (Loss) en un entrenament?",
+            opts: [
+                "La quantitat de bateria o memòria que gasta l'ordinador mentre pensa.",
+                "El comptador d'errors: com més baixa és la pèrdua, menys s'equivoca la màquina.",
+                "El nombre de fotos que s'han esborrat del disc dur sense voler."
             ],
-            3: [
-                {
-                    id: 1,
-                    q: "Com processa una imatge una xarxa neuronal de visió per computador com la de Teachable Machine?",
-                    opts: [
-                        "Entén el concepte intel·lectual i la utilitat de l'objecte tal com ho fa un ésser humà.",
-                        "Analitza matrius numèriques de píxels, extraient patrons geomètrics de colors, textures, contrastos i contorns.",
-                        "Cerca automàticament a la Viquipèdia la descripció del producte mitjançant un lector òptic de textos."
-                    ],
-                    correct: 1,
-                    fb: "Molt bé! Per a la IA una fotografia és una matriu de valors numèrics RGB. Extreu característiques visuals sense tenir consciència de la realitat física de l'objecte."
-                },
-                {
-                    id: 2,
-                    q: "Al Repte 2 de Teachable Machine, per què el model amb només 1 foto per classe falla en canviar el fons o l'angle?",
-                    opts: [
-                        "Perquè pateix sobreajust (overfitting): com que només té un exemple, memoritza el fons o la posició com si fossin part inseparable de l'objecte.",
-                        "Perquè la càmera web es descalibra si l'objecte es col·loca en un angle superior a 45 graus.",
-                        "Perquè el servidor de Google rebutja models que tinguin menys de 100 megabytes de codi."
-                    ],
-                    correct: 0,
-                    fb: "Correcte! Amb només una captura, la màquina no pot distingir l'objecte del context (la paret, la mà o la taula), provocant que aprengui detalls irrellevants."
-                },
-                {
-                    id: 3,
-                    q: "Què aporta afegir 5 mostres variades per classe al Repte 3 (amb diferents fons, llums i inclinacions)?",
-                    opts: [
-                        "Només alenteix el navegador sense aportar cap benefici a la qualitat del model.",
-                        "Ensenya a la IA a distingir quins elements varien (fons, llum) i quin patró roman constant, permetent que generalitzi amb èxit.",
-                        "Fa que la IA aprengui a escriure frases gramaticals sobre cada objecte."
-                    ],
-                    correct: 1,
-                    fb: "Molt bé! La variabilitat permet aïllar els trets essencials de l'objecte i descartar el fons com a element distintiu, fent el model molt més robust."
-                },
-                {
-                    id: 4,
-                    q: "Què passa si una classe té 50 mostres i una altra en té només 3 (Desequilibri de classes / Class Imbalance)?",
-                    opts: [
-                        "La IA aprèn igualment bé perquè compensa automàticament la quantitat de captures.",
-                        "El model tindrà una tendència desproporcionada a predir sempre la classe majoritària, ja que matemàticament minimitza la pèrdua triant la més freqüent.",
-                        "L'aplicació es bloqueja i obliga a esborrar totes les fotos preses fins al moment."
-                    ],
-                    correct: 1,
-                    fb: "Exacte! El desequilibri de classes esbiaixa el model cap a la classe dominant, ignorant o predient amb molt poca fiabilitat la classe minoritària."
-                },
-                {
-                    id: 5,
-                    q: "Què significa que un model d'intel·ligència artificial 'generalitza bé'?",
-                    opts: [
-                        "Que és capaç de reconèixer i classificar correctament objectes o situacions noves que mai havia vist abans en el conjunt d'entrenament.",
-                        "Que ha memoritzat exactament totes les imatges de laboratori amb una precisió del 100%.",
-                        "Que és capaç de respondre preguntes en més de deu llengües estrangeres."
-                    ],
-                    correct: 0,
-                    fb: "Brillant! Generalitzar és la veritable fita del Machine Learning: volem que el model sàpiga aplicar el patró après a la vida real i no només davant les dades d'assaig."
-                }
+            correct: 1,
+            fb: "Exacte! La pèrdua mesura com de lluny està la IA d'encertar. L'objectiu és que baixi el màxim possible fins a apropar-se a zero!"
+        },
+        {
+            id: 3,
+            q: "Què és una 'època' (Epoch) en l'entrenament?",
+            opts: [
+                "Una ronda sencera en què la IA repassa tots els exemples de la col·lecció un cop.",
+                "El temps en anys que triguen els científics a crear un programa intel·ligent.",
+                "La quantitat de carpetes diferents que té el disc dur."
             ],
-            4: [
-                {
-                    id: 1,
-                    q: "Què és una 'al·lucinació' en un model d'intel·ligència artificial generativa de text?",
-                    opts: [
-                        "Un error de connexió causat per la caiguda dels servidors al núvol.",
-                        "Una afirmació falsa, inventada o inexacta que el model formula amb total seguretat perquè prediu seqüències de paraules probables i no fets verificats.",
-                        "Quan la pantalla de l'ordinador mostra colors distorsionats durant la generació de text."
-                    ],
-                    correct: 1,
-                    fb: "Molt bé! Els models de llenguatge no tenen accés a la veritat ontològica; encadenen paraules segons probabilitat estadística. Quan no disposen de dades exactes, inventen detalls plausibles."
-                },
-                {
-                    id: 2,
-                    q: "D'on sorgeixen els biaixos i prejudicis que pot manifestar una IA?",
-                    opts: [
-                        "Són creats directament pels xips electrònics en assolir altes temperatures.",
-                        "Dels biaixos, prejudicis històrics i desigualtats presents en els textos i dades de la societat amb què ha estat entrenada la màquina.",
-                        "Les IAs desenvolupen consciència pròpia i sentiments d'animadversió cap a determinats grups."
-                    ],
-                    correct: 1,
-                    fb: "Exacte! La IA reflecteix la societat i les dades amb què aprèn. Si el contingut humà conté estereotips o discriminació, el model aprendrà a reproduir aquests mateixos biaixos."
-                },
-                {
-                    id: 3,
-                    q: "Quin és l'objectiu principal dels algorismes de retenció en xarxes socials (com TikTok, Instagram o YouTube)?",
-                    opts: [
-                        "Maximitzar el temps de pantalla (Engagement) per mostrar més anuncis, prioritzant sovint el contingut emocionalment extrem, la polèmica o la comparació estètica.",
-                        "Fomentar que els joves tanquin el mòbil i dormin vuit hores diàries.",
-                        "Assegurar una distribució equitativa de lectures de llibres científics."
-                    ],
-                    correct: 0,
-                    fb: "Molt cert! La mètrica clau és l'atenció i el temps de retenció. Les emocions intenses (indignació, por a perdre's quelcom o FOMO) generen més clics i fan que l'algorisme les amplifiqui."
-                },
-                {
-                    id: 4,
-                    q: "Què és un 'Deepfake' i quin perill comporta per a la convivència democràtica?",
-                    opts: [
-                        "Un filtre que millora la resolució d'imatges submarines antigues.",
-                        "Un contingut multimèdia sintètic generat amb IA on es clona la veu o el rostre d'algú fent-li dir o fer coses mai ocorregudes, facilitant estafes i desinformació massiva.",
-                        "Un document PDF protegit amb una contrasenya de seguretat."
-                    ],
-                    correct: 1,
-                    fb: "Molt bé! Els deepfakes representen una amenaça greu perquè erosionen la confiança ciutadana, faciliten la suplantació d'identitat i permeten crear enganys molt difícils de detectar a simple vista."
-                },
-                {
-                    id: 5,
-                    q: "Com actua la Unió Europea davant aquests riscos amb la Llei d'IA (EU AI Act)?",
-                    opts: [
-                        "Classifica les aplicacions d'IA per nivell de risc, prohibint la manipulació subliminar i la puntuació social (social scoring), i regulant els sistemes d'alt risc.",
-                        "Prohibeix qualsevol ús de la intel·ligència artificial i de la informàtica a tot Europa.",
-                        "Deixa que les grans corporacions tecnològiques s'autoregulin sense cap tipus d'inspecció pública."
-                    ],
-                    correct: 0,
-                    fb: "Exacte! L'EU AI Act és pionera a escala global: estableix línies vermelles ètiques infranquejables i exigeix transparència i control humà per protegir els drets fonamentals."
-                }
+            correct: 0,
+            fb: "Correcte! Una època és una passada completa per totes les fotos. Normalment calen diverses rondes perquè la IA aprengui bé els patrons."
+        },
+        {
+            id: 4,
+            q: "Com reacciona el model davant d'un 'cas parany' (com l'ós panda si només coneix gossos i gats)?",
+            opts: [
+                "S'adona que és un panda i crea una categoria nova ell sol.",
+                "S'atura i diu clarament amb un missatge: 'No sé què és aquest animal'.",
+                "Es veu obligat a triar entre gos o gat i reparteix els percentatges, perquè no sap dir 'no ho sé'."
             ],
-            5: [
-                {
-                    id: 1,
-                    q: "Què és un 'Prompt' en el camp de la Intel·ligència Artificial generativa?",
-                    opts: [
-                        "El nom de la targeta gràfica que processa els càlculs a l'ordinador.",
-                        "La instrucció, pregunta o conjunt d'indicacions en llenguatge humà que donem a la IA per dirigir la seva tasca.",
-                        "La taxa de descàrrega de dades mesurada en gigabytes per segon."
-                    ],
-                    correct: 1,
-                    fb: "Molt bé! El prompt és l'encàrrec o ordre que orienta la generació del model. Com millor formulat estigui, més precisa i útil serà la resposta obtinguda."
-                },
-                {
-                    id: 2,
-                    q: "Segons la Matriu 2x2 d'Eficàcia, què ocorre quan usem un prompt de Baixa Tasca i Baix Context (Quadrant 1)?",
-                    opts: [
-                        "La IA respon amb dades contrastades, anàlisi crítica i format impecable.",
-                        "La IA dona respostes genèriques i superficials, augmentant enormement el risc d'al·lucinació o informació inventada.",
-                        "El programa detecta immediatament que cal redactar un assaig universitari d'alta qualitat."
-                    ],
-                    correct: 1,
-                    fb: "Exacte! Si donem instruccions vagues ('Fes un treball de la Guerra Civil'), la IA omple els buits d'informació amb tòpics o invencions."
-                },
-                {
-                    id: 3,
-                    q: "Quins són els 4 components indispensables de la nostra unitat per redactar un prompt complet i professional?",
-                    opts: [
-                        "Objectiu (tasca precisa), Context (públic i rol), Format (estructura de resposta) i Límits (restriccions negatives).",
-                        "Nom, cognom, data de naixement i contrasenya de l'estudiant.",
-                        "Títol en majúscules, 3 emojis obligatoris, hashtag i un enllaç a xarxes socials."
-                    ],
-                    correct: 0,
-                    fb: "Brillant! Aquests 4 components (Objectiu, Context, Format i Límits) guien les neurones del model d'una manera inequívoca cap a la màxima qualitat."
-                },
-                {
-                    id: 4,
-                    q: "Per què és crucial incloure 'Límits i Restriccions negatives' (què NO ha de fer la IA)?",
-                    opts: [
-                        "Perquè acota l'espai de respostes possibles, evitant que la IA s'allargui innecessàriament, inventi dades o utilitzi un registre inadequat.",
-                        "Perquè els models d'intel·ligència artificial consumeixen el doble d'energia si no els posem restriccions.",
-                        "Perquè la màquina s'enfada si no li indiquem quines paraules té prohibides."
-                    ],
-                    correct: 0,
-                    fb: "Molt bé! Establir límits clars (ex: 'no inventis fets si no els coneixes', 'màxim 150 paraules', 'no facis servir frases fetes') és la millor eina per frenar les al·lucinacions."
-                },
-                {
-                    id: 5,
-                    q: "Què és el 'Meta-prompting' o contrast crític de respostes i per què és un bon mètode d'estudi?",
-                    opts: [
-                        "Copiar la primera resposta que dona la IA directament a l'entrega escolar sense llegir-la.",
-                        "Formular preguntes de repunt demanant a la IA que citi les fonts, exposi punts de vista contraposats o revisi les seves pròpies conclusions.",
-                        "Obrir cinc pestanyes del mateix cercador web alhora."
-                    ],
-                    correct: 1,
-                    fb: "Fantàstic! El meta-prompting i la repregunta crítica transformen la IA en una eina d'aprenentatge actiu i qüestionament socràtic, en lloc d'un simple mecanisme de 'copiar i enganxar'."
-                }
-            ]
-        };
+            correct: 2,
+            fb: "Molt important! La IA no té sentit comú: està obligada a triar entre les opcions que li hem donat, encara que cap de les dues sigui la correcta!"
+        },
+        {
+            id: 5,
+            q: "Per què cal que sempre hi hagi persones supervisant la IA (Human in the loop)?",
+            opts: [
+                "Perquè la IA no comprèn el món real i pot cometre errors greus davant de situacions noves o estranyes.",
+                "Perquè els ordinadors s'obliden de tot el que han après si no estan endollats a una persona.",
+                "Perquè la llei prohibeix que els ordinadors funcionin sense vigilància."
+            ],
+            correct: 0,
+            fb: "Molt bé! La IA busca patrons però no entén què està fent. Per això en temes seriosos com la salut o la seguretat cal sempre la supervisió d'un humà."
+        }
+    ],
+    2: [
+        {
+            id: 1,
+            q: "Per a què serveixen els CAPTCHA a més d'aturar robots?",
+            opts: [
+                "Per mesurar la velocitat de connexió de la teva xarxa wifi.",
+                "Per aprofitar que milions de persones resolguin fotos dubtoses i així aconseguir dades etiquetades per entrenar IAs.",
+                "Per esborrar arxius perillosos o virus del navegador."
+            ],
+            correct: 1,
+            fb: "Exacte! Cada cop que marques passos de vianants o semàfors, estàs ajudant a ensenyar a IAs com les dels cotxes autònoms!"
+        },
+        {
+            id: 2,
+            q: "Què és un 'cas frontera o dubtós' en les dades?",
+            opts: [
+                "Una imatge poc clara (borrosa, tallada o amb ombres) on diferents persones poden opinar coses diferents.",
+                "Una foto que s'ha fet just al límit de la frontera entre dos països.",
+                "Un arxiu que pesa massa i no cap a la pantalla de l'ordinador."
+            ],
+            correct: 0,
+            fb: "Correcte! Les situacions que no són blanques o negres creen dubtes entre les persones i són les més difícils d'aprendre per a una màquina."
+        },
+        {
+            id: 3,
+            q: "Per què pot ser perillós no posar-se d'acord en com etiquetem els casos dubtosos?",
+            opts: [
+                "Perquè l'ordinador es pot reiniciar sol i perdre els fitxers de text.",
+                "Perquè si entrenem un cotxe autònom o una IA d'un hospital amb dades contradictòries, la màquina pot prendre decisions perilloses.",
+                "Perquè els altaveus del cotxe sonaran amb menys volum."
+            ],
+            correct: 1,
+            fb: "Molt important! Si ensenyem a una IA amb dades mal etiquetades o contradictòries, aprendrà malament i pot fallar quan més la necessitem."
+        },
+        {
+            id: 4,
+            q: "Com resolen aquests dubtes els equips que creen IAs abans de posar-se a entrenar-les?",
+            opts: [
+                "Deixant que cadascú faci el que vulgui sense cap criteri comú.",
+                "Establint regles clares i compartides sobre què s'ha de marcar i què s'ha de descartar.",
+                "Esborrant gairebé totes les fotos per no haver de pensar."
+            ],
+            correct: 1,
+            fb: "Molt bé! Tenir regles clares i compartides és bàsic perquè tothom etiqueti amb el mateix criteri i les dades siguin fiables."
+        },
+        {
+            id: 5,
+            q: "Què és el 'biaix a les dades'?",
+            opts: [
+                "Quan a la col·lecció d'exemples falten fotos d'un grup de persones o situacions, fent que la IA falli més sovint amb ells.",
+                "Quan les fotografies estan en blanc i negre en lloc de ser en color.",
+                "Quan la pantalla de l'ordinador té poca brillantor per veure els detalls."
+            ],
+            correct: 0,
+            fb: "Exacte! Si a una IA de reconeixement facial només li ensenyes fotos d'un tipus de persona, després fallarà amb la resta perquè mai n'ha vist suficients!"
+        }
+    ],
+    3: [
+        {
+            id: 1,
+            q: "Quina diferència clau hi ha entre la reacció d'un conductor humà i la d'un cotxe autònom davant d'un accident?",
+            opts: [
+                "L'humà reacciona per pur instint i reflexos en una fracció de segon, mentre que el cotxe autònom executa decisions que van ser calculades i programades prèviament per enginyers.",
+                "El cotxe autònom mai no pot tenir cap accident perquè els ordinadors són 100% infal·libles.",
+                "L'humà no sap frenar i el cotxe autònom frena sense necessitar rodes."
+            ],
+            correct: 0,
+            fb: "Exacte! L'accident humà és fruit de l'atzar i l'instint, però en un cotxe autònom, qualsevol reacció ha estat decidida i programada abans en línies de codi!"
+        },
+        {
+            id: 2,
+            q: "Què és el 'Dilema del Tramvia' (Trolley Problem) aplicat a la Intel·ligència Artificial?",
+            opts: [
+                "Una situació tràgica inevitable on la màquina ha de triar matemàticament a qui salvar o sacrificar quan qualsevol opció provoca danys.",
+                "Un problema tècnic quan la bateria d'un vehicle elèctric s'esgota a la via del tren.",
+                "Un programa per reservar bitllets de transport públic per internet."
+            ],
+            correct: 0,
+            fb: "Molt bé! És el clàssic dilema ètic: si l'accident és inevitable i no hi ha cap sortida bona, quines vides ha de prioritzar l'algorisme?"
+        },
+        {
+            id: 3,
+            q: "Què va descobrir l'estudi global de la revista Nature sobre les decisions de la Moral Machine del MIT?",
+            opts: [
+                "Que totes les persones del planeta tenen exactament els mateixos valors morals i voten el mateix.",
+                "Que hi ha grans diferències culturals: a Orient es prioritza salvar la gent gran, mentre que a Occident es protegeix abans els nens.",
+                "Que la gent prefereix que els cotxes atropellin sempre el conductor abans que cap animal."
+            ],
+            correct: 1,
+            fb: "Brillant! L'estudi de Nature amb més de 40 milions de respostes va demostrar que la moral no és universal: depèn de la cultura i la societat de cada país!"
+        },
+        {
+            id: 4,
+            q: "Si un cotxe autònom ha de triar entre atropellar vianants que creuen en vermell o desviar-se i ferir un vianant innocent en verd, quin és el conflicte ètic?",
+            opts: [
+                "Entre respectar les normes de trànsit (qui incompleix la llei assumeix el risc) o minimitzar el nombre total de ferits sense importar qui tenia la culpa.",
+                "Que el semàfor consumeix massa energia elèctrica si canvia a vermell.",
+                "Que la càmera del cotxe només reconeix persones que porten roba fosca."
+            ],
+            correct: 0,
+            fb: "Molt bé! El dilema és si el cotxe ha de castigar qui trenca les normes o si ha de salvar vides innocents encara que els altres hagin comès una imprudència!"
+        },
+        {
+            id: 5,
+            q: "Si un cotxe autònom pren una decisió fatal i causa un accident mortal, per què no es pot 'condemnar' la IA?",
+            opts: [
+                "Perquè la IA és un programa d'ordinador sense consciència ni drets legals; la responsabilitat ha de recaure sempre en persones o empreses (fabricant, programador o propietari).",
+                "Perquè la policia no té eines per desconnectar cotxes.",
+                "Perquè qualsevol màquina té immunitat diplomàtica segons la llei internacional."
+            ],
+            correct: 0,
+            fb: "Exacte! Un algoritme no es pot posar a la presó ni té moral pròpia: la responsabilitat ètica i jurídica sempre és de les persones humanes i les empreses que creen o utilitzen la tecnologia!"
+        }
+    ],
+    4: [
+        {
+            id: 1,
+            q: "Com mira una imatge una IA com Teachable Machine?",
+            opts: [
+                "Entén què és l'objecte i per a què serveix, igual que una persona.",
+                "Reconeix patrons visuals als píxels, com ara colors, línies, formes i contrastos.",
+                "Llegeix el nom de l'objecte buscant-lo directament a la Viquipèdia."
+            ],
+            correct: 1,
+            fb: "Molt bé! La màquina no sap què és un bolígraf o una tisora: només distingeix colors, vores i contrastos als píxels de la càmera!"
+        },
+        {
+            id: 2,
+            q: "Per què fallava el model quan només li posàvem 1 foto per classe al Repte 2?",
+            opts: [
+                "Perquè es va aprendre el fons o la posició de memòria com si formessin part de l'objecte.",
+                "Perquè la càmera de l'ordinador es va espatllar en moure-la.",
+                "Perquè el programa no permet reconèixer coses que no siguin de color blau."
+            ],
+            correct: 0,
+            fb: "Correcte! Si només li dones una foto, la IA es pensa que el color de la paret o com agafes l'objecte són part obligatòria de l'objecte!"
+        },
+        {
+            id: 3,
+            q: "Què aconseguim afegint 5 fotos variades per classe (amb llums, inclinacions i fons diferents) al Repte 3?",
+            opts: [
+                "Que la IA aprengui quins detalls canvien (el fons o la llum) i aprengui a fixar-se només en l'objecte real.",
+                "Només fa que l'ordinador vagi més lent sense millorar res.",
+                "Que la màquina aprengui a escriure frases sobre el que veu."
+            ],
+            correct: 0,
+            fb: "Exacte! Com més varietat d'exemples veu la màquina, més fàcil li és descobrir què té d'especial l'objecte i no confondre's!"
+        },
+        {
+            id: 4,
+            q: "Què passa si entrenes una classe amb 50 fotos i una altra amb només 2 fotos?",
+            opts: [
+                "La IA aprèn igual de bé totes dues perquè és molt intel·ligent.",
+                "La IA tendirà a endevinar quasi sempre la classe que té 50 fotos, perquè li és més fàcil encertar per quantitat.",
+                "El programa es tanca i no et deixa continuar."
+            ],
+            correct: 1,
+            fb: "Molt bé! Si una classe té molts més exemples que l'altra, la màquina es torna gandula i diu gairebé sempre la classe majoritària!"
+        },
+        {
+            id: 5,
+            q: "Què vol dir que un model d'IA 'ha après bé'?",
+            opts: [
+                "Que s'ha après de memòria exactament les fotos d'assaig sense fallar cap píxel.",
+                "Que sap reconèixer objectes nous de la vida real que no sortien exactament igual a les fotos amb què va aprendre.",
+                "Que és capaç de parlar en cinc idiomes diferents."
+            ],
+            correct: 1,
+            fb: "Brillant! L'objectiu no és que memoritzi, sinó que sàpiga reconèixer l'objecte a la vida real encara que la llum o l'angle siguin nous!"
+        }
+    ],
+    5: [
+        {
+            id: 1,
+            q: "Què és una 'al·lucinació' d'una Intel·ligència Artificial generativa?",
+            opts: [
+                "Un tall de connexió quan es desconnecta el cable de xarxa.",
+                "Quan la IA s'inventa dades, noms o respostes falses però les diu amb una seguretat total.",
+                "Un filtre de colors que fa veure la pantalla borrosa."
+            ],
+            correct: 1,
+            fb: "Exacte! Les IAs de text ajunten paraules que sonen bé juntes, però no saben si el que diuen és cert. Per això poden inventar-se fets amb total tranquil·litat!"
+        },
+        {
+            id: 2,
+            q: "D'on surten els prejudicis o estereotips que de vegades mostra una IA?",
+            opts: [
+                "Són idees pròpies que tenen els xips dels ordinadors quan s'escalfen.",
+                "Dels textos i imatges d'internet amb què ha après, que reflecteixen els prejudicis de les persones que els van escriure.",
+                "D'un virus informàtic que canvia les paraules."
+            ],
+            correct: 1,
+            fb: "Molt bé! La IA és un mirall del que troba a internet: si les dades tenen prejudicis o desigualtats, la màquina els copiarà i els repetirà."
+        },
+        {
+            id: 3,
+            q: "Per què xarxes com TikTok o Instagram ens recomanen sovint vídeos polèmics o anuncis insistents?",
+            opts: [
+                "Perquè el seu objectiu és que estiguem enganxats a la pantalla com més temps millor per guanyar diners amb publicitat.",
+                "Perquè volen que tanquem el mòbil d'hora per anar a dormir vuit hores.",
+                "Perquè estan obligades per llei a ensenyar només vídeos de notícies serioses."
+            ],
+            correct: 0,
+            fb: "Molt cert! L'algorisme prioritza allò que et manté mirant la pantalla: la polèmica, el xoc emocional o la comparació física generen moltes reaccions."
+        },
+        {
+            id: 4,
+            q: "Què és un 'Deepfake'?",
+            opts: [
+                "Un truc per fer que la bateria del telèfon duri més dies.",
+                "Un vídeo, àudio o foto fals creat amb IA on es clona la cara o la veu d'algú fent-li dir o fer coses que mai han passat.",
+                "Un tipus d'arxiu PDF que no es pot obrir sense contrasenya."
+            ],
+            correct: 1,
+            fb: "Molt important! Els deepfakes poden ser molt perillosos perquè permeten suplantar la identitat d'algú, fer bromes pesades o escampar enganys difícils de detectar!"
+        },
+        {
+            id: 5,
+            q: "Com intenta protegir la Unió Europea a la gent jove davant dels riscos de la IA?",
+            opts: [
+                "Prohibint que la IA s'utilitzi per manipular persones, enganyar o fer trampes, i obligant a avisar si un contingut està fet per IA.",
+                "Prohibint completament l'ús de telèfons mòbils i ordinadors a les escoles.",
+                "Deixant que les grans empreses facin el que vulguin sense cap mena de control."
+            ],
+            correct: 0,
+            fb: "Correcte! La llei europea d'IA posa línies vermelles per protegir la nostra seguretat, prohibint la manipulació i exigint que les eines siguin transparents."
+        }
+    ],
+    6: [
+        {
+            id: 1,
+            q: "Què és un 'Prompt'?",
+            opts: [
+                "El nom del processador que porta l'ordinador per dins.",
+                "La pregunta, ordre o instrucció que escrivim a la IA perquè faci una feina.",
+                "La velocitat amb què descarreguem un vídeo d'internet."
+            ],
+            correct: 1,
+            fb: "Molt bé! El prompt és l'encàrrec que li dones a la IA. Com més clar i ben explicat estigui, millor serà el resultat que obtindràs!"
+        },
+        {
+            id: 2,
+            q: "Què passa si només li demanes a la IA una ordre vaga com 'Fes-me un resum de la Guerra Civil'?",
+            opts: [
+                "Donarà una resposta impecable amb les millors fonts històriques del món.",
+                "Donarà una resposta molt genèrica i superficial, amb més risc d'inventar-se coses o cometre errors.",
+                "La IA s'enfada i no respon a la pregunta."
+            ],
+            correct: 1,
+            fb: "Exacte! Si li dones una instrucció pobra, la IA s'ho ha d'inventar tot sobre com presentar-ho i donarà un resultat que sovint no serveix per a classe."
+        },
+        {
+            id: 3,
+            q: "Quines 4 coses necessita un prompt ben fet?",
+            opts: [
+                "Objectiu (què vols), Context (per a qui és), Format (com ho presentes) i Límits (què NO vols que faci).",
+                "El teu nom complet, la contrasenya del teu correu i el número de telèfon.",
+                "Un títol en majúscules, cinc emojis i un enllaç de YouTube."
+            ],
+            correct: 0,
+            fb: "Brillant! Aquestes 4 peces (Objectiu, Context, Format i Límits) són la clau per aconseguir exactament el que necessites!"
+        },
+        {
+            id: 4,
+            q: "Per què és molt útil posar 'Límits' (què NO vols que faci la IA)?",
+            opts: [
+                "Perquè evita que la IA s'enrotlli massa, que inventi fets si no els sap o que utilitzi paraules massa difícils.",
+                "Perquè l'ordinador gasta el doble d'electricitat si no li poses límits.",
+                "Perquè la IA no pot escriure més de cent lletres seguides."
+            ],
+            correct: 0,
+            fb: "Molt bé! Dir-li què NO vols que faci (ex: 'no inventis dades', 'no superis 150 paraules', 'fes frases clares') és la millor manera d'evitar al·lucinacions!"
+        },
+        {
+            id: 5,
+            q: "Com hem de fer servir la IA per fer deures o estudiar?",
+            opts: [
+                "Copiant i enganxant la primera resposta directament al treball de classe sense llegir-la.",
+                "Com un ajudant per entendre conceptes difícils o revisar textos, comprovant sempre la informació abans de donar-la per bona.",
+                "Fent que la IA ens faci tots els exàmens mentre mirem vídeos al mòbil."
+            ],
+            correct: 1,
+            fb: "Molt bé! La IA és com una calculadora: és una ajuda fantàstica per entendre coses, però l'esforç de pensar i comprovar les respostes ha de ser sempre teu!"
+        }
+    ]
+};
 
 const repte1QuizData = stageQuizzesData[2]; // Compatibilitat retroactiva
 
-        const quizQuestions = [
-            {
-                id: 1,
-                block: 1,
-                q: "1. Què és el 'contingut sintètic' generat per una IA?",
-                opts: [
-                    "Una còpia exacta piratejada d'un document original existent a internet.",
-                    "Contingut nou (text, so, imatge) construït combinant patrons apresos durant l'entrenament.",
-                    "Un arxiu informàtic sintètic comprimit que redueix l'espai de memòria del disc dur.",
-                    "Dades numèriques en brut sense processar per cap algorisme."
-                ],
-                correct: 1,
-                fb: "Correcte! El contingut sintètic és una producció nova que el model genera unint patrons estadístics que ha après."
-            },
-            {
-                id: 2,
-                block: 1,
-                q: "2. Quins són els 4 passos ordenats del procés d'entrenament d'una IA?",
-                opts: [
-                    "1. Programar regles, 2. Executar, 3. Reiniciar, 4. Concloure.",
-                    "1. Recull d'exemples, 2. Aprenentatge de patrons, 3. Ajust per reduir errors, 4. Predicció / generació.",
-                    "1. Preguntar a Google, 2. Filtrar webs, 3. Escriure prompt, 4. Imprimir.",
-                    "1. Comprar memòria RAM, 2. Capturar vídeo, 3. Fer servir càmera web, 4. Pujar al núvol."
-                ],
-                correct: 1,
-                fb: "Exacte! Primer calen exemples (dades), després buscar patrons, ajustar els pesos per reduir errors i finalment predir."
-            },
-            {
-                id: 3,
-                block: 2,
-                q: "3. Què significa el terme 'Human in the loop'?",
-                opts: [
-                    "Que els robots han substituït completament tots els treballadors humans.",
-                    "Que les persones intervenen etiquetant dades, revisant exemples i millorant els models d'IA.",
-                    "Que una persona està atrapada en un bucle infinit de programació.",
-                    "Un sistema de protecció per impedir que els nens utilitzin tauletes."
-                ],
-                correct: 1,
-                fb: "Molt bé! La intervenció humana és indispensable per proporcionar criteris i supervisar les fallades de la IA."
-            },
-            {
-                id: 4,
-                block: 2,
-                q: "4. Quina funció didàctica tenen els sistemes CAPTCHA?",
-                opts: [
-                    "Comprovar exclusivament la velocitat de connexió de la fibra òptica.",
-                    "A més de frenar els bots, aprofiten la resolució humana per etiquetar dades massivament per entrenar IAs.",
-                    "Eliminar virus i arxius maliciosos del navegador de l'usuari.",
-                    "Obligar l'usuari a pagar una subscripció abans de descarregar."
-                ],
-                correct: 1,
-                fb: "Correcte! Cada vegada que marques passos de vianants o semàfors estàs generant dades etiquetades per a models de visió artificial."
-            },
-            {
-                id: 5,
-                block: 3,
-                q: "5. Al Repte 2, per què el model de Teachable Machine fallava quan canviàvem el fons?",
-                opts: [
-                    "Perquè la càmera de l'ordinador es va espatllar.",
-                    "Perquè amb només 1 mostra per classe, el model va associar el fons com a part de l'objecte en lloc d'aprendre l'objecte en si.",
-                    "Perquè Google Teachable Machine no admet reconeixement de retoladors.",
-                    "Perquè cal pagar una llicència per poder canviar el color de les carpetes."
-                ],
-                correct: 1,
-                fb: "Exacte! Amb dades insuficients, la màquina memoritza patrons irrellevants com el color de la taula o de la paret de fons."
-            },
-            {
-                id: 6,
-                block: 3,
-                q: "6. Com vam solucionar les fallades del model al Repte 3?",
-                opts: [
-                    "Canviant d'eina i fent servir un programa de disseny gràfic.",
-                    "Afegint més mostres (5 per classe) amb varietat d'angles, inclinacions i fons diferents.",
-                    "Eliminant dues categories per deixar només una classe.",
-                    "Posant un adhesiu negre a la lent de la webcam."
-                ],
-                correct: 1,
-                fb: "Molt bé! La varietat i quantitat de dades és el factor determinant per fer un model robust i fiable."
-            },
-            {
-                id: 7,
-                block: 4,
-                q: "7. Què és una 'al·lucinació' en el context de la IA generativa?",
-                opts: [
-                    "Quan l'ordinador s'escalfa tant que emet fum i fa olor de cremat.",
-                    "Quan el model genera informació completament falsa o inventada però redactada amb un to molt convincent.",
-                    "Un filtre gràfic que canvia els colors d'una imatge a tons psicodèlics.",
-                    "Quan la pantalla s'apaga sobtadament per estalviar bateria."
-                ],
-                correct: 1,
-                fb: "Correcte! Les al·lucinacions són afirmacions falses o dades inventades que sonen totalment plausibles i segures."
-            },
-            {
-                id: 8,
-                block: 4,
-                q: "8. Per què una IA pot reproduir estereotips i biaixos socials?",
-                opts: [
-                    "Perquè la màquina té ideologia pròpia i sentiments d'odi.",
-                    "Perquè aprèn dels textos i imatges històrics de la societat, que sovint contenen aquests mateixos biaixos.",
-                    "Perquè s'ha infectat amb un virus informàtic.",
-                    "Perquè els cables de xarxa estan connectats a l'inrevés."
-                ],
-                correct: 1,
-                fb: "Molt bé! Els biaixos provenen de les dades amb què ha estat alimentada: la IA no jutja, només reflecteix les dades que té."
-            },
-            {
-                id: 9,
-                block: 5,
-                q: "9. Quins són els 4 components indispensables d'un bon prompt?",
-                opts: [
-                    "1. Salutació, 2. Firma, 3. Data, 4. Arxiu adjunt.",
-                    "1. Objectiu clar, 2. Context/Públic, 3. Format/Extensió, 4. Límits/Restriccions.",
-                    "1. Contrasenya, 2. Nom d'usuari, 3. IP, 4. Correu electrònic.",
-                    "1. Una sola paraula curta, 2. Majúscules, 3. Signes d'exclamació, 4. Repetició."
-                ],
-                correct: 1,
-                fb: "Impecable! Objectiu, context, format i límits són la fórmula clau per obtenir respostes útils i sense desviacions."
-            },
-            {
-                id: 10,
-                block: 5,
-                q: "10. Quina ha de ser l'actitud correcta de l'alumnat davant la informació d'una IA?",
-                opts: [
-                    "Confiar cegament perquè els ordinadors mai no s'equivoquen.",
-                    "Aplicar esperit crític, contrastar amb fonts fiables i verificar les afirmacions abans d'utilitzar-les.",
-                    "Copiar i enganxar directament els treballs sense llegir-los.",
-                    "Prohibir l'ús de qualsevol tecnologia a l'escola per sempre més."
-                ],
-                correct: 1,
-                fb: "Absolutament! La IA és una eina de suport extraordinària, però el pensament crític humà és insubstituïble!"
-            }
-        ];
-
+const quizQuestions = [
+    {
+        id: 1,
+        block: 1,
+        q: "1. Què fa la IA quan aprèn a partir d'exemples?",
+        opts: [
+            "Fa una còpia exacta de tots els arxius a la memòria.",
+            "Busca patrons en les dades i aprèn a crear contingut nou combinant el que ha après.",
+            "Esborra totes les fotos velles per deixar espai lliure."
+        ],
+        correct: 1,
+        fb: "Correcte! La IA no copia arxius tal qual: aprèn patrons i genera respostes noves a partir del que ha vist!"
+    },
+    {
+        id: 2,
+        block: 1,
+        q: "2. Quins són els 4 passos bàsics d'aprenentatge d'una IA?",
+        opts: [
+            "1. Escriure regles, 2. Executar, 3. Reiniciar l'ordinador, 4. Imprimir.",
+            "1. Recollir exemples, 2. Buscar patrons, 3. Corregir errors entrenant, 4. Fer prediccions.",
+            "1. Mirar un vídeo, 2. Buscar a Google, 3. Preguntar a un amic, 4. Desar."
+        ],
+        correct: 1,
+        fb: "Molt bé! Primer calen exemples (dades), després buscar patrons, corregir els errors i finalment la màquina ja sap predir!"
+    },
+    {
+        id: 3,
+        block: 2,
+        q: "3. Què vol dir 'Human in the loop' (persones supervisant la IA)?",
+        opts: [
+            "Que els robots faran totes les feines del món i no caldrà treballar.",
+            "Que les persones intervenen etiquetant dades, revisant errors i supervisant que la IA no s'equivoqui.",
+            "Que una persona està mirant la pantalla sense fer res."
+        ],
+        correct: 1,
+        fb: "Exacte! El criteri humà és indispensable per ensenyar a les màquines i per evitar que cometin errors absurds o perillosos!"
+    },
+    {
+        id: 4,
+        block: 2,
+        q: "4. Com ajudem a entrenar IAs quan resolem un CAPTCHA a internet?",
+        opts: [
+            "Comprovem si la connexió a internet és prou ràpida.",
+            "Ajudem a etiquetar fotos de la vida real (semàfors, passos de vianants, bicis) que serviran per entrenar altres IAs.",
+            "Netegem els virus del nostre ordinador."
+        ],
+        correct: 1,
+        fb: "Molt bé! Cada vegada que marques semàfors o passos de vianants estàs ensenyant a IAs com les dels cotxes autònoms!"
+    },
+    {
+        id: 5,
+        block: 3,
+        q: "5. Per què el dilema d'un cotxe autònom no és una reacció per instint humà?",
+        opts: [
+            "Perquè tota la conducta del vehicle davant d'un accident ha estat calculada i programada prèviament per enginyers.",
+            "Perquè la IA no té càmeres ni sensors al sostre.",
+            "Perquè el volant només gira si el conductor li dona una ordre amb la veu."
+        ],
+        correct: 0,
+        fb: "Molt bé! A diferència de l'humà que reacciona per reflexos sobtats, el cotxe autònom executa un programa pensat i decidit abans en un despatx!"
+    },
+    {
+        id: 6,
+        block: 3,
+        q: "6. Què va descobrir l'estudi global de la 'Moral Machine' publicat a Nature?",
+        opts: [
+            "Que no hi ha una moral universal: a Orient es prioritza salvar la gent gran, mentre que a Occident es protegeix abans els nens.",
+            "Que tothom a la Terra està d'acord en quines decisions ha de prendre la màquina.",
+            "Que els cotxes autònoms no haurien de circular mai per països amb carreteres estretes."
+        ],
+        correct: 0,
+        fb: "Exacte! L'estudi del MIT amb milions de dades va revelar que els valors morals d'una IA depenen directament de la cultura del país on s'aplica!"
+    },
+    {
+        id: 7,
+        block: 4,
+        q: "7. Al Repte 2 de Teachable Machine, per què fallava la càmera quan canviàvem el fons?",
+        opts: [
+            "Perquè la càmera web estava trencada.",
+            "Perquè amb només 1 foto per objecte, la màquina es va aprendre el fons de memòria en comptes de fixar-se en l'objecte.",
+            "Perquè el programa no sap reconèixer bolígrafs ni retoladors."
+        ],
+        correct: 1,
+        fb: "Correcte! Si només poses una foto, la IA es pensa que el color de la taula o de la paret és part de l'objecte!"
+    },
+    {
+        id: 8,
+        block: 4,
+        q: "8. Com vam solucionar les fallades del model al Repte 3?",
+        opts: [
+            "Fent servir un altre programa de dibuix.",
+            "Afegint 5 fotos variades per classe, amb diferents angles, inclinacions i fons.",
+            "Esborrant les categories per deixar només una sola classe."
+        ],
+        correct: 1,
+        fb: "Molt bé! La varietat d'exemples és la clau perquè la IA aprengui què és de debò l'objecte i no es confongui amb el fons!"
+    },
+    {
+        id: 9,
+        block: 5,
+        q: "9. Què és una 'al·lucinació' d'una Intel·ligència Artificial generativa?",
+        opts: [
+            "Quan l'ordinador s'escalfa tant que comença a sortir fum.",
+            "Quan la màquina dona informació falsa o inventada però redactada amb un to molt segur i convincent.",
+            "Un filtre que canvia els colors de la pantalla."
+        ],
+        correct: 1,
+        fb: "Molt bé! Les al·lucinacions són invencions de la màquina que sonen totalment creïbles, per això cal comprovar sempre la informació!"
+    },
+    {
+        id: 10,
+        block: 5,
+        q: "10. Per què una IA pot mostrar prejudicis o estereotips?",
+        opts: [
+            "Perquè la màquina té sentiments i odia determinats grups de persones.",
+            "Perquè aprèn de dades i textos d'internet que contenen aquests mateixos prejudicis de la societat.",
+            "Perquè un virus ha canviat les paraules del programa."
+        ],
+        correct: 1,
+        fb: "Exacte! La IA no té opinions pròpies: només reflecteix les dades amb què ha après. Si les dades tenen biaixos, la màquina els repetirà!"
+    },
+    {
+        id: 11,
+        block: 6,
+        q: "11. Quines 4 coses necessita un prompt complet per funcionar bé?",
+        opts: [
+            "1. Salutació, 2. La teva firma, 3. La data d'avui, 4. Un arxiu adjunt.",
+            "1. Objectiu clar, 2. Context (per a qui és), 3. Format de resposta, 4. Límits (què evitar).",
+            "1. Contrasenya, 2. Nom d'usuari, 3. Adreça IP, 4. Telèfon."
+        ],
+        correct: 1,
+        fb: "Impecable! Objectiu, context, format i límits són la fórmula màgica per obtenir bones respostes!"
+    },
+    {
+        id: 12,
+        block: 6,
+        q: "12. Quina és la millor manera d'utilitzar la IA quan estudiem?",
+        opts: [
+            "Confiar-hi a cegues perquè els ordinadors mai no s'equivoquen.",
+            "Utilitzar-la amb esperit crític, comprovant sempre la informació i fent servir la màquina per aprendre, no per copiar.",
+            "Copiar i enganxar directament els treballs sense llegir-los per acabar abans."
+        ],
+        correct: 1,
+        fb: "Absolutament! La IA és una eina fantàstica per aprendre, però el pensament crític de les persones és insubstituïble!"
+    }
+];

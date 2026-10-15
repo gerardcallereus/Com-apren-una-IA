@@ -81,7 +81,7 @@
             if (wFmt >= 8) score += 25; else missing.push(`Format (${wFmt}/8 paraules)`);
             if (wLim >= 8) score += 25; else missing.push(`Límits (${wLim}/8 paraules)`);
 
-            const testCount = Object.keys((appState.stageQuizAnswers && appState.stageQuizAnswers[5]) || {}).length;
+            const testCount = Object.keys((appState.stageQuizAnswers && appState.stageQuizAnswers[6]) || {}).length;
             const testOk = (testCount === 5);
             const w1 = countWords((document.getElementById('prompt-reflection-eval')?.value || appState.promptReflectionEval || '').trim());
             const w2 = countWords((document.getElementById('b5-refl-2')?.value || appState.b5Refl2 || '').trim());
@@ -92,9 +92,9 @@
             const scoreBar = document.getElementById('prompt-score-bar');
             const previewBox = document.getElementById('prompt-preview-box');
             const fbBox = document.getElementById('prompt-feedback-box');
-            const nextBtn = document.getElementById('btn-stage5-next');
+            const nextBtn = document.getElementById('btn-stage6-next') || document.getElementById('btn-complete-stage-6');
             const lockHint = document.getElementById('prompt-lock-hint');
-            const statusEl = document.getElementById('stage5-progress-status');
+            const statusEl = document.getElementById('stage6-progress-status');
 
             if (scoreBadge) {
                 scoreBadge.textContent = `${score} / 100%`;
@@ -134,9 +134,9 @@
 
             if (statusEl) {
                 if (isReady) {
-                    statusEl.innerHTML = `<span style="color:#059669; font-weight:700;">✅ Fase 5 completada amb èxit!</span> Prompt 100% excel·lent, test (5/5) i les 3 reflexions completades. Ja pots avançar a la Fase 6: Qüestionari Final!`;
+                    statusEl.innerHTML = `<span style="color:#059669; font-weight:700;">✅ Fase 6 completada amb èxit!</span> Prompt 100% excel·lent, test (5/5) i les 3 reflexions completades. Ja pots avançar a la Fase 7: Qüestionari Final!`;
                 } else {
-                    statusEl.innerHTML = `⏳ <strong>Progrés del Laboratori de Prompts:</strong> Qualitat prompt: ${score}%/100% · Test Bloc 5: (${testCount}/5) · Reflexions: (${[w1>=5, w2>=5, w3>=5].filter(Boolean).length}/3).`;
+                    statusEl.innerHTML = `⏳ <strong>Progrés del Laboratori de Prompts:</strong> Qualitat prompt: ${score}%/100% · Test Bloc 6: (${testCount}/5) · Reflexions: (${[w1>=5, w2>=5, w3>=5].filter(Boolean).length}/3).`;
                 }
             }
 
@@ -146,7 +146,7 @@
                     nextBtn.className = 'btn btn-success';
                     nextBtn.style.opacity = '1';
                     nextBtn.style.cursor = 'pointer';
-                    nextBtn.innerHTML = 'Completar Fase 5 i anar a la Fase 6: Qüestionari Final ➡️';
+                    nextBtn.innerHTML = 'Completar Fase 6 i anar a la Fase 7: Qüestionari Final ➡️';
                     if (lockHint) lockHint.style.display = 'none';
                 } else {
                     nextBtn.disabled = true;

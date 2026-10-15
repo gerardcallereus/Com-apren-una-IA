@@ -97,8 +97,8 @@
         }
 
         function updateTMProgressStatus() {
-            const statusEl = document.getElementById('stage3-progress-status');
-            const nextBtn = document.getElementById('btn-complete-stage-3');
+            const statusEl = document.getElementById('stage4-progress-status');
+            const nextBtn = document.getElementById('btn-complete-stage-4');
             if (!statusEl) return;
 
             const classesOk = appState.tmClasses && appState.tmClasses.length === 3 && appState.tmClasses.every(c => c && c.trim().length > 0);
@@ -111,7 +111,7 @@
             const r2DoneCount = [p1Ok, p2Ok, p3Ok].filter(Boolean).length;
 
             const chkCount = [r3.chk1, r3.chk2, r3.chk3, r3.chk4].filter(Boolean).length;
-            const testCount = Object.keys((appState.stageQuizAnswers && appState.stageQuizAnswers[3]) || {}).length;
+            const testCount = Object.keys((appState.stageQuizAnswers && appState.stageQuizAnswers[4]) || {}).length;
             const wMillora = countWords(r3.millora || (document.getElementById('r3-millora')?.value || ''));
             const wFalla = countWords(r3.falla || (document.getElementById('r3-falla')?.value || ''));
             const wFutur = countWords(r3.futur || (document.getElementById('r3-futur')?.value || ''));
@@ -120,14 +120,14 @@
             const isReady = (classesOk && r2DoneCount === 3 && chkCount === 4 && testCount === 5 && r3RefsOk);
 
             if (isReady) {
-                statusEl.innerHTML = `<span style="color:#059669; font-weight:700;">✅ Fase 3 completada amb èxit!</span> 3 classes definides, 3 proves registrades al Repte 2, checklist completa (4/4), test (5/5) i les 3 reflexions del Repte 3 completades. Ja pots avançar a la Fase 4!`;
+                statusEl.innerHTML = `<span style="color:#059669; font-weight:700;">✅ Fase 4 completada amb èxit!</span> 3 classes definides, 3 proves registrades al Repte 2, checklist completa (4/4), test (5/5) i les 3 reflexions del Repte 3 completades. Ja pots avançar a la Fase 5: Riscos, Biaixos i Manipulació!`;
                 if (nextBtn) {
                     nextBtn.className = "btn btn-success";
                     nextBtn.style.opacity = "1";
                     nextBtn.style.cursor = "pointer";
                 }
             } else {
-                statusEl.innerHTML = `⏳ <strong>Progrés de Teachable Machine:</strong> Classes: ${classesOk ? '✅' : '❌'} · Proves Repte 2: (${r2DoneCount}/3) · Checklist Repte 3: (${chkCount}/4) · Test Bloc 3: (${testCount}/5) · Reflexions Repte 3: (${[wMillora>=5, wFalla>=5, wFutur>=5].filter(Boolean).length}/3).`;
+                statusEl.innerHTML = `⏳ <strong>Progrés de Teachable Machine:</strong> Classes: ${classesOk ? '✅' : '❌'} · Proves Repte 2: (${r2DoneCount}/3) · Checklist Repte 3: (${chkCount}/4) · Test Bloc 4: (${testCount}/5) · Reflexions Repte 3: (${[wMillora>=5, wFalla>=5, wFutur>=5].filter(Boolean).length}/3).`;
                 if (nextBtn) {
                     nextBtn.className = "btn btn-secondary";
                     nextBtn.style.opacity = "0.7";

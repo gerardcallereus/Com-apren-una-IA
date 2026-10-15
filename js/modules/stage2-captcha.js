@@ -29,6 +29,9 @@
             renderCaptchaTable();
             renderRepte1Quiz();
             resetCaptchaTimer();
+            if (typeof restoreMoralDilemmasUI === 'function') {
+                restoreMoralDilemmasUI();
+            }
         }
 
         function updateToggleButtons(qKey, val) {
@@ -346,4 +349,114 @@
                 }
             }
         }
+
+        // ==========================================
+        // MINI-SIMULADOR MORAL MACHINE & COTXES AUTÒNOMS
+        // ==========================================
+
+        const moralDilemmasData = {
+            1: {
+                title: "Passatgers vs Vianants",
+                A: {
+                    label: "Opció A: Seguir recte (Salvar el passatger)",
+                    mitComparison: "Només el 28% de les persones enquestades al món van triar aquesta opció.",
+                    explanation: "La gran majoria (72%) aposta per salvar el màxim de vides humanes possibles (4 vianants abans que 1 sol ocupant). Però aquí apareix la <strong>gran paradoxa del cotxe autònom</strong>: enquestes posteriors van revelar que quasi ningú voldria comprar un cotxe si sap que el cotxe està programat per sacrificar el seu propi conductor!",
+                    debate: "Compraries un vehicle si el manual d'instruccions diu que en cas d'accident greu et sacrificarà per salvar uns desconeguts?"
+                },
+                B: {
+                    label: "Opció B: Xocar contra el mur (Salvar els vianants)",
+                    mitComparison: "Has coincidit amb la majoria aclaparadora mundial (72%)!",
+                    explanation: "La majoria dels humans al món creu que una màquina ha de seguir la lògica utilitarista de <em>minimitzar morts totals</em> (4 vides salvades davant d'1 sacrificada). Però això genera un conflicte legal greu: si el cotxe fa girar el volant deliberadament cap al mur matant el passatger, la família pot denunciar l'empresa fabricant per homicidi?",
+                    debate: "Hauria de ser la llei qui obligui tots els cotxes a minimitzar danys, o cadascú hauria de poder triar el 'mode de protecció' a la pantalla del vehicle?"
+                }
+            },
+            2: {
+                title: "Respecte a la llei vs Salvar més vides",
+                A: {
+                    label: "Opció A: Atropellar els infractors en vermell",
+                    mitComparison: "Has coincidit amb el 81% de respostes a escala global!",
+                    explanation: "A quasi tots els continents, les persones consideren que la IA ha de protegir qui compleix la llei i no perjudicar qui fa les coses bé. Si el cotxe es desviés cap a la vorera per evitar els infractors, estaria castigant una persona innocent que estava esperant el semàfor correctament.",
+                    debate: "Ha de saber la IA si un humà incompleix una norma abans de prendre una decisió fatal en un mil·lisegon?"
+                },
+                B: {
+                    label: "Opció B: Desviar-se a la vorera (Innocent)",
+                    mitComparison: "Només el 19% dels participants mundials van triar sacrificar la persona innocent.",
+                    explanation: "Has prioritzat el nombre de víctimes totals (1 mort vs 2 morts), però la immensa majoria mundial (81%) rebutja aquesta decisió. Moralment i jurídicament, enviar el vehicle cap a la vorera converteix una fallada mecànica en un atac actiu contra algú que respectava el semàfor.",
+                    debate: "És just que una persona innocent que espera tranquil·la a la vorera pagui les conseqüències d'uns infractors i d'un cotxe espatllat?"
+                }
+            },
+            3: {
+                title: "Joves vs Gent Gran (El xoc cultural)",
+                A: {
+                    label: "Opció A: Desviar-se cap als joves (Protegir la gent gran)",
+                    mitComparison: "A Europa i Amèrica gairebé ningú tria aquesta opció (<15%), però a països d'Àsia Oriental (Xina, Japó, Corea, Taiwan) és una opció molt respectada!",
+                    explanation: "Aquest és el gran descobriment de l'estudi de la revista <em>Nature</em>: la moral no és universal! A les cultures asiàtiques d'arrel confuciana, la pietat filial i el respecte venerat cap a la gent gran i els avis és un pilar sagrat de la societat.",
+                    debate: "Hauria un cotxe de Tesla o Google conduir amb una moral diferent si es ven a Tòquio que si es ven a Barcelona o Nova York?"
+                },
+                B: {
+                    label: "Opció B: Desviar-se cap a la gent gran (Protegir els infants)",
+                    mitComparison: "Has coincidit amb la visió occidental majoritària (>85%)!",
+                    explanation: "Als països occidentals (Europa, Amèrica del Nord i del Sud), la preferència per protegir els nens i joves davant de la gent gran és aclaparadora, perquè es considera que els infants tenen tota una vida al davant. No obstant això, a altres zones del món aquesta tria no és tan òbvia.",
+                    debate: "Qui ha de decidir quina vida val més quan l'algorisme fa un càlcul: l'enginyer de Silicon Valley, el govern del país, o el conductor?"
+                }
+            }
+        };
+
+        function selectMoralDilemma(dilemmaId, choice) {
+            if (!appState.moralChoices) {
+                appState.moralChoices = {};
+            }
+            appState.moralChoices[dilemmaId] = choice;
+            saveState();
+            updateMoralDilemmaUI(dilemmaId, choice);
+        }
+
+        function updateMoralDilemmaUI(dilemmaId, choice) {
+            const dData = moralDilemmasData[dilemmaId];
+            if (!dData || !dData[choice]) return;
+
+            const btnA = document.getElementById(`dilemma-btn-${dilemmaId}-A`);
+            const btnB = document.getElementById(`dilemma-btn-${dilemmaId}-B`);
+            const statusEl = document.getElementById(`dilemma-status-${dilemmaId}`);
+            const resultEl = document.getElementById(`dilemma-result-${dilemmaId}`);
+
+            if (btnA) btnA.classList.toggle('selected', choice === 'A');
+            if (btnB) btnB.classList.toggle('selected', choice === 'B');
+
+            if (statusEl) {
+                statusEl.textContent = `Decisió: Opció ${choice} ✅`;
+                statusEl.className = 'badge-pill badge-pill-emerald';
+            }
+
+            if (resultEl) {
+                const info = dData[choice];
+                resultEl.style.display = 'block';
+                resultEl.innerHTML = `
+                    <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:0.5rem; margin-bottom:0.5rem; border-bottom:1px solid #334155; padding-bottom:0.4rem;">
+                        <span style="font-weight:700; color:#38bdf8; font-size:0.95rem;">🗳️ La teva elecció: ${escapeHtml(info.label)}</span>
+                        <span style="font-size:0.75rem; background:#1e293b; padding:0.2rem 0.5rem; border-radius:999px; color:#94a3b8;">Estudi Nature / MIT</span>
+                    </div>
+                    <p style="margin:0 0 0.5rem; color:#e2e8f0; font-size:0.86rem; line-height:1.5;">
+                        📊 <strong>Què van respondre milions de persones al món?</strong> ${escapeHtml(info.mitComparison)}
+                    </p>
+                    <p style="margin:0 0 0.5rem; color:#cbd5e1; font-size:0.84rem; line-height:1.5;">
+                        💡 <strong>Dilema ètic i legal:</strong> ${info.explanation}
+                    </p>
+                    <div style="background:rgba(245, 158, 11, 0.15); border-left:3px solid #f59e0b; padding:0.5rem 0.75rem; border-radius:4px; font-size:0.82rem; color:#fde68a; margin-top:0.5rem;">
+                        🗣️ <strong>Pregunta per debatre a l'aula:</strong> ${escapeHtml(info.debate)}
+                    </div>
+                `;
+            }
+        }
+
+        function restoreMoralDilemmasUI() {
+            if (!appState.moralChoices) return;
+            [1, 2, 3].forEach(id => {
+                const choice = appState.moralChoices[id];
+                if (choice) {
+                    updateMoralDilemmaUI(id, choice);
+                }
+            });
+        }
+
 

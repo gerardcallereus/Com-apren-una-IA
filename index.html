@@ -3,12 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <title>Com aprèn una IA? — Càpsula Didàctica Interactiva ESO</title>
     <meta name="description" content="Unitat didàctica interactiva sobre Intel·ligència Artificial per a l'ESO: com aprèn, IA generativa, dades i etiquetatge, Teachable Machine, biaixos, al·lucinacions, manipulació algorítmica, prompts i diploma d'aprofitament.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/styles.css?v=20261015-v3">
 
 </head>
 <body>
@@ -49,19 +52,22 @@
                 <span id="nav-label-stage-2">🔒 2. Dades i CAPTCHA</span>
             </button>
             <button class="stage-nav-btn locked" id="tab-btn-3" onclick="goToStage(3)">
-                <span id="nav-label-stage-3">🔒 3. Teachable Machine</span>
+                <span id="nav-label-stage-3">🔒 3. Cotxes Autònoms i Moral Machine 🚗</span>
             </button>
             <button class="stage-nav-btn locked" id="tab-btn-4" onclick="goToStage(4)">
-                <span id="nav-label-stage-4">🔒 4. Riscos, Biaixos i Manipulació</span>
+                <span id="nav-label-stage-4">🔒 4. Teachable Machine</span>
             </button>
             <button class="stage-nav-btn locked" id="tab-btn-5" onclick="goToStage(5)">
-                <span id="nav-label-stage-5">🔒 5. L'Art dels Prompts</span>
+                <span id="nav-label-stage-5">🔒 5. Riscos, Biaixos i Manipulació</span>
             </button>
             <button class="stage-nav-btn locked" id="tab-btn-6" onclick="goToStage(6)">
-                <span id="nav-label-stage-6">🔒 6. Qüestionari Final</span>
+                <span id="nav-label-stage-6">🔒 6. L'Art dels Prompts</span>
             </button>
             <button class="stage-nav-btn locked" id="tab-btn-7" onclick="goToStage(7)">
-                <span id="nav-label-stage-7">🔒 7. Diploma Oficial</span>
+                <span id="nav-label-stage-7">🔒 7. Qüestionari Final</span>
+            </button>
+            <button class="stage-nav-btn locked" id="tab-btn-8" onclick="goToStage(8)">
+                <span id="nav-label-stage-8">🔒 8. Diploma Oficial</span>
             </button>
         </div>
     </nav>
@@ -99,7 +105,7 @@
                         <h4 style="color:var(--pastel-indigo-text); margin-bottom:0.5rem; font-size:0.95rem;">🎯 Seguretat vs Realitat</h4>
                         <p style="font-size:0.85rem; color:var(--text-sub); margin-bottom:0.5rem;">Has viscut mai una situació on la IA feia una afirmació amb total seguretat, però que era falsa?</p>
                         <div id="brainstorm-ans-2" style="display:none; font-size:0.82rem; color:#312e81; background:white; padding:0.6rem; border-radius:6px; border:1px solid #c7d2fe; margin-top:0.5rem;">
-                            <strong>Reflexió:</strong> Això s'anomena <strong>al·lucinació</strong>. Com que la IA genera paraules basant-se en càlculs probabilístics (quina paraula té més probabilitat d'anar a continuació) i no pas en una comprensió real del món, pot sonar molt convincent tot i estar completament equivocada!
+                            <strong>Reflexió:</strong> Això s'anomena <strong>al·lucinació</strong>. Com que la IA ajunta paraules que sonen bé juntes però no sap què és la veritat ni entén el món com nosaltres, pot sonar molt convençuda tot i estar completament equivocada!
                         </div>
                         <span id="brainstorm-hint-2" style="font-size:0.75rem; color:var(--primary); font-weight:700;">Clica aquí per descobrir-ho...</span>
                     </div>
@@ -279,7 +285,7 @@
                             <span class="badge-pill" id="sim-epoch-badge" style="background:#3b82f6; color:white;">Època 0 / 20</span>
                         </div>
                         <p style="font-size:0.88rem; color:#cbd5e1; margin-bottom:1rem; line-height:1.5;">
-                            A cada <strong>època</strong> (passada completa per tot el conjunt de fotos), la IA fa prediccions, calcula quant s'ha equivocat (<strong>Pèrdua / Loss</strong>) i ajusta les connexions (<strong>pesos sinàptics</strong>) mitjançant l'algorisme de <em>Descens de Gradient</em>.
+                            A cada <strong>època</strong> (ronda sencera repassant totes les fotos d'exemple), la IA fa prediccions, calcula quant s'ha equivocat (<strong>Pèrdua / Error</strong>) i corregeix les seves connexions internes per anar millorant pas a pas, com quan entrenes per encistellar a bàsquet!
                         </p>
 
                         <!-- TAULER VISUAL AMB GRÀFICA SVG I DIANA -->
@@ -357,9 +363,9 @@
 
                         <!-- TERMINAL LOG -->
                         <div id="sim-training-log" style="background:#020617; color:#38bdf8; font-family:monospace; font-size:0.78rem; padding:0.75rem; border-radius:var(--radius-sm); max-height:85px; overflow-y:auto; border:1px solid #1e293b;">
-                            > Inicialitzant xarxa neuronal convolucionals (CNN)...<br>
-                            > Pesos sinàptics inicialitzats aleatòriament.<br>
-                            > Pèrdua inicial (Cross-Entropy Loss): 0.693 (50.0% encert).
+                            > Inicialitzant xarxa neuronal...<br>
+                            > Connexions inicials preparades a l'atzar.<br>
+                            > Pèrdua inicial (Error de sortida): 0.693 (50.0% d'encert).
                         </div>
 
                         <div style="text-align:right; margin-top:1rem;">
@@ -412,7 +418,7 @@
                                 <div style="aspect-ratio:4/3; overflow:hidden; border-radius:4px; margin-bottom:0.35rem;">
                                     <img src="img/simulador/fox_wild.jpg" alt="Guineu" style="width:100%; height:100%; object-fit:cover; display:block;">
                                 </div>
-                                <div style="font-size:0.75rem; font-weight:700; color:#f87171;">🦊 Guineu (No vista)</div>
+                                <div style="font-size:0.75rem; font-weight:700; color:#fbbf24;">🦊 Guineu (Dilema!)</div>
                             </div>
 
                             <div class="sim-test-card" id="test-card-lynx_wild" onclick="testAnimalCase('lynx_wild')" style="background:#1e293b; border:2px solid #334155; border-radius:var(--radius-sm); padding:0.5rem; text-align:center; cursor:pointer;">
@@ -468,7 +474,7 @@
 
                 <div style="margin-bottom:1.35rem; background:#f8fafc; padding:1.1rem; border-radius:var(--radius-sm); border:1px solid #e2e8f0;">
                     <label for="sim-reflection" style="font-size:0.88rem; color:#1e293b; display:block; margin-bottom:0.5rem; font-weight:700;">
-                        1. Límits davant casos parany: Per què creus que la IA no pot dir simplement "no ho sé" i s'inventa percentatges de Gat o Gos davant l'ós panda? Quins perills pot tenir això si s'aplica en àmbits com el diagnòstic mèdic o els vehicles autònoms?
+                        1. Casos parany (l'ós panda): Quan li posem la foto de l'ós panda, la IA s'inventa percentatges de Gos o Gat en comptes de dir "no ho sé". Per què creus que passa això? Imagina que aquest programa fos el metge d'un hospital o el pilot d'un cotxe sense conductor: quins perills podria comportar?
                     </label>
                     <textarea id="sim-reflection" class="form-control" rows="3" placeholder="Escriu aquí la teva reflexió personal..." oninput="saveSimReflection()" style="font-size:0.88rem; line-height:1.5;"></textarea>
                     <div id="sim-reflection-status" style="font-size:0.78rem; color:#059669; margin-top:0.35rem; display:none;">✅ Reflexió 1 desada correctament al teu diploma.</div>
@@ -476,7 +482,7 @@
 
                 <div style="margin-bottom:1.35rem; background:#f8fafc; padding:1.1rem; border-radius:var(--radius-sm); border:1px solid #e2e8f0;">
                     <label for="b1-refl-2" style="font-size:0.88rem; color:#1e293b; display:block; margin-bottom:0.5rem; font-weight:700;">
-                        2. Programari tradicional vs Aprenentatge automàtic: Com explicaries a un company de classe la diferència entre un programa informàtic clàssic (amb regles fixes programades per humans) i un model d'IA basat en dades i probabilitats?
+                        2. Programes clàssics vs IA: Com li explicaries a un amic que no en sap res la diferència entre un videojoc tradicional (on un programador ha escrit totes les regles a mà) i una IA (que aprèn mirant milers d'exemples i provant)?
                     </label>
                     <textarea id="b1-refl-2" class="form-control" rows="3" placeholder="Escriu aquí la teva reflexió personal..." oninput="saveB1Refl2()" style="font-size:0.88rem; line-height:1.5;"></textarea>
                     <div id="b1-refl-2-status" style="font-size:0.78rem; color:#059669; margin-top:0.35rem; display:none;">✅ Reflexió 2 desada correctament al teu diploma.</div>
@@ -484,7 +490,7 @@
 
                 <div style="background:#f8fafc; padding:1.1rem; border-radius:var(--radius-sm); border:1px solid #e2e8f0;">
                     <label for="b1-refl-3" style="font-size:0.88rem; color:#1e293b; display:block; margin-bottom:0.5rem; font-weight:700;">
-                        3. Supervisió humana (Human in the Loop): Per què consideres que mai hem de deixar decisions crítiques (com aprovar o suspendre un curs, o denegar una assegurança) exclusivament en mans d'un model probabilístic d'IA sense supervisió humana?
+                        3. Persones supervisant (Human in the loop): Per què creus que mai hem de deixar que una màquina decideixi sola si algú aprova o suspèn una assignatura, o si se li posa una multa, sense que una persona revisi el cas?
                     </label>
                     <textarea id="b1-refl-3" class="form-control" rows="3" placeholder="Escriu aquí la teva reflexió personal..." oninput="saveB1Refl3()" style="font-size:0.88rem; line-height:1.5;"></textarea>
                     <div id="b1-refl-3-status" style="font-size:0.78rem; color:#059669; margin-top:0.35rem; display:none;">✅ Reflexió 3 desada correctament al teu diploma.</div>
@@ -502,20 +508,21 @@
                     </div>
                 </div>
                 <button class="btn btn-success" id="btn-complete-stage-1" onclick="completeStageAndGo(1, 2)">
-                    Completar Fase 1 i anar a la Fase 2: Dades i CAPTCHA ➡️
+                    Completar Fase 1 i anar a la Fase 2: Dades, CAPTCHAs i Cotxes Autònoms 🚗 ➡️
                 </button>
             </div>
         </section>
 
 
         <!-- ========================================== -->
-        <!-- FASE 2: DADES I ETIQUETATGE (REPTE 1)      -->
+        <!-- ========================================== -->
+        <!-- FASE 2: DADES I CAPTCHA (HUMAN IN THE LOOP) -->
         <!-- ========================================== -->
         <section class="section-view" id="stage-view-2">
             <div class="stage-hero">
-                <span class="stage-badge">Fase 2 · Dades i Criteris d'Etiquetatge</span>
-                <h2>Repte 1: Etiquetem dades com ho faria una IA</h2>
-                <p>Descobreix el concepte de <em>Human in the loop</em> i resol el CAPTCHA oficial d'aula amb les 12 imatges. Observaràs per què els humans no sempre tenen criteris uniformes i com això afecta l'aprenentatge de la màquina.</p>
+                <span class="stage-badge">Fase 2 · Dades d'Entrenament i Supervisió Humana</span>
+                <h2>Dades d'Entrenament i CAPTCHA: Com les persones ensenyen a la IA</h2>
+                <p>Descobreix per què la IA necessita milions de dades etiquetades per aprendre, quin paper juguem els humans (<em>Human in the loop</em>) i participa en l'etiquetatge col·lectiu amb el nostre CAPTCHA d'aula.</p>
             </div>
 
             <!-- TEORIA DIDÀCTICA: HUMAN IN THE LOOP I CAPTCHA -->
@@ -547,8 +554,37 @@
                 </div>
             </div>
 
+            <!-- EXPLICACIÓ PRÈVIA DEL QUE FAREM AL CAPTCHA -->
+            <div class="card" style="margin-top:1.5rem; background:linear-gradient(135deg, #eef2ff 0%, #f0fdf4 100%); border:2px solid #c7d2fe;">
+                <div style="display:flex; align-items:flex-start; gap:1rem;">
+                    <div style="font-size:2.2rem; line-height:1; flex-shrink:0;">🔎</div>
+                    <div>
+                        <h4 style="margin:0 0 0.4rem; color:var(--primary-dark); font-size:1.05rem;">
+                            Què farem exactament en aquesta activitat? (Llegeix abans de començar)
+                        </h4>
+                        <p style="margin:0 0 0.6rem; font-size:0.88rem; color:#334155; line-height:1.5;">
+                            En aquest repte actuaràs com un <strong>anotador humà</strong> de dades reals. L'objectiu és que visquis en primera persona com s'alimenta una intel·ligència artificial abans que pugui aprendre:
+                        </p>
+                        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:0.6rem; font-size:0.83rem;">
+                            <div style="background:white; padding:0.65rem 0.85rem; border-radius:var(--radius-sm); border:1px solid #e2e8f0;">
+                                <strong style="color:var(--primary);">1. 12 Imatges Reals:</strong> Veuràs una seqüència de 12 targetes visuals amb diferents formes geomètriques.
+                            </div>
+                            <div style="background:white; padding:0.65rem 0.85rem; border-radius:var(--radius-sm); border:1px solid #e2e8f0;">
+                                <strong style="color:var(--primary);">2. Tres preguntes ràpides:</strong> Per a cada imatge, hauràs de marcar <strong>SÍ</strong> o <strong>NO</strong> a: <em>Hi ha ratlles? Hi ha triangles? Hi ha un cercle?</em>
+                            </div>
+                            <div style="background:white; padding:0.65rem 0.85rem; border-radius:var(--radius-sm); border:1px solid #e2e8f0;">
+                                <strong style="color:var(--primary);">3. Alerta amb els casos dubtosos:</strong> Algunes imatges són molt clares, però d'altres tenen trossos tallats o ombres que et faran dubtar!
+                            </div>
+                            <div style="background:white; padding:0.65rem 0.85rem; border-radius:var(--radius-sm); border:1px solid #e2e8f0;">
+                                <strong style="color:var(--primary);">4. Comparació de consens:</strong> En acabar les 12 imatges, comprovaràs si tota la classe pensa igual que tu o si hi ha desacords.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <!-- VISOR INTERACTIU DE CAPTCHA AMB 12 IMATGES -->
-            <div class="card" style="margin-top:1.5rem;">
+            <div class="card" id="captcha-section" style="margin-top:1.5rem;">
                 <div class="card-header">
                     <div>
                         <h3 style="margin:0;">🧩 CAPTCHA d'Aula: Etiquetatge de les 12 Imatges Oficials</h3>
@@ -739,7 +775,7 @@
 
                 <div style="margin-bottom:1.35rem; background:#f8fafc; padding:1.1rem; border-radius:var(--radius-sm); border:1px solid #e2e8f0;">
                     <label for="repte1-notes" style="font-size:0.88rem; font-weight:700; color:var(--text-main); display:block; margin-bottom:0.4rem;">
-                        1. Definició de regles i criteris: Què has après sobre la importància d'establir instruccions clares i criteris compartits abans de posar persones a etiquetar dades per a una IA?
+                        1. Regles clares per etiquetar: Quan etiquetaves les imatges del CAPTCHA, alguna vegada has dubtat de si marcar "Sí" o "No"? Per què és tan important que un equip de persones tingui normes clares abans de posar-se a ensenyar a una IA?
                     </label>
                     <textarea id="repte1-notes" class="form-control" rows="3" placeholder="Escriu aquí la teva reflexió personal..." oninput="saveRepte1Notes()" style="font-size:0.88rem; line-height:1.5;"></textarea>
                     <div id="repte1-notes-status" style="font-size:0.78rem; color:#059669; margin-top:0.35rem; display:none;">✅ Reflexió 1 desada correctament al teu diploma.</div>
@@ -747,7 +783,7 @@
 
                 <div style="margin-bottom:1.35rem; background:#f8fafc; padding:1.1rem; border-radius:var(--radius-sm); border:1px solid #e2e8f0;">
                     <label for="repte1-noise-reflection" style="font-size:0.88rem; font-weight:700; color:var(--text-main); display:block; margin-bottom:0.4rem;">
-                        2. Soroll d'etiquetes (Label Noise): Si en una tasca d'etiquetatge diferents persones responen de forma contradictòria davant de casos frontera (ex: un senyal tombat o un pas borrós), com afectarà això al comportament futur de la IA quan s'enfronti a situacions reals?
+                        2. Dubtes i opinions diferents: Si a la teva classe la meitat de companys diu que a la foto hi ha un triangle i l'altra meitat diu que no, què creus que aprendrà la IA si l'entrenem amb aquestes opinions contradictòries?
                     </label>
                     <textarea id="repte1-noise-reflection" class="form-control" rows="3" placeholder="Escriu aquí la teva reflexió..." oninput="saveRepte1NoiseReflection()" style="font-size:0.88rem; line-height:1.5;"></textarea>
                     <div id="repte1-noise-status" style="font-size:0.78rem; color:#059669; margin-top:0.35rem; display:none;">✅ Reflexió 2 desada correctament al teu diploma.</div>
@@ -755,7 +791,7 @@
 
                 <div style="background:#f8fafc; padding:1.1rem; border-radius:var(--radius-sm); border:1px solid #e2e8f0;">
                     <label for="b2-refl-3" style="font-size:0.88rem; font-weight:700; color:var(--text-main); display:block; margin-bottom:0.4rem;">
-                        3. Prevenció de biaixos a les dades: Quines mesures o protocols establiries en un equip de treball per garantir que un conjunt de dades d'entrenament sigui representatiu, just i no discrimini cap col·lectiu?
+                        3. Dades justes per a tothom: Què podria passar si entrenem una IA per reconèixer malalties de la pell o cares però només li ensenyem fotografies de persones blanques? Com ho evitaries?
                     </label>
                     <textarea id="b2-refl-3" class="form-control" rows="3" placeholder="Escriu aquí la teva reflexió..." oninput="saveB2Refl3()" style="font-size:0.88rem; line-height:1.5;"></textarea>
                     <div id="b2-refl-3-status" style="font-size:0.78rem; color:#059669; margin-top:0.35rem; display:none;">✅ Reflexió 3 desada correctament al teu diploma.</div>
@@ -769,7 +805,7 @@
                         📋 Progrés de la Fase 2 (Obligatori per avançar):
                     </div>
                     <div id="stage2-progress-status" style="font-size:0.85rem; color:var(--text-sub);">
-                        ⏳ Cal etiquetar les 12 imatges del CAPTCHA, respondre les 4 preguntes del test, consultar el consens i escriure les 2 reflexions.
+                        ⏳ Cal etiquetar les 12 imatges del CAPTCHA, respondre les 5 preguntes del test, consultar el consens i escriure les 3 reflexions.
                     </div>
                 </div>
                 <div style="display:flex; gap:0.75rem; align-items:center;">
@@ -777,7 +813,238 @@
                         ⬅️ Tornar a Fase 1
                     </button>
                     <button class="btn btn-success" id="btn-complete-stage-2" onclick="completeStageAndGo(2, 3)">
-                        Completar Fase 2 i anar a la Fase 3: Teachable Machine ➡️
+                        Completar Fase 2 i anar a la Fase 3: Cotxes Autònoms i Moral Machine 🚗 ➡️
+                    </button>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ======================================================== -->
+        <!-- FASE 3: COTXES AUTÒNOMS I LA MORAL MACHINE DEL MIT        -->
+        <!-- ======================================================== -->
+        <section class="section-view" id="stage-view-3">
+            <div class="stage-hero">
+                <span class="stage-badge">Fase 3 · Ètica, Algorismes i Presa de Decisions 🚗</span>
+                <h2>Cotxes Autònoms i la Moral Machine del MIT: Com donem ètica a una màquina?</h2>
+                <p>Quan les dades que etiquetem serveixen perquè una màquina condueixi sola: com pren decisions vitals davant d'un accident inevitable? Explora el dilema del tramvia, descobreix l'estudi global de la revista <em>Nature</em> amb 40 milions de decisions i experimenta amb la plataforma oficial del MIT.</p>
+            </div>
+
+            <!-- BLOC DIDÀCTIC 1: EL DILEMA DEL TRAMVIA I LA PREMEDITACIÓ EN CODI -->
+            <div class="grid-2">
+                <div class="card" style="margin-bottom:0;">
+                    <div class="card-header">
+                        <h3>🚊 El Dilema del Tramvia aplicat a la IA</h3>
+                        <span class="badge-pill badge-pill-rose">Filosofia vs Tecnologia</span>
+                    </div>
+                    <p style="color:var(--text-sub); font-size:0.92rem; line-height:1.6; margin-bottom:0.75rem;">
+                        En un accident sobtat, un conductor humà reacciona per <strong>instint o pànic</strong> en dècimes de segon. La societat i la llei entenen que no hi havia temps per reflexionar ni voluntat premeditada de fer mal.
+                    </p>
+                    <p style="color:var(--text-sub); font-size:0.92rem; line-height:1.6; margin:0;">
+                        En canvi, en un vehicle autònom <strong>no existeix l'instint</strong>: qualsevol maniobra d'emergència respon a un conjunt de regles matemàtiques <strong>escrites mesos abans per enginyers de programari</strong>. Això converteix un accident fortuït en una decisió freda i calculada.
+                    </p>
+                </div>
+
+                <div class="card" style="margin-bottom:0;">
+                    <div class="card-header">
+                        <h3>⚖️ Qui és el responsable davant la llei?</h3>
+                        <span class="badge-pill badge-pill-amber">Debat Legal</span>
+                    </div>
+                    <p style="color:var(--text-sub); font-size:0.92rem; line-height:1.6; margin-bottom:0.75rem;">
+                        Si un cotxe autònom s'equivoca reconeixent un vianant o pren una decisió fatal en fallar els frens, qui ha d'assumir la culpa i respondre davant la justícia?
+                    </p>
+                    <ul style="color:var(--text-sub); font-size:0.88rem; line-height:1.6; margin:0 0 0.5rem 1.2rem; padding:0;">
+                        <li><strong>L'equip de programació:</strong> per com va ponderar les probabilitats en el codi?</li>
+                        <li><strong>L'empresa fabricant:</strong> per posar a la venda un vehicle amb errors de sensors?</li>
+                        <li><strong>El propietari o passatger:</strong> que no estava atent per frenar a temps?</li>
+                    </ul>
+                    <p style="color:var(--text-sub); font-size:0.88rem; line-height:1.5; margin:0;">
+                        Els tribunals de tot el món estan redefinint les lleis de trànsit perquè els models actuals no contemplaven màquines al volant.
+                    </p>
+                </div>
+            </div>
+
+            <!-- BLOC DIDÀCTIC 2: ES POT PROGRAMAR UNA FÓRMULA MATEMÀTICA PER A L'ÈTICA? -->
+            <div class="card" style="margin-top:1.5rem; background:linear-gradient(135deg, #fffbeb 0%, #ffffff 100%); border:2px solid #fde68a;">
+                <div style="display:flex; align-items:flex-start; gap:1rem;">
+                    <div style="font-size:2.2rem; line-height:1; flex-shrink:0;">📐</div>
+                    <div>
+                        <h4 style="margin:0 0 0.4rem; color:#92400e; font-size:1.05rem;">
+                            Es pot programar una fórmula matemàtica per a l'ètica humana?
+                        </h4>
+                        <p style="margin:0 0 0.6rem; font-size:0.9rem; color:#451a03; line-height:1.55;">
+                            Una intel·ligència artificial només entén de xifres: percentatges de probabilitat, vectors de distància i funcions d'optimització ("minimitzar danys"). Però, <strong>es pot posar un número al valor d'una vida humana?</strong>
+                        </p>
+                        <p style="margin:0; font-size:0.88rem; color:#78350f; line-height:1.5;">
+                            Si programem el cotxe perquè prioritzi salvar més persones sacrificant el seu passatger, <strong>ningú voldrà comprar cotxes que et matin per salvar tercers</strong>. I si intentem classificar qui té prioritat (nens, metges, avis, gossos), caurem immediatament en <strong>discriminacions inacceptables i delictes d'odi</strong>.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECCIÓ: VÍDEO OFICIAL DE NATURE I DIFERÈNCIES CULTURALS -->
+            <div class="card" style="margin-top:1.5rem; background:#f8fafc; border:1px solid #cbd5e1;">
+                <div class="card-header">
+                    <div>
+                        <h3 style="margin:0; font-size:1.15rem; color:#0f172a;">
+                            🎬 L'Estudi Científic de Nature: 40 Milions de Decisions a 233 Països
+                        </h3>
+                        <p style="margin:0.25rem 0 0; font-size:0.85rem; color:var(--text-muted);">
+                            La revista científica <em>Nature</em> va analitzar com reaccionen persones de tot el món davant d'aquests dilemes mitjançant la plataforma <em>Moral Machine</em>:
+                        </p>
+                    </div>
+                    <span class="badge-pill badge-pill-indigo">Estudi Global de Nature</span>
+                </div>
+
+                <div class="responsive-video-box" style="margin-bottom:1.5rem;">
+                    <iframe src="https://www.youtube-nocookie.com/embed/jPo6bby-Fcg" title="Moral Machines: How culture changes values (Nature Video)" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+
+                <!-- ELS 3 CLÚSTERS MORALS DEL MÓN -->
+                <div>
+                    <h4 style="margin:0 0 0.5rem; font-size:1rem; color:#0f172a;">
+                        🌍 El Mapa Moral del Món: Tres maneres diferents d'entendre la vida i el deure
+                    </h4>
+                    <p style="font-size:0.88rem; color:#475569; line-height:1.5; margin-bottom:1rem;">
+                        L'estudi va demostrar que no existeix una única moral universal: el món s'agrupa en <strong>3 grans clústers culturals</strong>:
+                    </p>
+
+                    <div class="cluster-grid">
+                        <div class="cluster-box" style="border-top:4px solid #3b82f6;">
+                            <div style="font-size:1.6rem; margin-bottom:0.25rem;">🌏</div>
+                            <strong style="color:#1e3a8a; display:block; margin-bottom:0.35rem; font-size:0.95rem;">Clúster Oriental / Asiàtic</strong>
+                            <span style="font-size:0.78rem; color:#64748b; display:block; margin-bottom:0.5rem;">(Xina, Japó, Corea del Sud, Taiwan...)</span>
+                            <p style="font-size:0.83rem; color:#334155; line-height:1.45; margin:0;">
+                                <strong>Gran respecte i protecció als avis:</strong> En societats amb forta tradició confuciana, els avis tenen un paper central. A diferència d'Occident, la tendència a sacrificar persones grans per salvar gent jove es redueix notablement.
+                            </p>
+                        </div>
+
+                        <div class="cluster-box" style="border-top:4px solid #10b981;">
+                            <div style="font-size:1.6rem; margin-bottom:0.25rem;">🌍</div>
+                            <strong style="color:#065f46; display:block; margin-bottom:0.35rem; font-size:0.95rem;">Clúster Occidental</strong>
+                            <span style="font-size:0.78rem; color:#64748b; display:block; margin-bottom:0.5rem;">(Nord d'Europa, EUA, Canadà, Austràlia...)</span>
+                            <p style="font-size:0.83rem; color:#334155; line-height:1.45; margin:0;">
+                                <strong>Salvar el màxim de vides i nens:</strong> Predomina una ètica utilitarista: salvar tantes persones com sigui possible numèricament i prioritzar sempre els infants (perquè tenen tota la vida per davant).
+                            </p>
+                        </div>
+
+                        <div class="cluster-box" style="border-top:4px solid #f59e0b;">
+                            <div style="font-size:1.6rem; margin-bottom:0.25rem;">🌎</div>
+                            <strong style="color:#92400e; display:block; margin-bottom:0.35rem; font-size:0.95rem;">Clúster del Sud</strong>
+                            <span style="font-size:0.78rem; color:#64748b; display:block; margin-bottom:0.5rem;">(Llatinoamèrica, Sud d'Europa, França...)</span>
+                            <p style="font-size:0.83rem; color:#334155; line-height:1.45; margin:0;">
+                                <strong>Prioritat per dones i infants:</strong> Mostren una tendència cultural molt marcada a protegir dones i nens en qualsevol circumstància d'emergència, per davant del recompte pur de vides.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PLATAFORMA OFICIAL DEL MIT: MORAL MACHINE -->
+            <div class="card" style="margin-top:1.5rem; border:2px solid #6366f1;">
+                <div class="card-header">
+                    <div>
+                        <h3 style="margin:0; color:#3730a3; font-size:1.2rem;">
+                            🎮 Plataforma Oficial del MIT: Moral Machine
+                        </h3>
+                        <p style="margin:0.25rem 0 0; font-size:0.85rem; color:var(--text-muted);">
+                            Experimenta directament amb els 13 escenaris de dilemes morals que va formular l'equip d'investigadors del MIT:
+                        </p>
+                    </div>
+                    <a href="https://www.moralmachine.net/hl/es" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">
+                        🌐 Obrir Moral Machine a pantalla completa ↗️
+                    </a>
+                </div>
+
+                <!-- GUIA DE COM JUGAR -->
+                <div style="background:#eef2ff; border-radius:var(--radius-sm); padding:0.9rem 1.15rem; margin-bottom:1rem; font-size:0.86rem; color:#1e293b; line-height:1.5;">
+                    📌 <strong>Com resoldre la tasca al simulador del MIT:</strong>
+                    <ol style="margin:0.4rem 0 0 1.2rem; padding:0;">
+                        <li>Prem el botó <strong>"Comenzar"</strong> o <strong>"Juzgar"</strong> dins de la finestra inferior.</li>
+                        <li>El sistema et presentarà una seqüència de <strong>13 situacions extremes</strong> on els frens del vehicle fallen.</li>
+                        <li>Fes clic sobre la imatge de l'esquerra o de la dreta segons quina decisió consideris menys perjudicial.</li>
+                        <li>En completar els 13 escenaris, el MIT et calcularà el teu <strong>perfil ètic personal</strong> (salvar vianants vs passatgers, respecte a la llei, gènere, edat).</li>
+                    </ol>
+                </div>
+
+                <div style="width:100%; height:560px; border-radius:var(--radius-sm); overflow:hidden; border:1px solid #e2e8f0; background:#0f172a;">
+                    <iframe src="https://www.moralmachine.net/hl/es" style="width:100%; height:100%; border:none;" title="Moral Machine del MIT en espanyol"></iframe>
+                </div>
+                <div style="font-size:0.78rem; color:#64748b; margin-top:0.45rem; text-align:right;">
+                    * Si el teu navegador o el filtre del centre bloqueja la càrrega, prem el botó "Obrir a pantalla completa" per fer-ho directament a la web oficial del MIT.
+                </div>
+            </div>
+
+            <!-- REFLEXIONS DIDÀCTIQUES INDIVIDUALS DEL BLOC 3 (3 PREGUNTES) -->
+            <div class="card" style="margin-top:1.5rem;">
+                <div class="card-header">
+                    <div>
+                        <h4 style="margin:0; font-size:1.05rem; color:var(--text-main);">✍️ Reflexions Individuals del Bloc 3: Ètica i Cotxes Autònoms (3 Preguntes)</h4>
+                        <p style="margin:0.25rem 0 0; font-size:0.85rem; color:var(--text-muted);">
+                            Aquestes 3 reflexions personals es guardaran automàticament i s'inclouran al teu diploma final (mínim 5 paraules per resposta):
+                        </p>
+                    </div>
+                    <span class="badge-pill badge-pill-emerald">Ètica en Acció</span>
+                </div>
+
+                <div style="margin-bottom:1.35rem; background:#f8fafc; padding:1.1rem; border-radius:var(--radius-sm); border:1px solid #e2e8f0;">
+                    <label for="b3-refl-1" style="font-size:0.88rem; font-weight:700; color:var(--text-main); display:block; margin-bottom:0.4rem;">
+                        1. Comprar un cotxe que et sacrificaria? T'agradaria pujar a un cotxe autònom programat per sacrificar el passatger (tu) si amb això salva un grup de desconeguts que creua el carrer? Creus que la gent compraria cotxes que prioritzen salvar tercers abans que els seus propis ocupants? Justifica la teva opinió.
+                    </label>
+                    <textarea id="b3-refl-1" class="form-control" rows="3" placeholder="Escriu aquí la teva reflexió personal..." oninput="saveB3Refl1()" style="font-size:0.88rem; line-height:1.5;"></textarea>
+                    <div id="b3-refl-1-status" style="font-size:0.78rem; color:#059669; margin-top:0.35rem; display:none;">✅ Reflexió 1 desada correctament al teu diploma.</div>
+                </div>
+
+                <div style="margin-bottom:1.35rem; background:#f8fafc; padding:1.1rem; border-radius:var(--radius-sm); border:1px solid #e2e8f0;">
+                    <label for="b3-refl-2" style="font-size:0.88rem; font-weight:700; color:var(--text-main); display:block; margin-bottom:0.4rem;">
+                        2. La moral segons el país: A l'estudi de Nature hem vist que a Àsia es protegeix més la gent gran i a Occident els nens. Creus que una marca de cotxes hauria de canviar la programació de l'algorisme segons el país on ven el vehicle o hi hauria d'haver unes normes ètiques comunes a tot el món? Per què?
+                    </label>
+                    <textarea id="b3-refl-2" class="form-control" rows="3" placeholder="Escriu aquí la teva reflexió..." oninput="saveB3Refl2()" style="font-size:0.88rem; line-height:1.5;"></textarea>
+                    <div id="b3-refl-2-status" style="font-size:0.78rem; color:#059669; margin-top:0.35rem; display:none;">✅ Reflexió 2 desada correctament al teu diploma.</div>
+                </div>
+
+                <div style="background:#f8fafc; padding:1.1rem; border-radius:var(--radius-sm); border:1px solid #e2e8f0;">
+                    <label for="b3-refl-3" style="font-size:0.88rem; font-weight:700; color:var(--text-main); display:block; margin-bottom:0.4rem;">
+                        3. Qui n'és el responsable legal? Si un cotxe autònom té una fallada de visió per computador o pren una decisió fatal i atropella una persona, qui creus que hauria de ser considerat culpable davant la llei: el programador que va escriure el codi, l'empresa que va fabricar el cotxe, o la persona que anava asseguda a dins? Per què?
+                    </label>
+                    <textarea id="b3-refl-3" class="form-control" rows="3" placeholder="Escriu aquí la teva reflexió..." oninput="saveB3Refl3()" style="font-size:0.88rem; line-height:1.5;"></textarea>
+                    <div id="b3-refl-3-status" style="font-size:0.78rem; color:#059669; margin-top:0.35rem; display:none;">✅ Reflexió 3 desada correctament al teu diploma.</div>
+                </div>
+            </div>
+
+            <!-- QÜESTIONARI D'AUTOAVALUACIÓ DEL BLOC 3 (5 PREGUNTES) -->
+            <div class="card" style="margin-top:1.5rem; border:1px solid var(--pastel-indigo-border); background:white;">
+                <div class="card-header">
+                    <div>
+                        <h3 style="color:var(--primary); margin:0;">📝 Test de Coneixements del Bloc 3: Ètica i Cotxes Autònoms (5 Preguntes)</h3>
+                        <p style="margin:0.25rem 0 0; font-size:0.85rem; color:var(--text-muted);">
+                            Demostra que has comprès el dilema del tramvia, les conclusions de l'estudi de Nature i la responsabilitat legal dels algorismes:
+                        </p>
+                    </div>
+                    <span class="badge-pill badge-pill-emerald" id="stage-quiz-3-badge">0/5 Encerts</span>
+                </div>
+
+                <div id="stage-quiz-3-container">
+                    <!-- Renderitzat per JS renderStageQuiz(3) -->
+                </div>
+            </div>
+
+            <!-- BOTÓ SEGÜENT FASE AMB CHECKLIST DE VALIDACIÓ -->
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; margin-top:2rem; background:#f8fafc; padding:1.25rem; border-radius:var(--radius-md); border:1px solid var(--border);">
+                <div>
+                    <div style="font-weight:700; font-size:0.95rem; color:var(--text-main); margin-bottom:0.25rem;">
+                        📋 Progrés de la Fase 3 (Obligatori per avançar):
+                    </div>
+                    <div id="stage3-progress-status" style="font-size:0.85rem; color:var(--text-sub);">
+                        ⏳ Cal respondre les 5 preguntes del test i escriure les 3 reflexions per avançar a la Fase 4.
+                    </div>
+                </div>
+                <div style="display:flex; gap:0.75rem; align-items:center;">
+                    <button class="btn btn-secondary" onclick="goToStage(2)">
+                        ⬅️ Tornar a Fase 2
+                    </button>
+                    <button class="btn btn-success" id="btn-complete-stage-3" onclick="completeStageAndGo(3, 4)">
+                        Completar Fase 3 i anar a la Fase 4: Teachable Machine ➡️
                     </button>
                 </div>
             </div>
@@ -785,11 +1052,11 @@
 
 
         <!-- ========================================== -->
-        <!-- FASE 3: TEACHABLE MACHINE (REPTES 2 I 3)   -->
+        <!-- FASE 4: TEACHABLE MACHINE (REPTES 2 I 3)   -->
         <!-- ========================================== -->
-        <section class="section-view" id="stage-view-3">
+        <section class="section-view" id="stage-view-4">
             <div class="stage-hero">
-                <span class="stage-badge">Fase 3 · Laboratori Pràctic d'Entrenament Supervisat</span>
+                <span class="stage-badge">Fase 4 · Laboratori Pràctic d'Entrenament Supervisat</span>
                 <h2>🤖 Reconeixement d'Objectes amb Google Teachable Machine</h2>
                 <p>En aquesta fase, l'alumnat farà servir l'eina oficial <strong>Google Teachable Machine</strong> per entrenar, provar i avaluar un model real de visió per computador directament des del navegador.</p>
             </div>
@@ -872,75 +1139,108 @@
             <div class="card">
                 <div class="card-header">
                     <div>
-                        <h3 style="margin:0; font-size:1.1rem; color:var(--text-main);">📋 Pas a Pas: Com configurar i entrenar el teu model a Teachable Machine</h3>
-                        <p style="margin:0.2rem 0 0; font-size:0.84rem; color:var(--text-muted);">Seguiu aquests 4 passos a l'eina oficial de Google mentre anoteu les vostres troballes al quadern digital de sota:</p>
+                        <h3 style="margin:0; font-size:1.15rem; color:var(--text-main);">📋 Pas a Pas: Com configurar i entrenar el teu model a Teachable Machine</h3>
+                        <p style="margin:0.25rem 0 0; font-size:0.85rem; color:var(--text-muted);">Seguiu aquests 4 passos a l'eina oficial de Google mentre anoteu les vostres troballes al quadern digital de sota:</p>
                     </div>
                     <a href="https://teachablemachine.withgoogle.com/train/image" target="_blank" class="btn btn-secondary btn-sm">
                         Obrir Eina ↗
                     </a>
                 </div>
 
+                <!-- TARGETA INTRODUCTÒRIA PEDAGÒGICA D'ORIENTACIÓ PRÈVIA -->
+                <div style="background:linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 100%); border-left:4px solid #10b981; border-radius:var(--radius-sm); padding:1.1rem 1.25rem; margin-bottom:1.25rem; font-size:0.88rem; line-height:1.6; color:#064e3b; box-shadow:0 1px 3px rgba(0,0,0,0.02);">
+                    <div style="display:flex; align-items:center; gap:0.5rem; margin-bottom:0.4rem;">
+                        <span style="font-size:1.2rem;">🧭</span>
+                        <strong style="color:#047857; font-size:0.95rem;">Abans de començar: Què farem, què aprendrem i com ens organitzarem?</strong>
+                    </div>
+                    <ul style="margin:0; padding-left:1.2rem; font-size:0.85rem;">
+                        <li style="margin-bottom:0.3rem;"><strong>Què farem:</strong> Crearem una Intel·ligència Artificial real des de zero usant la càmera de la tauleta o portàtil (o fotos d'arxiu) per ensenyar-li a distingir 3 categories d'objectes reals.</li>
+                        <li style="margin-bottom:0.3rem;"><strong>Què aprendrem:</strong> Descobrirem que la màquina no sap què és un objecte; només busca patrons numèrics de píxels. Comprovarem com falla fàcilment si només li donem 1 foto per classe (sobreajust / manca de dades) i com es torna robusta i precisa quan li donem 5 fotos amb diferents angles i fons.</li>
+                        <li><strong>Com ens organitzarem:</strong> Treballarem en dues pestanyes: el laboratori de Google Teachable Machine per capturar i entrenar, i aquest quadern interactiu per registrar hipòtesis, confiances i resultats.</li>
+                    </ul>
+                </div>
+
                 <div class="step-flow">
                     <div class="step-flow-card">
                         <span class="step-num">1</span>
                         <h4>1. Crear el Projecte</h4>
-                        <p>Obre l'enllaç, selecciona <strong>Image Project</strong> i tria l'opció <strong>Standard image model</strong>.</p>
+                        <p>Obre l'eina, selecciona <strong>Image Project</strong> i tria l'opció <strong>Standard image model</strong>.</p>
                     </div>
 
                     <div class="step-flow-card" style="border-top: 4px solid var(--primary);">
                         <span class="step-num">2</span>
-                        <h4>2. Definir 3 Classes (Tria un conjunt o personalitza'l)</h4>
-                        <p style="margin-bottom:0.6rem; font-size:0.88rem;">Anomena les 3 categories per entrenar la IA. Pots prémer una de les plantilles recomanades o escriure les de l'equip:</p>
-                        
-                        <!-- BOTONS DE PLANTILLES RECOMANADES -->
-                        <div style="display:flex; flex-wrap:wrap; gap:0.4rem; margin-bottom:0.75rem;">
-                            <button type="button" class="preset-pill-btn active" id="preset-btn-material" onclick="selectClassPreset('material')">
-                                🎒 Material: Bolígraf, Llapis, Retolador
-                            </button>
-                            <button type="button" class="preset-pill-btn" id="preset-btn-reciclatge" onclick="selectClassPreset('reciclatge')">
-                                ♻️ Residus: Plàstic, Paper, Orgànic
-                            </button>
-                            <button type="button" class="preset-pill-btn" id="preset-btn-mans" onclick="selectClassPreset('mans')">
-                                ✊ Joc de mans: Pedra, Paper, Tisora
-                            </button>
-                            <button type="button" class="preset-pill-btn" id="preset-btn-emocions" onclick="selectClassPreset('emocions')">
-                                😊 Gestos: Somriure, Serietat, Sorpresa
-                            </button>
-                            <button type="button" class="preset-pill-btn" id="preset-btn-objectes" onclick="selectClassPreset('objectes')">
-                                📱 Quotidians: Claus, Mòbil, Calculadora
-                            </button>
-                            <button type="button" class="preset-pill-btn" id="preset-btn-custom" onclick="selectClassPreset('custom')">
-                                ✏️ Personalitzat (Lliure)
-                            </button>
-                        </div>
-
-                        <!-- CAMPS D'EDICIÓ DE LES 3 CLASSES -->
-                        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap:0.5rem; background:#f8fafc; padding:0.75rem; border-radius:var(--radius-sm); border:1px solid var(--border);">
-                            <div>
-                                <label style="font-size:0.75rem; font-weight:700; color:var(--text-muted); display:block; margin-bottom:0.2rem;">Classe 1:</label>
-                                <input type="text" id="tm-class-1" class="form-control" value="Bolígraf" style="padding:0.45rem 0.65rem; font-size:0.88rem;" oninput="updateCustomClasses()">
-                            </div>
-                            <div>
-                                <label style="font-size:0.75rem; font-weight:700; color:var(--text-muted); display:block; margin-bottom:0.2rem;">Classe 2:</label>
-                                <input type="text" id="tm-class-2" class="form-control" value="Llapis" style="padding:0.45rem 0.65rem; font-size:0.88rem;" oninput="updateCustomClasses()">
-                            </div>
-                            <div>
-                                <label style="font-size:0.75rem; font-weight:700; color:var(--text-muted); display:block; margin-bottom:0.2rem;">Classe 3:</label>
-                                <input type="text" id="tm-class-3" class="form-control" value="Retolador" style="padding:0.45rem 0.65rem; font-size:0.88rem;" oninput="updateCustomClasses()">
-                            </div>
-                        </div>
+                        <h4>2. Triar 3 Classes</h4>
+                        <p>Decidiu quines 3 categories d'objectes ensenyareu a la IA. Podeu triar una de les plantilles recomanades al configurador de sota o inventar-vos-les.</p>
                     </div>
 
                     <div class="step-flow-card">
                         <span class="step-num">3</span>
-                        <h4>3. Carregar dades Repte 2</h4>
-                        <p>Al Repte 2, puja <strong>només 1 imatge per classe</strong> (un dataset deliberadament pobre i limitat).</p>
+                        <h4>3. Pujar 1 Foto (Repte 2)</h4>
+                        <p>Al Repte 2, puja <strong>només 1 sola imatge per classe</strong> per experimentar en viu la feblesa d'un model amb dades insuficients.</p>
                     </div>
 
                     <div class="step-flow-card">
                         <span class="step-num">4</span>
-                        <h4>4. Entrenar i Provar</h4>
-                        <p>Clica <strong>Train Model</strong>. Després prova 3 variables: Canvi de fons, Canvi d'angle/distància i Objecte tapat.</p>
+                        <h4>4. Entrenar i Millorar (Repte 3)</h4>
+                        <p>Prem <strong>Train Model</strong>, fes experiments canviant fons i angles, i després amplia a <strong>5 mostres variades</strong> per classe.</p>
+                    </div>
+                </div>
+
+                <!-- NOU PANELL: CONFIGURADOR DE CLASSES I PLANTILLES RECOMANADES -->
+                <div style="background:#f8fafc; border:2px solid #c7d2fe; border-radius:var(--radius-md); padding:1.25rem; margin-top:1.25rem; margin-bottom:1.5rem; box-shadow:0 2px 6px rgba(0,0,0,0.03);">
+                    <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem; margin-bottom:0.75rem;">
+                        <div>
+                            <h4 style="margin:0; font-size:1.05rem; color:#3730a3; display:flex; align-items:center; gap:0.4rem;">
+                                <span>🏷️</span> Configurador de les 3 Classes per a la teva IA
+                            </h4>
+                            <p style="margin:0.25rem 0 0; font-size:0.84rem; color:var(--text-sub);">
+                                Tria una plantilla recomanada amb un sol clic o escriu les 3 categories que fareu servir al vostre equip:
+                            </p>
+                        </div>
+                        <span class="badge-pill badge-pill-indigo">Personalització del Model</span>
+                    </div>
+
+                    <!-- BOTONS DE PLANTILLES RECOMANADES -->
+                    <div style="display:flex; flex-wrap:wrap; gap:0.45rem; margin-bottom:1rem;">
+                        <button type="button" class="preset-pill-btn active" id="preset-btn-material" onclick="selectClassPreset('material')">
+                            🎒 Material: Bolígraf, Llapis, Retolador
+                        </button>
+                        <button type="button" class="preset-pill-btn" id="preset-btn-reciclatge" onclick="selectClassPreset('reciclatge')">
+                            ♻️ Residus: Plàstic, Paper, Orgànic
+                        </button>
+                        <button type="button" class="preset-pill-btn" id="preset-btn-mans" onclick="selectClassPreset('mans')">
+                            ✊ Joc de mans: Pedra, Paper, Tisora
+                        </button>
+                        <button type="button" class="preset-pill-btn" id="preset-btn-emocions" onclick="selectClassPreset('emocions')">
+                            😊 Gestos: Somriure, Serietat, Sorpresa
+                        </button>
+                        <button type="button" class="preset-pill-btn" id="preset-btn-objectes" onclick="selectClassPreset('objectes')">
+                            📱 Quotidians: Claus, Mòbil, Calculadora
+                        </button>
+                        <button type="button" class="preset-pill-btn" id="preset-btn-custom" onclick="selectClassPreset('custom')">
+                            ✏️ Personalitzat (Lliure)
+                        </button>
+                    </div>
+
+                    <!-- CAMPS D'EDICIÓ DE LES 3 CLASSES -->
+                    <div style="background:white; padding:1rem; border-radius:var(--radius-sm); border:1px solid #cbd5e1;">
+                        <div style="font-size:0.82rem; font-weight:700; color:#1e293b; margin-bottom:0.5rem;">
+                            Noms de les 3 classes que heu de crear a Teachable Machine:
+                        </div>
+                        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap:0.75rem;">
+                            <div>
+                                <label for="tm-class-1" style="font-size:0.78rem; font-weight:700; color:#475569; display:block; margin-bottom:0.25rem;">Classe 1:</label>
+                                <input type="text" id="tm-class-1" class="form-control" value="Bolígraf" style="padding:0.5rem 0.75rem; font-size:0.88rem;" oninput="updateCustomClasses()">
+                            </div>
+                            <div>
+                                <label for="tm-class-2" style="font-size:0.78rem; font-weight:700; color:#475569; display:block; margin-bottom:0.25rem;">Classe 2:</label>
+                                <input type="text" id="tm-class-2" class="form-control" value="Llapis" style="padding:0.5rem 0.75rem; font-size:0.88rem;" oninput="updateCustomClasses()">
+                            </div>
+                            <div>
+                                <label for="tm-class-3" style="font-size:0.78rem; font-weight:700; color:#475569; display:block; margin-bottom:0.25rem;">Classe 3:</label>
+                                <input type="text" id="tm-class-3" class="form-control" value="Retolador" style="padding:0.5rem 0.75rem; font-size:0.88rem;" oninput="updateCustomClasses()">
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -1085,24 +1385,24 @@
                 </div>
 
                 <div class="form-group" style="margin:0;">
-                    <label style="color:#166534; font-weight:700;">3. Quins canvis o millores addicionals faries en el conjunt de dades en el futur per perfeccionar el model?</label>
+                    <label style="color:#166534; font-weight:700;">3. Si volguessis que aquest model funcionés perfectament a tot l'institut, quins tipus de fotos noves li hauries d'afegir?</label>
                     <textarea id="r3-futur" class="form-control" rows="3" placeholder="Escriu aquí les teves propostes per millorar encara més el model..." oninput="saveRepte3Data()"></textarea>
                 </div>
             </div>
 
-            <!-- TEST DE CONEIXEMENTS DEL BLOC 3 (5 PREGUNTES) -->
+            <!-- TEST DE CONEIXEMENTS DEL BLOC 4 (5 PREGUNTES) -->
             <div class="card" style="margin-top:1.5rem; border:1px solid var(--pastel-indigo-border); background:white;">
                 <div class="card-header">
                     <div>
-                        <h4 style="margin:0; font-size:1.05rem; color:var(--primary);">📝 Test de Coneixements del Bloc 3: Teachable Machine i Visió per Computador (5 Preguntes)</h4>
+                        <h4 style="margin:0; font-size:1.05rem; color:var(--primary);">📝 Test de Coneixements del Bloc 4: Teachable Machine i Visió per Computador (5 Preguntes)</h4>
                         <p style="margin:0.25rem 0 0; font-size:0.85rem; color:var(--text-muted);">
-                            Comprova el teu domini sobre la creació de classes, el sobreajust (overfitting), la variabilitat i la generalització del model:
+                            Comprova què has après sobre la creació de categories, per què no hem d'aprendre de memòria (sobreajust) i la importància de tenir varietat d'exemples:
                         </p>
                     </div>
-                    <span class="badge-pill badge-pill-emerald" id="stage-quiz-3-badge">0/5 Encerts</span>
+                    <span class="badge-pill badge-pill-emerald" id="stage-quiz-4-badge">0/5 Encerts</span>
                 </div>
-                <div id="stage-quiz-3-container">
-                    <!-- Renderitzat per JS renderStageQuiz(3) -->
+                <div id="stage-quiz-4-container">
+                    <!-- Renderitzat per JS renderStageQuiz(4) -->
                 </div>
             </div>
 
@@ -1110,18 +1410,18 @@
             <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; margin-top:2rem; background:#f8fafc; padding:1.25rem; border-radius:var(--radius-md); border:1px solid var(--border);">
                 <div>
                     <div style="font-weight:700; font-size:0.95rem; color:var(--text-main); margin-bottom:0.25rem;">
-                        📋 Progrés de la Fase 3 (Obligatori per avançar):
+                        📋 Progrés de la Fase 4 (Obligatori per avançar):
                     </div>
-                    <div id="stage3-progress-status" style="font-size:0.85rem; color:var(--text-sub);">
+                    <div id="stage4-progress-status" style="font-size:0.85rem; color:var(--text-sub);">
                         ⏳ Cal definir 3 classes, completar les 3 proves del Repte 2, marcar la checklist i escriure les 3 reflexions del Repte 3.
                     </div>
                 </div>
                 <div style="display:flex; gap:0.75rem; align-items:center;">
-                    <button class="btn btn-secondary" onclick="goToStage(2)">
-                        ⬅️ Tornar a Fase 2
+                    <button class="btn btn-secondary" onclick="goToStage(3)">
+                        ⬅️ Tornar a Fase 3
                     </button>
-                    <button class="btn btn-success" id="btn-complete-stage-3" onclick="completeStageAndGo(3, 4)">
-                        Completar Fase 3 i anar a la Fase 4: Riscos, Biaixos i Manipulació ➡️
+                    <button class="btn btn-success" id="btn-complete-stage-4" onclick="completeStageAndGo(4, 5)">
+                        Completar Fase 4 i anar a la Fase 5: Riscos, Biaixos i Manipulació ➡️
                     </button>
                 </div>
             </div>
@@ -1129,11 +1429,11 @@
 
 
         <!-- ========================================== -->
-        <!-- FASE 4: RISCOS, BIAIXOS I MANIPULACIÓ      -->
+        <!-- FASE 5: RISCOS, BIAIXOS I MANIPULACIÓ      -->
         <!-- ========================================== -->
-        <section class="section-view" id="stage-view-4">
+        <section class="section-view" id="stage-view-5">
             <div class="stage-hero">
-                <span class="stage-badge">Fase 4 · Pensament Crític, Ètica i Algorismes</span>
+                <span class="stage-badge">Fase 5 · Pensament Crític, Ètica i Algorismes</span>
                 <h2>Riscos, Biaixos i Manipulació en la Intel·ligència Artificial</h2>
                 <p>Comprèn per què les IAs generatives poden "al·lucinar" amb aparent seguretat, com hereten els biaixos humans i com s'entrenen els algorismes de recomanació per influir en el vot dels ciutadans i en les decisions de consum.</p>
             </div>
@@ -1345,7 +1645,7 @@
                         <!-- 3. VERIFICACIÓ CRÍTICA DAVANT AL·LUCINACIONS I DEEPFAKES -->
                         <div style="background:white; padding:1.1rem; border-radius:var(--radius-sm); border:1px solid #e2e8f0;">
                             <label for="manip-critical-reflection" style="font-size:0.88rem; color:#1e293b; display:block; margin-bottom:0.5rem; font-weight:700;">
-                                3. Verificació Crítica: Per què és perillós donar per bona una resposta que la IA afirma amb total seguretat (al·lucinació)? Quines accions concretes faràs a partir d'ara per verificar les dades, vídeos o imatges generades per IA abans de creure-te-les o compartir-les?
+                                3. Trucs per no caure al parany: Quan una Intel·ligència Artificial generativa (de text, imatges o cerca) et dona una resposta molt convençuda d'un tema que no coneixes, com pots comprovar si s'ho està inventant o si és veritat? Quins passos seguiràs abans de creure-t'ho o compartir-ho?
                             </label>
                             <textarea id="manip-critical-reflection" class="form-control" rows="3" placeholder="Escriu aquí les teves pautes personals de verificació de contingut..." oninput="saveManipulationCriticalReflection()" style="font-size:0.88rem; line-height:1.5;"></textarea>
                             <div id="manip-critical-status" style="font-size:0.78rem; color:#059669; margin-top:0.35rem; display:none;">✅ Pautes de verificació desades correctament al teu diploma.</div>
@@ -1354,19 +1654,19 @@
                 </div>
             </div>
 
-            <!-- TEST DE CONEIXEMENTS DEL BLOC 4 (5 PREGUNTES) -->
+            <!-- TEST DE CONEIXEMENTS DEL BLOC 5 (5 PREGUNTES) -->
             <div class="card" style="margin-top:1.5rem; border:1px solid var(--pastel-indigo-border); background:white;">
                 <div class="card-header">
                     <div>
-                        <h4 style="margin:0; font-size:1.05rem; color:var(--primary);">📝 Test de Coneixements del Bloc 4: Riscos, Biaixos i Manipulació Algorítmica (5 Preguntes)</h4>
+                        <h4 style="margin:0; font-size:1.05rem; color:var(--primary);">📝 Test de Coneixements del Bloc 5: Riscos, Biaixos i Manipulació Algorítmica (5 Preguntes)</h4>
                         <p style="margin:0.25rem 0 0; font-size:0.85rem; color:var(--text-muted);">
                             Avalua el teu pensament crític sobre al·lucinacions, biaixos socials, FOMO, deepfakes i la normativa europea AI Act:
                         </p>
                     </div>
-                    <span class="badge-pill badge-pill-emerald" id="stage-quiz-4-badge">0/5 Encerts</span>
+                    <span class="badge-pill badge-pill-emerald" id="stage-quiz-5-badge">0/5 Encerts</span>
                 </div>
-                <div id="stage-quiz-4-container">
-                    <!-- Renderitzat per JS renderStageQuiz(4) -->
+                <div id="stage-quiz-5-container">
+                    <!-- Renderitzat per JS renderStageQuiz(5) -->
                 </div>
             </div>
 
@@ -1374,18 +1674,18 @@
             <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; margin-top:2rem; background:#f8fafc; padding:1.25rem; border-radius:var(--radius-md); border:1px solid var(--border);">
                 <div>
                     <div style="font-weight:700; font-size:0.95rem; color:var(--text-main); margin-bottom:0.25rem;">
-                        📋 Progrés de la Fase 4 (Obligatori per avançar):
+                        📋 Progrés de la Fase 5 (Obligatori per avançar):
                     </div>
-                    <div id="stage4-progress-status" style="font-size:0.85rem; color:var(--text-sub);">
-                        ⏳ Cal resoldre els 3 casos d'al·lucinacions, explorar ambdós models d'algorisme i escriure les 2 reflexions crítiques.
+                    <div id="stage5-progress-status" style="font-size:0.85rem; color:var(--text-sub);">
+                        ⏳ Cal resoldre els 3 casos d'al·lucinacions, explorar ambdós models d'algorisme i escriure les 3 reflexions crítiques.
                     </div>
                 </div>
                 <div style="display:flex; gap:0.75rem; align-items:center;">
-                    <button class="btn btn-secondary" onclick="goToStage(3)">
-                        ⬅️ Tornar a Fase 3
+                    <button class="btn btn-secondary" onclick="goToStage(4)">
+                        ⬅️ Tornar a Fase 4
                     </button>
-                    <button class="btn btn-success" id="btn-complete-stage-4" onclick="completeStageAndGo(4, 5)">
-                        Completar Fase 4 i anar a la Fase 5: L'Art dels Prompts ➡️
+                    <button class="btn btn-success" id="btn-complete-stage-5" onclick="completeStageAndGo(5, 6)">
+                        Completar Fase 5 i anar a la Fase 6: L'Art dels Prompts ➡️
                     </button>
                 </div>
             </div>
@@ -1393,11 +1693,11 @@
 
 
         <!-- ========================================== -->
-        <!-- FASE 5: L'ART DELS PROMPTS I MATRIU 2X2    -->
+        <!-- FASE 6: L'ART DELS PROMPTS I MATRIU 2X2    -->
         <!-- ========================================== -->
-        <section class="section-view" id="stage-view-5">
+        <section class="section-view" id="stage-view-6">
             <div class="stage-hero">
-                <span class="stage-badge">Fase 5 · Formulació Eficaç i Enginyeria de Prompts</span>
+                <span class="stage-badge">Fase 6 · Formulació Eficaç i Enginyeria de Prompts</span>
                 <h2>L'Art d'Escriure un Prompt: Com donar instruccions a la IA</h2>
                 <p>Un prompt és l'encàrrec que donem a la IA generativa. Aprèn a guiar el model perquè no inventi dades ni al·lucini, utilitzant la Matriu 2x2 d'Eficàcia i els 4 components indispensables de la nostra unitat didàctica.</p>
             </div>
@@ -1601,27 +1901,27 @@
                     </div>
                 </div>
 
-                <!-- TEST DE CONEIXEMENTS DEL BLOC 5 (5 PREGUNTES) -->
+                <!-- TEST DE CONEIXEMENTS DEL BLOC 6 (5 PREGUNTES) -->
                 <div class="card" style="margin-top:1.5rem; border:1px solid var(--pastel-indigo-border); background:white;">
                     <div class="card-header">
                         <div>
-                            <h4 style="margin:0; font-size:1.05rem; color:var(--primary);">📝 Test de Coneixements del Bloc 5: L'Art dels Prompts (5 Preguntes)</h4>
+                            <h4 style="margin:0; font-size:1.05rem; color:var(--primary);">📝 Test de Coneixements del Bloc 6: L'Art dels Prompts (5 Preguntes)</h4>
                             <p style="margin:0.25rem 0 0; font-size:0.85rem; color:var(--text-muted);">
                                 Demostra que domines la Matriu 2x2, els 4 components indispensables i l'ús de restriccions negatives:
                             </p>
                         </div>
-                        <span class="badge-pill badge-pill-emerald" id="stage-quiz-5-badge">0/5 Encerts</span>
+                        <span class="badge-pill badge-pill-emerald" id="stage-quiz-6-badge">0/5 Encerts</span>
                     </div>
-                    <div id="stage-quiz-5-container">
-                        <!-- Renderitzat per JS renderStageQuiz(5) -->
+                    <div id="stage-quiz-6-container">
+                        <!-- Renderitzat per JS renderStageQuiz(6) -->
                     </div>
                 </div>
 
-                <!-- REFLEXIONS DIDÀCTIQUES INDIVIDUALS DEL BLOC 5 (3 PREGUNTES) -->
+                <!-- REFLEXIONS DIDÀCTIQUES INDIVIDUALS DEL BLOC 6 (3 PREGUNTES) -->
                 <div class="card" style="margin-top:1.5rem; background:white; border:1px solid var(--border);">
                     <div class="card-header">
                         <div>
-                            <h4 style="margin:0; font-size:1.05rem; color:var(--text-main);">✍️ Reflexions Individuals del Bloc 5 (3 Preguntes)</h4>
+                            <h4 style="margin:0; font-size:1.05rem; color:var(--text-main);">✍️ Reflexions Individuals del Bloc 6 (3 Preguntes)</h4>
                             <p style="margin:0.25rem 0 0; font-size:0.85rem; color:var(--text-muted);">
                                 Aquestes 3 reflexions es guardaran automàticament i s'inclouran al teu diploma oficial d'aprofitament:
                             </p>
@@ -1631,7 +1931,7 @@
 
                     <div style="margin-bottom:1.35rem; background:#f8fafc; padding:1.1rem; border-radius:var(--radius-sm); border:1px solid #e2e8f0;">
                         <label for="prompt-reflection-eval" style="font-size:0.88rem; color:#1e293b; display:block; margin-bottom:0.5rem; font-weight:700;">
-                            1. Context i especificitat: Com canvia la resposta d'una IA quan li proporciones un context detallat i unes restriccions clares respecte a fer-li una ordre breu i oberta? Què creus que aporta aquesta diferència en un treball escolar de recerca?
+                            1. Demanar bé les coses: Quina diferència hi ha entre demanar-li a la IA només una frase curta o donar-li instruccions completes amb context i límits? Quina resposta et serveix més per aprendre?
                         </label>
                         <textarea id="prompt-reflection-eval" class="form-control" rows="3" placeholder="Escriu aquí la teva reflexió personal..." oninput="savePromptReflection()" style="font-size:0.88rem; line-height:1.5;"></textarea>
                         <div id="prompt-reflection-eval-status" style="font-size:0.78rem; color:#059669; margin-top:0.35rem; display:none;">✅ Reflexió 1 desada correctament al teu diploma.</div>
@@ -1639,7 +1939,7 @@
 
                     <div style="margin-bottom:1.35rem; background:#f8fafc; padding:1.1rem; border-radius:var(--radius-sm); border:1px solid #e2e8f0;">
                         <label for="b5-refl-2" style="font-size:0.88rem; color:#1e293b; display:block; margin-bottom:0.5rem; font-weight:700;">
-                            2. Meta-prompting i verificació de fonts: Si la IA et respon amb una dada històrica o científica sorprenent però no cita cap font contrastada, com redactaries un segon prompt de contrast per demanar-li que justifiqui l'origen de la informació i avisi si té debat acadèmic?
+                            2. Comprovar la informació: Com li demanaries a la IA que et digui d'on ha tret la informació o que t'expliqui el tema des d'un altre punt de vista si sospites que pot estar equivocada?
                         </label>
                         <textarea id="b5-refl-2" class="form-control" rows="3" placeholder="Escriu aquí el teu prompt o estratègia de verificació..." oninput="saveB5Refl2()" style="font-size:0.88rem; line-height:1.5;"></textarea>
                         <div id="b5-refl-2-status" style="font-size:0.78rem; color:#059669; margin-top:0.35rem; display:none;">✅ Reflexió 2 desada correctament al teu diploma.</div>
@@ -1647,7 +1947,7 @@
 
                     <div style="background:#f8fafc; padding:1.1rem; border-radius:var(--radius-sm); border:1px solid #e2e8f0;">
                         <label for="b5-refl-3" style="font-size:0.88rem; color:#1e293b; display:block; margin-bottom:0.5rem; font-weight:700;">
-                            3. La IA com a copilot d'aprenentatge: Com pot l'enginyeria de prompts ajudar-te a utilitzar la IA com una eina d'aprenentatge crític i estructuració de coneixement, en lloc de caure en un simple "copia i enganxa" que no t'ensenya res?
+                            3. Aprendre sense fer trampes: Com pots fer servir la IA perquè t'ajudi a entendre temes difícils o a practicar exàmens sense caure en el típic "copiar i enganxar" sense llegir?
                         </label>
                         <textarea id="b5-refl-3" class="form-control" rows="3" placeholder="Escriu aquí la teva reflexió personal..." oninput="saveB5Refl3()" style="font-size:0.88rem; line-height:1.5;"></textarea>
                         <div id="b5-refl-3-status" style="font-size:0.78rem; color:#059669; margin-top:0.35rem; display:none;">✅ Reflexió 3 desada correctament al teu diploma.</div>
@@ -1658,22 +1958,22 @@
                 <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; margin-top:1.5rem; border-top:1px solid var(--border-subtle); padding-top:1.25rem;">
                     <div>
                         <div style="font-weight:700; font-size:0.95rem; color:var(--text-main); margin-bottom:0.25rem;">
-                            📋 Progrés de la Fase 5 (Obligatori per avançar):
+                            📋 Progrés de la Fase 6 (Obligatori per avançar):
                         </div>
-                        <div id="stage5-progress-status" style="font-size:0.85rem; color:var(--text-sub);">
-                            ⏳ Cal assolir el 100% de qualitat al prompt (mínim 8 paraules per camp) i respondre la reflexió personal.
+                        <div id="stage6-progress-status" style="font-size:0.85rem; color:var(--text-sub);">
+                            ⏳ Cal assolir el 100% de qualitat al prompt (mínim 8 paraules per camp), respondre el test (5/5) i les 3 reflexions.
                         </div>
                     </div>
                     <div style="display:flex; gap:0.75rem; align-items:center;">
-                        <button class="btn btn-secondary" onclick="goToStage(4)">
-                            ⬅️ Tornar a Fase 4
+                        <button class="btn btn-secondary" onclick="goToStage(5)">
+                            ⬅️ Tornar a Fase 5
                         </button>
                         <div>
-                            <button class="btn btn-secondary" id="btn-stage5-next" onclick="completeStageAndGo(5, 6)" disabled style="opacity:0.6; cursor:not-allowed; font-weight:700;">
+                            <button class="btn btn-secondary" id="btn-stage6-next" onclick="completeStageAndGo(6, 7)" disabled style="opacity:0.6; cursor:not-allowed; font-weight:700;">
                                 🔒 Qualitat: 0% / 100% (Prompt incomplet) ➡️
                             </button>
                             <div id="prompt-lock-hint" style="font-size:0.75rem; color:#dc2626; margin-top:0.3rem; text-align:right;">
-                                Has d'arribar al 100% de qualitat i escriure la reflexió per avançar.
+                                Has d'arribar al 100% de qualitat, respondre el test i escriure les 3 reflexions per avançar.
                             </div>
                         </div>
                     </div>
@@ -1683,26 +1983,26 @@
 
 
         <!-- ========================================== -->
-        <!-- FASE 6: QÜESTIONARI TEÒRIC FINAL           -->
+        <!-- FASE 7: QÜESTIONARI TEÒRIC FINAL           -->
         <!-- ========================================== -->
-        <section class="section-view" id="stage-view-6">
+        <section class="section-view" id="stage-view-7">
             <div class="stage-hero">
-                <span class="stage-badge">Fase 6 · Avaluació Teòrica de Coneixements</span>
+                <span class="stage-badge">Fase 7 · Avaluació Teòrica de Coneixements</span>
                 <h2>Qüestionari Teòric Final: Demostra el que has après</h2>
-                <p>Respon les 10 preguntes clau sobre contingut sintètic, el cicle d'aprenentatge, Human in the loop, Teachable Machine, manipulació algorítmica i formulació de prompts.</p>
+                <p>Respon les 12 preguntes clau sobre contingut sintètic, el cicle d'aprenentatge, Human in the loop, Cotxes autònoms i ètica, Teachable Machine, manipulació algorítmica i formulació de prompts.</p>
             </div>
 
             <div class="card">
                 <div class="card-header">
                     <div>
-                        <h3>📝 Test Oficial d'Avaluació (10 Preguntes)</h3>
+                        <h3>📝 Test Oficial d'Avaluació (12 Preguntes)</h3>
                         <p style="margin:0.25rem 0 0; font-size:0.85rem; color:var(--text-muted);">
                             Selecciona l'opció correcta a cadascuna de les preguntes. Quan acabis, prem el botó per obtenir la teva nota oficial.
                         </p>
                     </div>
                     <div style="display:flex; gap:0.5rem; align-items:center;">
-                        <span class="badge-pill badge-pill-indigo" id="quiz-progress-badge">0 / 10 Respostes</span>
-                        <span class="badge-pill badge-pill-emerald" id="quiz-score-badge" style="display:none;">Nota: - / 10</span>
+                        <span class="badge-pill badge-pill-indigo" id="quiz-progress-badge">0 / 12 Respostes</span>
+                        <span class="badge-pill badge-pill-emerald" id="quiz-score-badge" style="display:none;">Nota: - / 12</span>
                     </div>
                 </div>
 
@@ -1719,10 +2019,10 @@
 
             <!-- BOTÓ SEGÜENT FASE -->
             <div style="display:flex; justify-content:space-between; margin-top:2rem;">
-                <button class="btn btn-secondary" onclick="goToStage(5)">
-                    ⬅️ Tornar a Fase 5
+                <button class="btn btn-secondary" onclick="goToStage(6)">
+                    ⬅️ Tornar a Fase 6
                 </button>
-                <button class="btn btn-success" id="btn-goto-diploma" onclick="goToStage(7)" disabled>
+                <button class="btn btn-success" id="btn-goto-diploma" onclick="goToStage(8)" disabled>
                     🔒 Anar al Diploma Oficial (Completa el Qüestionari) ➡️
                 </button>
             </div>
@@ -1730,11 +2030,11 @@
 
 
         <!-- ========================================== -->
-        <!-- FASE 7: DIPLOMA OFICIAL D'APROFITAMENT     -->
+        <!-- FASE 8: DIPLOMA OFICIAL D'APROFITAMENT     -->
         <!-- ========================================== -->
-        <section class="section-view" id="stage-view-7">
+        <section class="section-view" id="stage-view-8">
             <div class="stage-hero non-printable">
-                <span class="stage-badge">Fase 7 · Certificació Oficial</span>
+                <span class="stage-badge">Fase 8 · Certificació Oficial</span>
                 <h2>Enhorabona! Has completat la Càpsula Didàctica</h2>
                 <p>Aquí tens el teu Diploma Oficial d'Aprofitament amb la valoració personalitzada de punts forts assolits i aspectes clau a millorar. Pots descarregar-lo en imatge o imprimir-lo en PDF!</p>
             </div>
@@ -1742,6 +2042,9 @@
             <div class="non-printable" style="display:flex; gap:0.75rem; justify-content:center; flex-wrap:wrap; margin-bottom:1.5rem;">
                 <button class="btn btn-primary" onclick="window.print()">
                     🖨️ Imprimir Diploma en PDF
+                </button>
+                <button class="btn btn-success" onclick="downloadFullEvaluationReport()">
+                    📥 Descarregar Dossier i Certificat (HTML)
                 </button>
                 <button class="btn btn-secondary" id="btn-download-img" onclick="downloadDiplomaImage()">
                     🖼️ Descarregar Diploma en Imatge (PNG)
@@ -1797,11 +2100,24 @@
                         </div>
                     </div>
 
+                    <!-- RECULL OFICIAL DE RESPOSTES ALS TESTS D'AVALUACIÓ AL DIPLOMA -->
+                    <div class="diploma-page-block" style="background:#f8fafc; border:1px solid #cbd5e1; border-radius:8px; padding:1.25rem; margin-bottom:1.5rem; text-align:left;">
+                        <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:2px solid #e2e8f0; padding-bottom:0.4rem; margin-bottom:0.75rem; flex-wrap:wrap; gap:0.5rem;">
+                            <strong style="font-size:0.92rem; color:#1e1b4b; text-transform:uppercase; letter-spacing:0.04em;">
+                                📊 Registre Oficial dels Tests de Coneixement (25 Preguntes de Blocs + 10 Examen Final)
+                            </strong>
+                            <span class="badge-pill badge-pill-emerald" id="dip-tests-summary-badge">0 / 35 Encerts Totals</span>
+                        </div>
+                        <div id="diploma-tests-breakdown" style="font-size:0.82rem; color:#334155; line-height:1.45;">
+                            <!-- Inserit per JS renderDiplomaTestsBreakdown() -->
+                        </div>
+                    </div>
+
                     <!-- RECULL OFICIAL DE REFLEXIONS DE L'ALUMNE AL DIPLOMA -->
-                    <div style="background:#f8fafc; border:1px solid #cbd5e1; border-radius:8px; padding:1.25rem; margin-bottom:1.5rem; text-align:left;">
+                    <div class="diploma-page-block" style="background:#f8fafc; border:1px solid #cbd5e1; border-radius:8px; padding:1.25rem; margin-bottom:1.5rem; text-align:left;">
                         <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:2px solid #e2e8f0; padding-bottom:0.4rem; margin-bottom:0.75rem;">
                             <strong style="font-size:0.92rem; color:#1e1b4b; text-transform:uppercase; letter-spacing:0.04em;">
-                                📝 Registre Oficial de Reflexions i Respostes de l'Alumne/a
+                                📝 Registre Oficial de Reflexions Individuals (15 Preguntes Didàctiques)
                             </strong>
                             <span style="font-size:0.75rem; color:#64748b; font-weight:700;">Avaluació de Competències</span>
                         </div>
@@ -1924,24 +2240,24 @@
     </div>
 
     <!-- Llibreries externes -->
-    <script src="js/html2canvas.min.js"></script>
+    <script src="js/html2canvas.min.js?v=20261015-v3"></script>
 
     <!-- Dades dels reptes i qüestionaris -->
-    <script src="js/data/quizzes-data.js"></script>
-    <script src="js/data/captcha-data.js"></script>
+    <script src="js/data/quizzes-data.js?v=20261015-v3"></script>
+    <script src="js/data/captcha-data.js?v=20261015-v3"></script>
 
     <!-- Estat reactiu, persistència i navegació -->
-    <script src="js/state.js"></script>
+    <script src="js/state.js?v=20261015-v3"></script>
 
     <!-- Motor de qüestionaris -->
-    <script src="js/modules/quizzes.js"></script>
+    <script src="js/modules/quizzes.js?v=20261015-v3"></script>
 
     <!-- Mòduls d'aprenentatge per fases -->
-    <script src="js/modules/stage1-simulator.js"></script>
-    <script src="js/modules/stage2-captcha.js"></script>
-    <script src="js/modules/stage3-teachable.js"></script>
-    <script src="js/modules/stage4-riscos.js"></script>
-    <script src="js/modules/stage5-prompts.js"></script>
-    <script src="js/modules/stage7-diploma.js"></script>
+    <script src="js/modules/stage1-simulator.js?v=20261015-v3"></script>
+    <script src="js/modules/stage2-captcha.js?v=20261015-v3"></script>
+    <script src="js/modules/stage3-teachable.js?v=20261015-v3"></script>
+    <script src="js/modules/stage4-riscos.js?v=20261015-v3"></script>
+    <script src="js/modules/stage5-prompts.js?v=20261015-v3"></script>
+    <script src="js/modules/stage7-diploma.js?v=20261015-v3"></script>
 </body>
 </html>
