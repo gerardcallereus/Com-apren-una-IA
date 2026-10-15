@@ -173,6 +173,15 @@
 
             list.innerHTML = html;
             updateQuizProgressBadge();
+
+            const btnDiploma = document.getElementById('btn-goto-diploma');
+            if (btnDiploma && (appState.quizCompleted || (typeof isTeacherMode === 'function' && isTeacherMode()))) {
+                btnDiploma.disabled = false;
+                btnDiploma.innerHTML = (typeof isTeacherMode === 'function' && isTeacherMode()) 
+                    ? "🎓 Mode Docent: Veure el Diploma Oficial ➡️" 
+                    : "🎓 Veure el Diploma Oficial i Dossier d'Avaluació ➡️";
+                btnDiploma.setAttribute('onclick', 'goToStage(8)');
+            }
         }
 
         function selectQuizAns(qId, optIdx) {

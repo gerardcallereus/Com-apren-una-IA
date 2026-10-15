@@ -782,6 +782,16 @@
             const nextBtn = document.getElementById('btn-complete-stage-5');
             if (!statusEl) return;
 
+            if (typeof isTeacherMode === 'function' && isTeacherMode()) {
+                statusEl.innerHTML = `<span style="color:#2563eb; font-weight:700;">🎓 Mode Docent actiu:</span> Totes les fases i activitats estan desbloquejades per a inspecció lliure.`;
+                if (nextBtn) {
+                    nextBtn.className = "btn btn-success";
+                    nextBtn.style.opacity = "1";
+                    nextBtn.style.cursor = "pointer";
+                }
+                return;
+            }
+
             const hallCount = Object.keys(appState.hallucinationsAnswered || {}).length;
             const algoExplored = !!appState.manipulationExplored;
             const testCount = Object.keys((appState.stageQuizAnswers && appState.stageQuizAnswers[5]) || {}).length;

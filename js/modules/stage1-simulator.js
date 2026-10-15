@@ -565,6 +565,16 @@
             const nextBtn = document.getElementById('btn-complete-stage-1');
             if (!statusEl) return;
 
+            if (typeof isTeacherMode === 'function' && isTeacherMode()) {
+                statusEl.innerHTML = `<span style="color:#2563eb; font-weight:700;">🎓 Mode Docent actiu:</span> Totes les fases i activitats estan desbloquejades per a inspecció lliure.`;
+                if (nextBtn) {
+                    nextBtn.className = "btn btn-success";
+                    nextBtn.style.opacity = "1";
+                    nextBtn.style.cursor = "pointer";
+                }
+                return;
+            }
+
             const visited = appState.simStepsVisited || [1];
             const visitedCount = [1, 2, 3, 4].filter(s => visited.includes(s)).length;
             const trained = appState.simTrained || trainingEpoch >= 10;

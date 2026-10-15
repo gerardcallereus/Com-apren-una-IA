@@ -20,6 +20,11 @@ function escapeHtml(text) {
 
         const STORAGE_KEY = 'ia_didactica_capsula_v3';
 
+        // Mode Docent: si l'usuari posa 'teacher' com a nom d'alumne, desbloqueja tots els apartats
+        function isTeacherMode() {
+            return !!(appState && appState.studentName && appState.studentName.trim().toLowerCase() === 'teacher');
+        }
+
         let appState = {
             studentName: '',
             studentGroup: '1r ESO A',
@@ -133,6 +138,10 @@ function escapeHtml(text) {
                 }
             }
 
+            if (isTeacherMode()) {
+                appState.unlockedStage = 8;
+            }
+
             updateHeaderUI();
             updateNavigationUI();
             restoreSavedFormFields();
@@ -155,9 +164,15 @@ function escapeHtml(text) {
             const groupEl = document.getElementById('header-group');
             const avatarEl = document.getElementById('header-avatar');
 
-            if (nameEl) nameEl.textContent = appState.studentName || "Alumne/a sense nom";
-            if (groupEl) groupEl.textContent = appState.studentGroup || "1r ESO A";
-            if (avatarEl) avatarEl.textContent = appState.avatar || "🤖";
+            if (isTeacherMode()) {
+                if (nameEl) nameEl.innerHTML = `${escapeHtml(appState.studentName)} <span style="background:#fef3c7; color:#92400e; font-size:0.75rem; padding:2px 6px; border-radius:4px; margin-left:4px; font-weight:800; border:1px solid #f59e0b;">🎓 Mode Docent</span>`;
+                if (groupEl) groupEl.textContent = "Professorat / Accés Total";
+                if (avatarEl) avatarEl.textContent = appState.avatar || "🎓";
+            } else {
+                if (nameEl) nameEl.textContent = appState.studentName || "Alumne/a sense nom";
+                if (groupEl) groupEl.textContent = appState.studentGroup || "1r ESO A";
+                if (avatarEl) avatarEl.textContent = appState.avatar || "🤖";
+            }
         }
 
         function updateNavigationUI() {
@@ -177,7 +192,7 @@ function escapeHtml(text) {
                 const label = document.getElementById(`nav-label-stage-${i}`);
                 if (!btn || !label) continue;
 
-                const isLocked = i > appState.unlockedStage && !(i === 8 && appState.completedStages.includes(7));
+                const isLocked = !isTeacherMode() && i > appState.unlockedStage && !(i === 8 && appState.completedStages.includes(7));
                 btn.classList.toggle('locked', isLocked);
                 btn.classList.toggle('completed', appState.completedStages.includes(i));
 
@@ -194,7 +209,7 @@ function escapeHtml(text) {
         }
 
         function goToStage(stageNum) {
-            if (stageNum > appState.unlockedStage && !(stageNum === 8 && appState.completedStages.includes(7))) {
+            if (!isTeacherMode() && stageNum > appState.unlockedStage && !(stageNum === 8 && appState.completedStages.includes(7))) {
                 alert(`🔒 La Fase ${stageNum} està bloquejada! Has de completar les activitats de la fase anterior per poder avançar.`);
                 return;
             }
@@ -217,27 +232,48 @@ function escapeHtml(text) {
             }
             if (stageNum === 1 && typeof updateSimProgressStatus === 'function') updateSimProgressStatus();
             if (stageNum === 2) {
-                renderCaptchaUI();
+                if (typeof renderCaptchaUI === 'function') renderCaptchaUI();
                 if (typeof updateRepte1ProgressStatus === 'function') updateRepte1ProgressStatus();
             }
             if (stageNum === 3) {
                 if (typeof updateStage3ProgressStatus === 'function') updateStage3ProgressStatus();
             }
             if (stageNum === 4) {
-                restoreTMClasses();
+                if (typeof restoreTMClasses === 'function') restoreTMClasses();
                 if (typeof updateTMProgressStatus === 'function') updateTMProgressStatus();
             }
             if (stageNum === 5) {
-                restoreManipulationTask();
+                if (typeof restoreManipulationTask === 'function') restoreManipulationTask();
                 if (typeof updateStage4ProgressStatus === 'function') updateStage4ProgressStatus();
             }
             if (stageNum === 6 && typeof updatePromptLab === 'function') updatePromptLab();
-            if (stageNum === 7) renderQuizUI();
-            if (stageNum === 8) renderDiploma();
+            if (stageNum === 7) {
+                if (typeof renderQuizUI === 'function') renderQuizUI();
+                const btnDiploma = document.getElementById('btn-goto-diploma');
+                if (btnDiploma && isTeacherMode()) {
+                    btnDiploma.disabled = false;
+                    btnDiploma.innerHTML = "🎓 Mode Docent: Veure el Diploma Oficial ➡️";
+                    btnDiploma.setAttribute('onclick', 'goToStage(8)');
+                }
+            }
+            if (stageNum === 8 && typeof renderDiploma === 'function') renderDiploma();
         }
 
         // CONTROL D'ACCÉS I GATING OBLIGATORI ENTRE CAPÍTOLS (STRICT GATING)
         function completeStageAndGo(current, next) {
+            // Mode Docent: accés immediat sense bloquejar per tasques pendents
+            if (isTeacherMode()) {
+                if (!appState.completedStages.includes(current)) {
+                    appState.completedStages.push(current);
+                }
+                if (appState.unlockedStage < next) {
+                    appState.unlockedStage = next;
+                }
+                saveState();
+                goToStage(next);
+                return;
+            }
+
             // Validació Fase 1: Cal haver explorat el simulador completament, respost el test (5/5) i les 3 reflexions
             if (current === 1) {
                 const visited = appState.simStepsVisited || [];
@@ -470,6 +506,12 @@ function escapeHtml(text) {
             appState.studentGroup = inputGroup ? inputGroup.value : '1r ESO A';
             appState.avatar = selectedModalAvatar;
 
+            if (name.toLowerCase() === 'teacher') {
+                appState.unlockedStage = 8;
+                appState.avatar = '🎓';
+                alert("🎓 MODE DOCENT ACTIVAT!\nS'han desbloquejat tots els 8 apartats de l'aplicació per poder revisar i testejar continguts lliurement sense haver de contestar a totes les preguntes.");
+            }
+
             saveState();
             closeProfileModal();
         }
@@ -620,7 +662,19 @@ function escapeHtml(text) {
 
         function updateStage3ProgressStatus() {
             const statusEl = document.getElementById('stage3-progress-status');
+            const nextBtn = document.getElementById('btn-complete-stage-3');
             if (!statusEl) return;
+
+            if (typeof isTeacherMode === 'function' && isTeacherMode()) {
+                statusEl.innerHTML = `<span style="color:#2563eb; font-weight:700;">🎓 Mode Docent actiu:</span> Totes les fases i activitats estan desbloquejades per a inspecció lliure.`;
+                if (nextBtn) {
+                    nextBtn.className = "btn btn-success";
+                    nextBtn.style.opacity = "1";
+                    nextBtn.style.cursor = "pointer";
+                }
+                return;
+            }
+
             const test3Count = Object.keys((appState.stageQuizAnswers && appState.stageQuizAnswers[3]) || {}).length;
             const w1 = countWords((document.getElementById('b3-refl-1')?.value || appState.b3Refl1 || '').trim());
             const w2 = countWords((document.getElementById('b3-refl-2')?.value || appState.b3Refl2 || '').trim());
@@ -629,8 +683,17 @@ function escapeHtml(text) {
 
             if (test3Count >= 5 && refsDone === 3) {
                 statusEl.innerHTML = `<span style="color:#059669; font-weight:700;">✅ Fase 3 completada amb èxit!</span> Test resolt (5/5) i 3 reflexions escrites. Ja pots avançar a Teachable Machine!`;
+                if (nextBtn) {
+                    nextBtn.className = "btn btn-success";
+                    nextBtn.style.opacity = "1";
+                    nextBtn.style.cursor = "pointer";
+                }
             } else {
                 statusEl.innerHTML = `⏳ Progrés: Test (${test3Count}/5) · Reflexions escrites (${refsDone}/3). Cal completar el test i les 3 reflexions per avançar.`;
+                if (nextBtn) {
+                    nextBtn.className = "btn btn-secondary";
+                    nextBtn.style.opacity = "0.7";
+                }
             }
         }
 

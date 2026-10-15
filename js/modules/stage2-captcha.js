@@ -318,6 +318,16 @@
             const nextBtn = document.getElementById('btn-complete-stage-2');
             if (!statusEl) return;
 
+            if (typeof isTeacherMode === 'function' && isTeacherMode()) {
+                statusEl.innerHTML = `<span style="color:#2563eb; font-weight:700;">🎓 Mode Docent actiu:</span> Totes les fases i activitats estan desbloquejades per a inspecció lliure.`;
+                if (nextBtn) {
+                    nextBtn.className = "btn btn-success";
+                    nextBtn.style.opacity = "1";
+                    nextBtn.style.cursor = "pointer";
+                }
+                return;
+            }
+
             let fullyTaggedCount = 0;
             for (let i = 1; i <= 12; i++) {
                 const ans = appState.repte1Answers[i] || {};
