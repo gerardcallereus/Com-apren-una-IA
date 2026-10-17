@@ -176,35 +176,79 @@ function escapeHtml(text) {
         }
 
         function updateNavigationUI() {
-            const stageTitles = {
-                1: "1. Com aprèn una IA?",
-                2: "2. Dades i CAPTCHA",
-                3: "3. Cotxes Autònoms i Moral Machine 🚗",
-                4: "4. Teachable Machine",
-                5: "5. Riscos, Biaixos i Manipulació",
-                6: "6. L'Art dels Prompts",
-                7: "7. Qüestionari Final",
-                8: "8. Diploma Oficial"
-            };
+            const stages = [
+                { id: 1, title: "Com aprèn una IA?", sub: "Simulador Gats/Gossos" },
+                { id: 2, title: "Dades i CAPTCHA", sub: "Etiquetatge i consens" },
+                { id: 3, title: "Cotxes Autònoms", sub: "Moral Machine MIT 🚗" },
+                { id: 4, title: "Teachable Machine", sub: "Entrena model propi" },
+                { id: 5, title: "Riscos i Biaixos", sub: "Manipulació algorítmica" },
+                { id: 6, title: "L'Art dels Prompts", sub: "Enginyeria i matriu" },
+                { id: 7, title: "Qüestionari Final", sub: "Test 12 preguntes" },
+                { id: 8, title: "Diploma Oficial", sub: "Dossier i certificat 🎓" }
+            ];
+
+            const completedStages = appState.completedStages || [];
+            const completedCount = completedStages.length;
+            const progressPct = Math.min(100, Math.round((completedCount / 8) * 100));
+
+            const globalProgressEl = document.getElementById('nav-global-progress-bar');
+            const globalProgressText = document.getElementById('nav-global-progress-text');
+            if (globalProgressEl) {
+                globalProgressEl.style.width = isTeacherMode() ? '100%' : `${Math.max(12.5, progressPct)}%`;
+            }
+            if (globalProgressText) {
+                if (isTeacherMode()) {
+                    globalProgressText.innerHTML = `<strong style="color:#d97706;">🎓 Mode Docent actiu</strong> · Totes les 8 fases desbloquejades per a inspecció lliure`;
+                } else {
+                    globalProgressText.textContent = `Progrés global: ${completedCount} de 8 fases completades (${progressPct}%)`;
+                }
+            }
 
             for (let i = 1; i <= 8; i++) {
                 const btn = document.getElementById(`tab-btn-${i}`);
                 const label = document.getElementById(`nav-label-stage-${i}`);
-                if (!btn || !label) continue;
+                const badge = document.getElementById(`nav-badge-stage-${i}`);
+                const sub = document.getElementById(`nav-sub-stage-${i}`);
+                if (!btn) continue;
 
-                const isLocked = !isTeacherMode() && i > appState.unlockedStage && !(i === 8 && appState.completedStages.includes(7));
+                const isLocked = !isTeacherMode() && i > appState.unlockedStage && !(i === 8 && completedStages.includes(7));
+                const isCompleted = completedStages.includes(i);
+                const isActive = (appState.currentStage === i);
+
                 btn.classList.toggle('locked', isLocked);
-                btn.classList.toggle('completed', appState.completedStages.includes(i));
+                btn.classList.toggle('completed', isCompleted);
+                btn.classList.toggle('active', isActive);
 
-                const titleText = stageTitles[i] || `Fase ${i}`;
+                const info = stages[i - 1];
 
-                if (isLocked) {
-                    label.textContent = `🔒 ${titleText}`;
-                } else if (appState.completedStages.includes(i)) {
-                    label.textContent = `✅ ${titleText}`;
-                } else {
-                    label.textContent = titleText;
+                if (badge) {
+                    if (isLocked) {
+                        badge.textContent = "🔒";
+                        badge.className = "nav-step-badge locked";
+                    } else if (isCompleted) {
+                        badge.textContent = "✓";
+                        badge.className = "nav-step-badge completed";
+                    } else if (isActive) {
+                        badge.textContent = `${i}`;
+                        badge.className = "nav-step-badge active";
+                    } else {
+                        badge.textContent = `${i}`;
+                        badge.className = "nav-step-badge unlocked";
+                    }
                 }
+
+                if (label) {
+                    label.textContent = info.title;
+                }
+                if (sub) {
+                    sub.textContent = info.sub;
+                }
+
+                let titleTooltip = `Fase ${i}: ${info.title} (${info.sub})`;
+                if (isLocked) titleTooltip += " [🔒 Bloquejada: completa la fase anterior]";
+                else if (isCompleted) titleTooltip += " [✅ Completada]";
+                else if (isActive) titleTooltip += " [👉 Fase actual]";
+                btn.setAttribute('title', titleTooltip);
             }
         }
 

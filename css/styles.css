@@ -183,63 +183,271 @@
             color: var(--primary);
         }
 
-        /* NAVIGATION TABS */
+        /* NAVIGATION TABS - MODERN RESPONSIVE GRID (NO HORIZONTAL SCROLL) */
         .nav-stages {
-            background: white;
+            background: #ffffff;
             border-bottom: 1px solid var(--border);
             position: sticky;
             top: 61px;
             z-index: 40;
-            overflow-x: auto;
-            scrollbar-width: none;
+            box-shadow: 0 4px 12px rgba(15, 23, 42, 0.04);
+            padding: 0.4rem 0 0.5rem;
+            transition: all 0.2s ease;
         }
 
-        .nav-stages::-webkit-scrollbar {
-            display: none;
+        .nav-stages-header {
+            max-width: 1300px;
+            margin: 0 auto 0.4rem;
+            padding: 0 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        .nav-progress-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.78rem;
+            color: var(--text-sub);
+        }
+
+        .nav-progress-title {
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        .nav-progress-bar-wrap {
+            flex: 1;
+            max-width: 320px;
+            height: 6px;
+            background: #e2e8f0;
+            border-radius: 999px;
+            overflow: hidden;
+        }
+
+        .nav-progress-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #4f46e5 0%, #06b6d4 100%);
+            border-radius: 999px;
+            transition: width 0.35s ease;
         }
 
         .nav-stages-inner {
-            max-width: 1200px;
+            max-width: 1300px;
             margin: 0 auto;
-            display: flex;
-            padding: 0 1rem;
-            gap: 0.25rem;
-        }
-
-        .stage-nav-btn {
-            background: none;
-            border: none;
-            padding: 0.9rem 1rem;
-            font-size: 0.84rem;
-            font-weight: 700;
-            color: var(--text-muted);
-            cursor: pointer;
-            border-bottom: 3px solid transparent;
-            white-space: nowrap;
-            transition: all 0.2s;
-            display: flex;
-            align-items: center;
+            padding: 0 0.75rem;
+            display: grid;
+            grid-template-columns: repeat(8, minmax(0, 1fr));
             gap: 0.4rem;
         }
 
+        .stage-nav-btn {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 0.45rem 0.35rem;
+            cursor: pointer;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            min-height: 56px;
+            justify-content: center;
+            gap: 0.15rem;
+            user-select: none;
+            overflow: hidden;
+        }
+
+        .nav-btn-header {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            line-height: 1;
+            margin-bottom: 0.1rem;
+        }
+
+        .nav-step-badge {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            font-size: 0.68rem;
+            font-weight: 800;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            line-height: 1;
+            flex-shrink: 0;
+            transition: all 0.2s;
+        }
+
+        .nav-step-badge.unlocked {
+            background: #e0e7ff;
+            color: #3730a3;
+        }
+
+        .nav-step-badge.active {
+            background: #2563eb;
+            color: white;
+            box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
+        }
+
+        .nav-step-badge.completed {
+            background: #10b981;
+            color: white;
+        }
+
+        .nav-step-badge.locked {
+            background: #cbd5e1;
+            color: #475569;
+            font-size: 0.6rem;
+        }
+
+        .nav-phase-tag {
+            font-size: 0.65rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+            color: #64748b;
+        }
+
+        .nav-btn-title {
+            font-size: 0.77rem;
+            font-weight: 700;
+            color: #1e293b;
+            line-height: 1.15;
+            white-space: normal;
+            word-break: break-word;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .nav-btn-sub {
+            font-size: 0.65rem;
+            color: #64748b;
+            line-height: 1.1;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 100%;
+        }
+
+        /* Hover & Active States */
         .stage-nav-btn:hover:not(.locked) {
-            color: var(--primary);
-            background: var(--pastel-indigo-bg);
+            background: #ffffff;
+            border-color: #93c5fd;
+            box-shadow: 0 2px 6px rgba(37, 99, 235, 0.08);
+            transform: translateY(-1px);
         }
 
         .stage-nav-btn.active {
-            color: var(--primary);
-            border-bottom-color: var(--primary);
-            background: var(--pastel-indigo-bg);
+            background: #eff6ff;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.25), 0 2px 6px rgba(37, 99, 235, 0.1);
+        }
+
+        .stage-nav-btn.active .nav-phase-tag {
+            color: #1d4ed8;
+        }
+
+        .stage-nav-btn.active .nav-btn-title {
+            color: #1e40af;
+        }
+
+        .stage-nav-btn.active .nav-btn-sub {
+            color: #3b82f6;
+        }
+
+        .stage-nav-btn.completed:not(.active) {
+            background: #f0fdf4;
+            border-color: #bbf7d0;
+        }
+
+        .stage-nav-btn.completed:not(.active) .nav-phase-tag {
+            color: #166534;
+        }
+
+        .stage-nav-btn.completed:not(.active) .nav-btn-title {
+            color: #14532d;
         }
 
         .stage-nav-btn.locked {
-            opacity: 0.45;
+            background: #f1f5f9;
+            border-color: #e2e8f0;
+            opacity: 0.6;
             cursor: not-allowed;
         }
 
-        .stage-nav-btn.completed {
-            color: var(--success);
+        .stage-nav-btn.locked .nav-btn-title {
+            color: #94a3b8;
+        }
+
+        .stage-nav-btn.locked .nav-btn-sub {
+            color: #cbd5e1;
+        }
+
+        /* Responsive Breakpoints: Wrap neatly into 4x2 grid on medium and small screens */
+        @media (max-width: 1080px) {
+            .nav-stages-inner {
+                grid-template-columns: repeat(4, minmax(0, 1fr));
+                gap: 0.4rem;
+            }
+            .stage-nav-btn {
+                min-height: 52px;
+                padding: 0.4rem 0.5rem;
+            }
+            .nav-btn-title {
+                font-size: 0.76rem;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .nav-stages {
+                padding: 0.3rem 0 0.4rem;
+            }
+            .nav-stages-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.25rem;
+                margin-bottom: 0.3rem;
+                padding: 0 0.5rem;
+            }
+            .nav-progress-bar-wrap {
+                max-width: 100%;
+                width: 100%;
+                height: 4px;
+            }
+            .nav-stages-inner {
+                grid-template-columns: repeat(4, minmax(0, 1fr));
+                gap: 0.25rem;
+                padding: 0 0.35rem;
+            }
+            .stage-nav-btn {
+                min-height: 48px;
+                padding: 0.3rem 0.2rem;
+                border-radius: 6px;
+            }
+            .nav-phase-tag {
+                display: none;
+            }
+            .nav-btn-sub {
+                display: none;
+            }
+            .nav-btn-title {
+                font-size: 0.68rem;
+                line-height: 1.1;
+                -webkit-line-clamp: 2;
+            }
+            .nav-step-badge {
+                width: 16px;
+                height: 16px;
+                font-size: 0.62rem;
+            }
         }
 
         /* MAIN CONTENT */

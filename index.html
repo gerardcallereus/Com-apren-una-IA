@@ -11,7 +11,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/styles.css?v=20261015-v4">
+    <link rel="stylesheet" href="css/styles.css?v=20261017-v1">
 
 </head>
 <body>
@@ -42,32 +42,89 @@
         </div>
     </header>
 
-    <!-- NAVIGATION TABS (7 FASES OFICIALS) -->
+    <!-- NAVEGACIÓ RESPONSIVA PER FASES (SENSE SCROLL HORITZONTAL) -->
     <nav class="nav-stages">
+        <div class="nav-stages-header">
+            <div class="nav-progress-meta">
+                <span class="nav-progress-title">🧭 Itinerari Didàctic:</span>
+                <span class="nav-progress-text" id="nav-global-progress-text">Progrés global: 1 de 8 fases completades (12%)</span>
+            </div>
+            <div class="nav-progress-bar-wrap">
+                <div class="nav-progress-bar-fill" id="nav-global-progress-bar" style="width: 12.5%;"></div>
+            </div>
+        </div>
+
         <div class="nav-stages-inner">
-            <button class="stage-nav-btn active" id="tab-btn-1" onclick="goToStage(1)">
-                <span id="nav-label-stage-1">1. Com aprèn una IA?</span>
+            <button class="stage-nav-btn active" id="tab-btn-1" onclick="goToStage(1)" title="Fase 1: Com aprèn una IA? (Simulador)">
+                <div class="nav-btn-header">
+                    <span class="nav-step-badge active" id="nav-badge-stage-1">1</span>
+                    <span class="nav-phase-tag">Fase 1</span>
+                </div>
+                <span class="nav-btn-title" id="nav-label-stage-1">Com aprèn una IA?</span>
+                <span class="nav-btn-sub" id="nav-sub-stage-1">Simulador Gats/Gossos</span>
             </button>
-            <button class="stage-nav-btn locked" id="tab-btn-2" onclick="goToStage(2)">
-                <span id="nav-label-stage-2">🔒 2. Dades i CAPTCHA</span>
+
+            <button class="stage-nav-btn locked" id="tab-btn-2" onclick="goToStage(2)" title="Fase 2: Dades i CAPTCHA">
+                <div class="nav-btn-header">
+                    <span class="nav-step-badge locked" id="nav-badge-stage-2">🔒</span>
+                    <span class="nav-phase-tag">Fase 2</span>
+                </div>
+                <span class="nav-btn-title" id="nav-label-stage-2">Dades i CAPTCHA</span>
+                <span class="nav-btn-sub" id="nav-sub-stage-2">Etiquetatge i consens</span>
             </button>
-            <button class="stage-nav-btn locked" id="tab-btn-3" onclick="goToStage(3)">
-                <span id="nav-label-stage-3">🔒 3. Cotxes Autònoms i Moral Machine 🚗</span>
+
+            <button class="stage-nav-btn locked" id="tab-btn-3" onclick="goToStage(3)" title="Fase 3: Cotxes Autònoms i Moral Machine">
+                <div class="nav-btn-header">
+                    <span class="nav-step-badge locked" id="nav-badge-stage-3">🔒</span>
+                    <span class="nav-phase-tag">Fase 3</span>
+                </div>
+                <span class="nav-btn-title" id="nav-label-stage-3">Cotxes Autònoms</span>
+                <span class="nav-btn-sub" id="nav-sub-stage-3">Moral Machine MIT 🚗</span>
             </button>
-            <button class="stage-nav-btn locked" id="tab-btn-4" onclick="goToStage(4)">
-                <span id="nav-label-stage-4">🔒 4. Teachable Machine</span>
+
+            <button class="stage-nav-btn locked" id="tab-btn-4" onclick="goToStage(4)" title="Fase 4: Teachable Machine">
+                <div class="nav-btn-header">
+                    <span class="nav-step-badge locked" id="nav-badge-stage-4">🔒</span>
+                    <span class="nav-phase-tag">Fase 4</span>
+                </div>
+                <span class="nav-btn-title" id="nav-label-stage-4">Teachable Machine</span>
+                <span class="nav-btn-sub" id="nav-sub-stage-4">Entrena model propi</span>
             </button>
-            <button class="stage-nav-btn locked" id="tab-btn-5" onclick="goToStage(5)">
-                <span id="nav-label-stage-5">🔒 5. Riscos, Biaixos i Manipulació</span>
+
+            <button class="stage-nav-btn locked" id="tab-btn-5" onclick="goToStage(5)" title="Fase 5: Riscos, Biaixos i Manipulació">
+                <div class="nav-btn-header">
+                    <span class="nav-step-badge locked" id="nav-badge-stage-5">🔒</span>
+                    <span class="nav-phase-tag">Fase 5</span>
+                </div>
+                <span class="nav-btn-title" id="nav-label-stage-5">Riscos i Biaixos</span>
+                <span class="nav-btn-sub" id="nav-sub-stage-5">Manipulació algorítmica</span>
             </button>
-            <button class="stage-nav-btn locked" id="tab-btn-6" onclick="goToStage(6)">
-                <span id="nav-label-stage-6">🔒 6. L'Art dels Prompts</span>
+
+            <button class="stage-nav-btn locked" id="tab-btn-6" onclick="goToStage(6)" title="Fase 6: L'Art dels Prompts">
+                <div class="nav-btn-header">
+                    <span class="nav-step-badge locked" id="nav-badge-stage-6">🔒</span>
+                    <span class="nav-phase-tag">Fase 6</span>
+                </div>
+                <span class="nav-btn-title" id="nav-label-stage-6">L'Art dels Prompts</span>
+                <span class="nav-btn-sub" id="nav-sub-stage-6">Enginyeria i matriu</span>
             </button>
-            <button class="stage-nav-btn locked" id="tab-btn-7" onclick="goToStage(7)">
-                <span id="nav-label-stage-7">🔒 7. Qüestionari Final</span>
+
+            <button class="stage-nav-btn locked" id="tab-btn-7" onclick="goToStage(7)" title="Fase 7: Qüestionari Final">
+                <div class="nav-btn-header">
+                    <span class="nav-step-badge locked" id="nav-badge-stage-7">🔒</span>
+                    <span class="nav-phase-tag">Fase 7</span>
+                </div>
+                <span class="nav-btn-title" id="nav-label-stage-7">Qüestionari Final</span>
+                <span class="nav-btn-sub" id="nav-sub-stage-7">Test 12 preguntes</span>
             </button>
-            <button class="stage-nav-btn locked" id="tab-btn-8" onclick="goToStage(8)">
-                <span id="nav-label-stage-8">🔒 8. Diploma Oficial</span>
+
+            <button class="stage-nav-btn locked" id="tab-btn-8" onclick="goToStage(8)" title="Fase 8: Diploma Oficial i Dossier">
+                <div class="nav-btn-header">
+                    <span class="nav-step-badge locked" id="nav-badge-stage-8">🔒</span>
+                    <span class="nav-phase-tag">Fase 8</span>
+                </div>
+                <span class="nav-btn-title" id="nav-label-stage-8">Diploma Oficial</span>
+                <span class="nav-btn-sub" id="nav-sub-stage-8">Dossier i certificat 🎓</span>
             </button>
         </div>
     </nav>
@@ -2243,24 +2300,24 @@
     </div>
 
     <!-- Llibreries externes -->
-    <script src="js/html2canvas.min.js?v=20261015-v4"></script>
+    <script src="js/html2canvas.min.js?v=20261017-v1"></script>
 
     <!-- Dades dels reptes i qüestionaris -->
-    <script src="js/data/quizzes-data.js?v=20261015-v4"></script>
-    <script src="js/data/captcha-data.js?v=20261015-v4"></script>
+    <script src="js/data/quizzes-data.js?v=20261017-v1"></script>
+    <script src="js/data/captcha-data.js?v=20261017-v1"></script>
 
     <!-- Estat reactiu, persistència i navegació -->
-    <script src="js/state.js?v=20261015-v4"></script>
+    <script src="js/state.js?v=20261017-v1"></script>
 
     <!-- Motor de qüestionaris -->
-    <script src="js/modules/quizzes.js?v=20261015-v4"></script>
+    <script src="js/modules/quizzes.js?v=20261017-v1"></script>
 
     <!-- Mòduls d'aprenentatge per fases -->
-    <script src="js/modules/stage1-simulator.js?v=20261015-v4"></script>
-    <script src="js/modules/stage2-captcha.js?v=20261015-v4"></script>
-    <script src="js/modules/stage3-teachable.js?v=20261015-v4"></script>
-    <script src="js/modules/stage4-riscos.js?v=20261015-v4"></script>
-    <script src="js/modules/stage5-prompts.js?v=20261015-v4"></script>
-    <script src="js/modules/stage7-diploma.js?v=20261015-v4"></script>
+    <script src="js/modules/stage1-simulator.js?v=20261017-v1"></script>
+    <script src="js/modules/stage2-captcha.js?v=20261017-v1"></script>
+    <script src="js/modules/stage3-teachable.js?v=20261017-v1"></script>
+    <script src="js/modules/stage4-riscos.js?v=20261017-v1"></script>
+    <script src="js/modules/stage5-prompts.js?v=20261017-v1"></script>
+    <script src="js/modules/stage7-diploma.js?v=20261017-v1"></script>
 </body>
 </html>
